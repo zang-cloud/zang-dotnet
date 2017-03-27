@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace ZangAPI.Model
 {
+    /// <summary>
+    /// Base Zang model object
+    /// </summary>
     public class BaseObject
     {
     

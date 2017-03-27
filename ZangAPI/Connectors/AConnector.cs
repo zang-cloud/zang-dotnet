@@ -1,5 +1,4 @@
-﻿using ZangAPI.Configuration;
-using ZangAPI.HttpManager;
+﻿using ZangAPI.HttpManager;
 
 namespace ZangAPI.Connectors
 {
@@ -17,22 +16,12 @@ namespace ZangAPI.Connectors
         public IHttpProvider HttpProvider { get; set; }
 
         /// <summary>
-        /// Gets or sets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        public IZangConfiguration Configuration { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="AConnector"/> class.
         /// </summary>
         /// <param name="httpProvider">The HTTP provider.</param>
-        /// <param name="configuration">The configuration.</param>
-        protected AConnector(IHttpProvider httpProvider, IZangConfiguration configuration)
+        protected AConnector(IHttpProvider httpProvider)
         {
             this.HttpProvider = httpProvider;
-            this.Configuration = configuration;
         }
     }
 }

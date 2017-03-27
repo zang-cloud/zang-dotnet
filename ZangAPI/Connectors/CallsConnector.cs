@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using Newtonsoft.Json;
-using ZangAPI.Configuration;
+using RestSharp;
 using ZangAPI.HttpManager;
 using ZangAPI.Model.Lists;
 
@@ -16,9 +16,8 @@ namespace ZangAPI.Connectors
         /// Initializes a new instance of the <see cref="CallsConnector"/> class.
         /// </summary>
         /// <param name="httpProvider">The HTTP provider.</param>
-        /// <param name="configuration">The configuration.</param>
-        public CallsConnector(IHttpProvider httpProvider, IZangConfiguration configuration) 
-            : base(httpProvider, configuration)
+        public CallsConnector(IHttpProvider httpProvider) 
+            : base(httpProvider)
         {
         }
 
@@ -28,22 +27,21 @@ namespace ZangAPI.Connectors
 
         public CallList ListCalls(string accountSid)
         {
-            //todo maknuti ovo iz Zanga
+            var url = $"Accounts/{accountSid}/Calls.json";
+
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
                 | SecurityProtocolType.Tls11
                 | SecurityProtocolType.Tls12
                 | SecurityProtocolType.Ssl3;
 
-            var url = $"{Configuration.BaseUrl}/Accounts/{accountSid}/Calls.json";
 
-            var response = HttpProvider.GetHttpClient().GetAsync(url).Result;
 
-            var responseContent = response.Content;
+            var client = HttpProvider.GetHttpClient();
 
-            // Call .Result to synchronously read the result
-            var responseString = responseContent.ReadAsStringAsync().Result;
+            var request = new RestRequest(url, Method.GET);
+            var response = client.Execute(request);
 
-            return JsonConvert.DeserializeObject<CallList>(responseString);
+            return JsonConvert.DeserializeObject<CallList>(response.Content);
         }
 
         //todo InterruptLiveCall

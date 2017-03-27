@@ -65,7 +65,7 @@ namespace ZangAPI.Model
         /// The start time.
         /// </value>
         [JsonProperty(PropertyName = "start_time")]
-        public DateTime StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
 
         /// <summary>
         /// Gets or sets the end time.

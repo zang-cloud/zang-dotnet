@@ -11,14 +11,6 @@ namespace ZangAPI
     public class ZangService
     {
         /// <summary>
-        /// Gets the zang configuration.
-        /// </summary>
-        /// <value>
-        /// The zang configuration.
-        /// </value>
-        public ZangConfiguration ZangConfiguration { get; private set; }
-
-        /// <summary>
         /// Gets or sets the HTTP manager.
         /// </summary>
         /// <value>
@@ -36,16 +28,12 @@ namespace ZangAPI
 
         //todo ostali konektori
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ZangService"/> class.
         /// </summary>
         public ZangService()
-        {           
-            this.ZangConfiguration = new ZangConfiguration();
-            this.HttpManager = new HttpManager.HttpManager(this.ZangConfiguration);
-
-            this.CallsConnector = new CallsConnector(this.HttpManager, this.ZangConfiguration);
+            : this(new HttpManager.HttpManager())
+        {
         }
 
         /// <summary>
@@ -55,12 +43,24 @@ namespace ZangAPI
         public ZangService(IHttpManager httpManager)
         {
             this.HttpManager = httpManager;
-            this.ZangConfiguration = new ZangConfiguration();
-
-            this.CallsConnector = new CallsConnector(this.HttpManager, this.ZangConfiguration);
+            this.InitConnectors();
         }
 
-        public void ReadConfig()
+        /// <summary>
+        /// Initializes the connectors.
+        /// </summary>
+        private void InitConnectors()
+        {
+            this.CallsConnector = new CallsConnector(this.HttpManager);
+
+            //todo ostali
+        }
+
+        /// <summary>
+        /// Initializes from configuration.
+        /// </summary>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void InitFromConfig()
         {
             throw new NotImplementedException();
         }

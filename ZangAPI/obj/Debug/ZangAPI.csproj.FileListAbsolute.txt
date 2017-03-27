@@ -4,3 +4,6 @@ C:\Root\ZangAPI\ZangAPI\bin\Debug\Newtonsoft.Json.dll
 C:\Root\ZangAPI\ZangAPI\bin\Debug\Newtonsoft.Json.xml
 C:\Root\ZangAPI\ZangAPI\obj\Debug\ZangAPI.dll
 C:\Root\ZangAPI\ZangAPI\obj\Debug\ZangAPI.pdb
+C:\Root\ZangAPI\ZangAPI\bin\Debug\RestSharp.dll
+C:\Root\ZangAPI\ZangAPI\bin\Debug\RestSharp.xml
+C:\Root\ZangAPI\ZangAPI\obj\Debug\ZangAPI.csprojResolveAssemblyReference.cache

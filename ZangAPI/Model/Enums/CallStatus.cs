@@ -53,6 +53,11 @@ namespace ZangAPI.Model.Enums
         /// The pre-queued
         /// </summary>
         [EnumMember(Value = "pre-queued")]
-        PRE_QUEUED
+        PRE_QUEUED,
+
+        /// <summary>
+        /// The canceled
+        /// </summary>
+        CANCELED
     }
 }

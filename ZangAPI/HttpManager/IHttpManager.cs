@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using RestSharp;
+using ZangAPI.Configuration;
 
 namespace ZangAPI.HttpManager
 {
@@ -9,10 +10,16 @@ namespace ZangAPI.HttpManager
     public interface IHttpManager : IHttpProvider
     {
         /// <summary>
-        /// Sets the HTTP client.
+        /// Sets the configuration.
         /// </summary>
-        /// <returns>Returns HttpClient instance</returns>
-        HttpClient ResetHttpClient();
+        /// <param name="configuration">The configuration.</param>
+        void SetConfiguration(IZangConfiguration configuration);
+
+        /// <summary>
+        /// Resets the rest client.
+        /// </summary>
+        /// <returns>Returns rest client instance</returns>
+        IRestClient ResetHttpClient();
 
         /// <summary>
         /// Disposes the HTTP client.

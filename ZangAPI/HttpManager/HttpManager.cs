@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Net.Http;
-using System.Text;
+using RestSharp;
+using RestSharp.Authenticators;
 using ZangAPI.Configuration;
 
 namespace ZangAPI.HttpManager
@@ -12,12 +12,12 @@ namespace ZangAPI.HttpManager
     public class HttpManager : IHttpManager
     {
         /// <summary>
-        /// Gets or sets the HTTP client.
+        /// Gets or sets the rest client.
         /// </summary>
         /// <value>
-        /// The HTTP client.
+        /// The rest client.
         /// </value>
-        private HttpClient HttpClient { get; set; }
+        private RestClient RestClient { get; set; }
 
         /// <summary>
         /// Gets or sets the zang configuration.
@@ -25,7 +25,15 @@ namespace ZangAPI.HttpManager
         /// <value>
         /// The zang configuration.
         /// </value>
-        private IZangConfiguration ZangConfiguration { get; }
+        private IZangConfiguration ZangConfiguration { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpManager"/> class.
+        /// </summary>
+        public HttpManager()
+            : this(new ZangConfiguration())
+        {       
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpManager"/> class.
@@ -36,42 +44,46 @@ namespace ZangAPI.HttpManager
         }
 
         /// <summary>
+        /// Initializes the HTTP client.
+        /// </summary>
+        /// <returns></returns>
+        private IRestClient InitHttpClient()
+        {
+            var client = new RestClient();
+
+            this.ConfigureRestClient(client);
+
+            this.RestClient = client;
+            return client;
+        }
+
+
+        /// <summary>
         /// Gets the HTTP client.
         /// </summary>
         /// <returns>
         /// Returns HttpClient instance
         /// </returns>
-        public HttpClient GetHttpClient()
+        public IRestClient GetHttpClient()
         {
-            // If HttpClient instance already exists return it, create new instance otherwise
-            var client = this.HttpClient ?? new HttpClient();
+            if (this.RestClient == null)
+                return this.InitHttpClient();
 
-            // Configure HttpClient instance
-            this.ConfigureHttpClient(client);
-
-            this.HttpClient = client;
-            return this.HttpClient;
+            return this.RestClient;
         }
 
         /// <summary>
-        /// Sets the HTTP client.
+        /// Resets the HTTP client.
         /// </summary>
-        /// <returns>
-        /// Returns HttpClient instance
-        /// </returns>
-        public HttpClient ResetHttpClient()
+        /// <returns>Returns reseted RestClient instance</returns>
+        public IRestClient ResetHttpClient()
         {
-            // Dispose old HttpClient
-            this.HttpClient.Dispose();
+            if (this.RestClient != null)
+            {
+                this.DisposeHttpClient();
+            }
 
-            var client = new HttpClient();
-
-            // Configure HttpClient instance
-            this.ConfigureHttpClient(client);
-            
-            // Set HttpClient
-            this.HttpClient = client;
-            return this.HttpClient;
+            return this.InitHttpClient();
         }
 
         /// <summary>
@@ -79,17 +91,33 @@ namespace ZangAPI.HttpManager
         /// </summary>
         public void DisposeHttpClient()
         {
-            this.HttpClient.Dispose();
+            this.RestClient = null;
         }
 
         /// <summary>
-        /// Configures the HTTP client.
+        /// Sets the configuration.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        public void SetConfiguration(IZangConfiguration configuration)
+        {
+            this.ZangConfiguration = configuration;
+
+            if (this.RestClient == null)
+                this.InitHttpClient();
+            else
+            {
+                this.ConfigureRestClient(this.RestClient);
+            }       
+        }
+
+        /// <summary>
+        /// Configures the rest client.
         /// </summary>
         /// <param name="client">The client.</param>
-        private void ConfigureHttpClient(HttpClient client)
+        private void ConfigureRestClient(IRestClient client)
         {
-            var byteArray = Encoding.ASCII.GetBytes($"{ZangConfiguration.AccountSid}:{ZangConfiguration.AuthToken}");
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+            client.BaseUrl = new Uri(ZangConfiguration.BaseUrl);
+            client.Authenticator = new HttpBasicAuthenticator(ZangConfiguration.AccountSid, ZangConfiguration.AuthToken);
         }
     }
 }

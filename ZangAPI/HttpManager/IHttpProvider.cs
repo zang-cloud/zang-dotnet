@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+﻿using RestSharp;
 
 namespace ZangAPI.HttpManager
 {
@@ -8,9 +8,9 @@ namespace ZangAPI.HttpManager
     public interface IHttpProvider
     {
         /// <summary>
-        /// Gets the HTTP client.
+        /// Gets the rest client.
         /// </summary>
-        /// <returns>Returns HttpClient instance</returns>
-        HttpClient GetHttpClient();
+        /// <returns>Returns rest client</returns>
+        IRestClient GetHttpClient();
     }
 }
