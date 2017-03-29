@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using RestSharp;
 using ZangAPI.Model.Enums;
 
 namespace ZangAPI.Model
