@@ -67,7 +67,9 @@ namespace ZangAPI.HttpManager
         public IRestClient GetHttpClient()
         {
             if (this.RestClient == null)
+            {
                 return this.InitHttpClient();
+            }              
 
             return this.RestClient;
         }
@@ -81,7 +83,7 @@ namespace ZangAPI.HttpManager
             if (this.RestClient != null)
             {
                 this.DisposeHttpClient();
-            }
+            }               
 
             return this.InitHttpClient();
         }
@@ -103,11 +105,13 @@ namespace ZangAPI.HttpManager
             this.ZangConfiguration = configuration;
 
             if (this.RestClient == null)
+            {
                 this.InitHttpClient();
+            }
             else
             {
                 this.ConfigureRestClient(this.RestClient);
-            }       
+            }                    
         }
 
         /// <summary>
