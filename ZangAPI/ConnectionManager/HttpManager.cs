@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using RestSharp;
 using RestSharp.Authenticators;
 using ZangAPI.Configuration;
@@ -114,6 +115,11 @@ namespace ZangAPI.ConnectionManager
         {
             client.BaseUrl = new Uri(ZangConfiguration.BaseUrl);
             client.Authenticator = new HttpBasicAuthenticator(ZangConfiguration.AccountSid, ZangConfiguration.AuthToken);
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                                                   | SecurityProtocolType.Tls11
+                                                   | SecurityProtocolType.Tls12
+                                                   | SecurityProtocolType.Ssl3;
         }
     }
 }

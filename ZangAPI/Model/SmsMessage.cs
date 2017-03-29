@@ -18,7 +18,7 @@ namespace ZangAPI.Model
         /// The date sent.
         /// </value>
         [JsonProperty(PropertyName = "date_sent")]
-        public DateTime DateSent { get; set; }
+        public DateTime? DateSent { get; set; }
 
         /// <summary>
         /// Gets or sets to.
