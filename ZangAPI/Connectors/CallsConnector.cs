@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Newtonsoft.Json;
 using RestSharp;
-using ZangAPI.HttpManager;
+using ZangAPI.ConnectionManager;
 using ZangAPI.Model.Lists;
 
 namespace ZangAPI.Connectors

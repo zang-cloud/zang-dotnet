@@ -1,12 +1,12 @@
 ﻿using RestSharp;
 using ZangAPI.Configuration;
 
-namespace ZangAPI.HttpManager
+namespace ZangAPI.ConnectionManager
 {
     /// <summary>
     /// Http manager interface
     /// </summary>
-    /// <seealso cref="ZangAPI.HttpManager.IHttpProvider" />
+    /// <seealso cref="IHttpProvider" />
     public interface IHttpManager : IHttpProvider
     {
         /// <summary>

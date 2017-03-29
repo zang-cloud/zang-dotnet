@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 
-namespace ZangAPI.HttpManager
+namespace ZangAPI.ConnectionManager
 {
     /// <summary>
     /// Http provider interface

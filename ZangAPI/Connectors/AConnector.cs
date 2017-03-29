@@ -1,4 +1,4 @@
-﻿using ZangAPI.HttpManager;
+﻿using ZangAPI.ConnectionManager;
 
 namespace ZangAPI.Connectors
 {

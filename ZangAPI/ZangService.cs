@@ -1,7 +1,7 @@
 ﻿using System;
 using ZangAPI.Configuration;
+using ZangAPI.ConnectionManager;
 using ZangAPI.Connectors;
-using ZangAPI.HttpManager;
 
 namespace ZangAPI
 {
@@ -33,7 +33,7 @@ namespace ZangAPI
         /// </summary>
         /// <param name="configuration">The configuration.</param>
         public ZangService(IZangConfiguration configuration)
-            : this(new HttpManager.HttpManager(configuration))
+            : this(new HttpManager(configuration))
         {
         }
 

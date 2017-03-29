@@ -3,12 +3,12 @@ using RestSharp;
 using RestSharp.Authenticators;
 using ZangAPI.Configuration;
 
-namespace ZangAPI.HttpManager
+namespace ZangAPI.ConnectionManager
 {
     /// <summary>
     /// Http manager
     /// </summary>
-    /// <seealso cref="ZangAPI.HttpManager.IHttpManager" />
+    /// <seealso cref="IHttpManager" />
     public class HttpManager : IHttpManager
     {
         /// <summary>
