@@ -31,19 +31,10 @@ namespace ZangAPI
         /// <summary>
         /// Initializes a new instance of the <see cref="ZangService"/> class.
         /// </summary>
-        public ZangService()
-            : this(new HttpManager.HttpManager())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ZangService"/> class.
-        /// </summary>
         /// <param name="configuration">The configuration.</param>
         public ZangService(IZangConfiguration configuration)
-            : this(new HttpManager.HttpManager())
+            : this(new HttpManager.HttpManager(configuration))
         {
-            this.HttpManager.SetConfiguration(configuration);
         }
 
         /// <summary>

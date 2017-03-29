@@ -30,14 +30,6 @@ namespace ZangAPI.HttpManager
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpManager"/> class.
         /// </summary>
-        public HttpManager()
-            : this(new ZangConfiguration())
-        {       
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HttpManager"/> class.
-        /// </summary>
         public HttpManager(IZangConfiguration configuration)
         {
             this.ZangConfiguration = configuration;

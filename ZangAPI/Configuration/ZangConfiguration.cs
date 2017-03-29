@@ -72,8 +72,12 @@ namespace ZangAPI.Configuration
         /// <summary>
         /// Initializes a new instance of the <see cref="ZangConfiguration"/> class.
         /// </summary>
-        public ZangConfiguration()
+        /// <param name="accountSid">The account sid.</param>
+        /// <param name="authToken">The authentication token.</param>
+        public ZangConfiguration(string accountSid, string authToken)
         {
+            this.AccountSid = accountSid;
+            this.AuthToken = authToken;
             this.BaseUrl = "https://api.zang.io/v2";
             this.ProxyHost = "";
             this.ProxyPort = "";
