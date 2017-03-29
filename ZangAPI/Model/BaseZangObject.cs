@@ -6,7 +6,7 @@ namespace ZangAPI.Model
     /// <summary>
     /// Base Zang model object
     /// </summary>
-    public class BaseObject
+    public class BaseZangObject
     {
     
         /// <summary>

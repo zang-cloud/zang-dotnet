@@ -55,13 +55,14 @@
     <Compile Include="HttpManager\HttpManager.cs" />
     <Compile Include="HttpManager\IHttpManager.cs" />
     <Compile Include="HttpManager\IHttpProvider.cs" />
-    <Compile Include="Model\BaseObject.cs" />
+    <Compile Include="Model\BaseZangObject.cs" />
     <Compile Include="Model\Call.cs" />
     <Compile Include="Model\CallSubresourceUris.cs" />
     <Compile Include="Model\Enums\AnsweredBy.cs" />
     <Compile Include="Model\Enums\CallDirection.cs" />
     <Compile Include="Model\Enums\CallStatus.cs" />
     <Compile Include="Model\Lists\CallList.cs" />
+    <Compile Include="Model\Lists\ZangObjectsList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration\ZangConfiguration.cs" />
     <Compile Include="ZangService.cs" />

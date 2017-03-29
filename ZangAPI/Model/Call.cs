@@ -8,8 +8,8 @@ namespace ZangAPI.Model
     /// <summary>
     /// Call class
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseObject" />
-    public class Call : BaseObject
+    /// <seealso cref="BaseZangObject" />
+    public class Call : BaseZangObject
     {
         /// <summary>
         /// Gets the parent call sid.
