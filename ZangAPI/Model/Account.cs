@@ -62,8 +62,7 @@ namespace ZangAPI.Model
         [JsonProperty(PropertyName = "time_zone")]
         public string TimeZone { get; set; }
 
-        //[JsonProperty(PropertyName = "subresource_uris")]
-        //public SubresourceUris SubresourceUris { get; set; }
+        [JsonProperty(PropertyName = "subresource_uris")]
+        public SubresourceUris SubresourceUris { get; set; }
     }
-
 }

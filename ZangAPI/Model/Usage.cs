@@ -4,7 +4,7 @@ using ZangAPI.Model.Enums;
 namespace ZangAPI.Model
 {
     /// <summary>
-    /// 
+    /// Usage
     /// </summary>
     /// <seealso cref="ZangAPI.Model.BaseZangObject" />
     public class Usage : BaseZangObject

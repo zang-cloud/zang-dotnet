@@ -2,6 +2,9 @@
 
 namespace ZangAPI.Model.Enums
 {
+    /// <summary>
+    /// SMS direction
+    /// </summary>
     public enum SmsDirection
     {
         /// <summary>
