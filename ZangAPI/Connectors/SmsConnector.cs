@@ -48,7 +48,7 @@ namespace ZangAPI.Connectors
             Require.Argument("To", to);
             Require.Argument("Body", body);
 
-            // Add SendSmsparameters
+            // Add SendSms query and body parameters
             this.SetParamsForSendSms(request, to, body, from, statusCallback, statusCallbackMethod, allowMultiple);
 
             // Send request
@@ -130,7 +130,7 @@ namespace ZangAPI.Connectors
             // Create GET request
             var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/SMS/Messages.json");
 
-            // Set parameters for list sms messages
+            // Add ListSmsMessages query and body parameters
             this.SetParamsForListSmsMessages(request, to, from, dateSentGte, dateSentLt, page, pageSize);
 
             // Send request

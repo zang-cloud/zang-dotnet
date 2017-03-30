@@ -74,13 +74,17 @@
     <Compile Include="Model\Domain.cs" />
     <Compile Include="Model\DomainSubresourceUris.cs" />
     <Compile Include="Model\Enums\AnsweredBy.cs" />
+    <Compile Include="Model\Enums\AudioDirection.cs" />
     <Compile Include="Model\Enums\CallDirection.cs" />
     <Compile Include="Model\Enums\CallStatus.cs" />
     <Compile Include="Model\Enums\ConferenceStatus.cs" />
     <Compile Include="Model\Enums\HttpMethod.cs" />
     <Compile Include="Model\Enums\IfMachine.cs" />
     <Compile Include="Model\Enums\Product.cs" />
+    <Compile Include="Model\Enums\RecordingAudioDirection.cs" />
+    <Compile Include="Model\Enums\RecordingFileFormat..cs" />
     <Compile Include="Model\Enums\SmsDirection.cs" />
+    <Compile Include="Model\Enums\TranscribeQuality.cs" />
     <Compile Include="Model\Lists\CallList.cs" />
     <Compile Include="Model\Lists\SmsList.cs" />
     <Compile Include="Model\Lists\ZangObjectsList.cs" />
