@@ -26,7 +26,7 @@ namespace ZangAPI.ConnectionManager
         /// <value>
         /// The zang configuration.
         /// </value>
-        public IZangConfiguration ZangConfiguration { get; set; }
+        private IZangConfiguration ZangConfiguration { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpManager"/> class.
