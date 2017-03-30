@@ -1,4 +1,8 @@
-﻿using ZangAPI.ConnectionManager;
+﻿using Newtonsoft.Json;
+using RestSharp;
+using ZangAPI.Configuration;
+using ZangAPI.ConnectionManager;
+using ZangAPI.Exceptions;
 
 namespace ZangAPI.Connectors
 {
@@ -22,6 +26,22 @@ namespace ZangAPI.Connectors
         protected AConnector(IHttpProvider httpProvider)
         {
             this.HttpProvider = httpProvider;
+        }
+
+        /// <summary>
+        /// Returns the or throw exception.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="response">The response.</param>
+        /// <returns>Returns instance of class T or throws exception</returns>
+        public T ReturnOrThrowException<T>(IRestResponse response)
+        {
+            var status = (int)response.StatusCode;
+
+            if (status >= 400) {
+                throw JsonConvert.DeserializeObject<ZangException>(response.Content);
+            }
+            return JsonConvert.DeserializeObject<T>(response.Content);
         }
     }
 }

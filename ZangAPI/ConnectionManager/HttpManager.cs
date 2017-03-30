@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using RestSharp;
 using RestSharp.Authenticators;
 using ZangAPI.Configuration;
@@ -18,7 +19,7 @@ namespace ZangAPI.ConnectionManager
         /// The rest client.
         /// </value>
         private RestClient RestClient { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the zang configuration.
         /// </summary>
@@ -107,6 +108,17 @@ namespace ZangAPI.ConnectionManager
         }
 
         /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <returns>
+        /// Returns configuration
+        /// </returns>
+        public IZangConfiguration GetConfiguration()
+        {
+            return this.ZangConfiguration;
+        }
+
+        /// <summary>
         /// Configures the rest client.
         /// </summary>
         /// <param name="client">The client.</param>
@@ -114,6 +126,11 @@ namespace ZangAPI.ConnectionManager
         {
             client.BaseUrl = new Uri(ZangConfiguration.BaseUrl);
             client.Authenticator = new HttpBasicAuthenticator(ZangConfiguration.AccountSid, ZangConfiguration.AuthToken);
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                                                   | SecurityProtocolType.Tls11
+                                                   | SecurityProtocolType.Tls12
+                                                   | SecurityProtocolType.Ssl3;
         }
     }
 }

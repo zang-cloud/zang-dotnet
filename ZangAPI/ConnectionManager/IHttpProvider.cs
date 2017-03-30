@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using ZangAPI.Configuration;
 
 namespace ZangAPI.ConnectionManager
 {
@@ -12,5 +13,11 @@ namespace ZangAPI.ConnectionManager
         /// </summary>
         /// <returns>Returns rest client</returns>
         IRestClient GetHttpClient();
+
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <returns>Returns configuration</returns>
+        IZangConfiguration GetConfiguration();
     }
 }

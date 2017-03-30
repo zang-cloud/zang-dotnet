@@ -55,6 +55,9 @@
     <Compile Include="ConnectionManager\HttpManager.cs" />
     <Compile Include="ConnectionManager\IHttpManager.cs" />
     <Compile Include="ConnectionManager\IHttpProvider.cs" />
+    <Compile Include="Connectors\RestRequestHelper.cs" />
+    <Compile Include="Connectors\SmsConnector.cs" />
+    <Compile Include="Exceptions\ZangException.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Application.cs" />
     <Compile Include="Model\ApplicationClient.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="Model\Enums\CallStatus.cs" />
     <Compile Include="Model\Enums\ConferenceStatus.cs" />
     <Compile Include="Model\Enums\HttpMethod.cs" />
+    <Compile Include="Model\Enums\IfMachine.cs" />
     <Compile Include="Model\Enums\Product.cs" />
     <Compile Include="Model\Enums\SmsDirection.cs" />
     <Compile Include="Model\Lists\CallList.cs" />
