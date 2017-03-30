@@ -19,14 +19,14 @@ namespace ZangAPI.ConnectionManager
         /// The rest client.
         /// </value>
         private RestClient RestClient { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the zang configuration.
         /// </summary>
         /// <value>
         /// The zang configuration.
         /// </value>
-        private IZangConfiguration ZangConfiguration { get; set; }
+        public IZangConfiguration ZangConfiguration { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpManager"/> class.
@@ -105,6 +105,17 @@ namespace ZangAPI.ConnectionManager
             {
                 this.ConfigureRestClient(this.RestClient);
             }                    
+        }
+
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <returns>
+        /// Returns configuration
+        /// </returns>
+        public IZangConfiguration GetConfiguration()
+        {
+            return this.ZangConfiguration;
         }
 
         /// <summary>

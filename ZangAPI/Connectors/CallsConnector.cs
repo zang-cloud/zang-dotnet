@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
+using ZangAPI.Configuration;
 using ZangAPI.ConnectionManager;
 using ZangAPI.Exceptions;
 using ZangAPI.Model;
@@ -26,7 +28,7 @@ namespace ZangAPI.Connectors
         }
 
         //todo MakeCall
-        public Call MakeCall(string accountSid, string to, string from, string url, string fallbackUrl = null,
+        public Call MakeCall(string to, string from, string url, string accountSid = null, string fallbackUrl = null,
             string statusCallback = null, string heartbeatUrl = null, string forwardedFrom = null, string playDtmf = null, string recordCallback = null,
             string transcribeCallback = null, string ifMachineUrl = null, string sipAuthUsername = null, string sipAuthPassword = null,
             HttpMethod method = HttpMethod.POST, HttpMethod fallbackMethod = HttpMethod.POST,
@@ -35,13 +37,18 @@ namespace ZangAPI.Connectors
             HttpMethod recordCallbackMethod = HttpMethod.POST, bool transcribe = false, bool straightToVoicemail = false,
             IfMachine ifMachine = IfMachine.CONTINUE, HttpMethod ifMachineMethod = HttpMethod.POST)
         {
-
             // Mark obligatory parameters
             Require.Argument("To", to);
             Require.Argument("From", from);
             Require.Argument("Url", url);
 
             var client = HttpProvider.GetHttpClient();
+
+            if (!accountSid.HasValue())
+            {
+                accountSid = HttpProvider.GetConfiguration().AccountSid;
+            }
+
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Calls.json");
 
             this.SetParamsForMakeCall(request, to, from, url, fallbackUrl, statusCallback, heartbeatUrl, forwardedFrom, playDtmf, recordCallback,
@@ -51,32 +58,34 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            if ((int) response.StatusCode >= 400)
-            {
-                throw JsonConvert.DeserializeObject<ZangException>(response.Content);
-            }
-
-            return JsonConvert.DeserializeObject<Call>(response.Content);
+            return this.ReturnOrThrowException<Call>(response);
         }
 
         //todo ViewCall
         //String accountSid, String callSid
 
         //String accountSid, String to, String from, CallStatus status, Date startTimeGte, Date startTimeLt, Integer page, Integer pageSize
-        public CallList ListCalls(string accountSid)
+        public CallList ListCalls(string accountSid = null, CallStatus? status = null, string to = null, string from = null, DateTime startTimeGte = default(DateTime), DateTime startTimeLt = default(DateTime), int? page = null, int? pageSize = null)
         {
-            var url = $"Accounts/{accountSid}/Calls.json";
-
             var client = HttpProvider.GetHttpClient();
 
-            var request = new RestRequest(url, Method.GET);
+            if (!accountSid.HasValue())
+            {
+                accountSid = HttpProvider.GetConfiguration().AccountSid;
+            }
+
+            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Calls.json");
+
+            this.SetParamsForListCalls(request, to, from, status, startTimeGte, startTimeLt, page, pageSize);
+
             var response = client.Execute(request);
 
-            return JsonConvert.DeserializeObject<CallList>(response.Content);
-        }
+            return this.ReturnOrThrowException<CallList>(response);
+        }     
 
         //todo InterruptLiveCall
         //String accountSid, String callSid, String url, HttpMethod method, EndCallStatus status)
+        //addparams
 
         //todo SendDigitsToLiveCall
         //String accountSid, String callSid, String playDtmf, AudioDirection playDtmfDirection
@@ -150,6 +159,30 @@ namespace ZangAPI.Connectors
             request.AddParameter("IfMachineMethod", ifMachineMethod.ToString().ToUpper());
             if (sipAuthUsername.HasValue()) request.AddParameter("SipAuthUsername", sipAuthUsername);
             if (sipAuthPassword.HasValue()) request.AddParameter("SipAuthPassword", sipAuthPassword);
+        }
+
+        /// <summary>
+        /// Sets the parameters for list calls.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <param name="status">The status.</param>
+        /// <param name="to">To.</param>
+        /// <param name="from">From.</param>
+        /// <param name="startTimeGte">The start time gte.</param>
+        /// <param name="startTimeLt">The start time lt.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        private void SetParamsForListCalls(RestRequest request, string to, string from, CallStatus? status, DateTime startTimeGte, DateTime startTimeLt, int? page, int? pageSize)
+        {
+            if (to.HasValue()) request.AddQueryParameter("To", to);
+            if (from.HasValue()) request.AddQueryParameter("From", from);
+            if (status != null) request.AddQueryParameter("Status", status.ToString());
+            if (startTimeGte != default(DateTime))
+                request.AddQueryParameter("StartTime", startTimeGte.ToString("yyyy-MM-dd"));
+            if (startTimeLt != default(DateTime))
+                request.AddQueryParameter("StartTime", startTimeLt.ToString("yyyy-MM-dd"));
+            if (page != null) request.AddQueryParameter("Page", page.ToString());
+            if (pageSize != null) request.AddQueryParameter("PageSize", pageSize.ToString());
         }
     }
 }

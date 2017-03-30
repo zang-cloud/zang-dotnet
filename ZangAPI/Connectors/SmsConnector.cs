@@ -1,10 +1,8 @@
 ﻿using System;
-using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
 using ZangAPI.ConnectionManager;
-using ZangAPI.Exceptions;
 using ZangAPI.Model;
 using ZangAPI.Model.Enums;
 using ZangAPI.Model.Lists;
@@ -37,11 +35,16 @@ namespace ZangAPI.Connectors
         /// <param name="statusCallbackMethod">The status callback method.</param>
         /// <param name="allowMultiple">if set to <c>true</c> [allow multiple].</param>
         /// <returns>Returns response in SmsMessage</returns>
-        public SmsMessage SendSms(string accountSid, string to, string body, string from = null,
+        public SmsMessage SendSms(string to, string body, string accountSid = null, string from = null,
             string statusCallback = null, HttpMethod statusCallbackMethod = HttpMethod.POST, bool allowMultiple = false)
         { 
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
+
+            if (!accountSid.HasValue())
+            {
+                accountSid = HttpProvider.GetConfiguration().AccountSid;
+            }
 
             // Create POST request
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/SMS/Messages.json");
@@ -56,15 +59,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            //todo
-            // Check for errors
-            if ((int) response.StatusCode >= 400)
-            {
-                throw JsonConvert.DeserializeObject<ZangException>(response.Content);
-            }
-
-            // Return SmsMessage
-            return JsonConvert.DeserializeObject<SmsMessage>(response.Content);
+            return this.ReturnOrThrowException<SmsMessage>(response);
         }
 
         /// <summary>
@@ -73,10 +68,15 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="smsMessageSid">The SMS message sid.</param>
         /// <returns>Returns sms message</returns>
-        public SmsMessage ViewSmsMessage(string accountSid, string smsMessageSid)
+        public SmsMessage ViewSmsMessage(string smsMessageSid, string accountSid = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
+
+            if (!accountSid.HasValue())
+            {
+                accountSid = HttpProvider.GetConfiguration().AccountSid;
+            }
 
             // Create GET request
             var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/SMS/Messages/{smsMessageSid}.json");
@@ -84,7 +84,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return JsonConvert.DeserializeObject<SmsMessage>(response.Content);
+            return this.ReturnOrThrowException<SmsMessage>(response);
         }
 
         /// <summary>
@@ -98,12 +98,17 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns sms list</returns>
-        public SmsList ListSmsMessages(string accountSid, string to = null, string from = null,
-            DateTime dateSentGte = default(DateTime), DateTime dateSentLt = default(DateTime), int page = 0,
-            int pageSize = 0)
+        public SmsList ListSmsMessages(string accountSid = null, string to = null, string from = null,
+            DateTime dateSentGte = default(DateTime), DateTime dateSentLt = default(DateTime), int? page = null,
+            int? pageSize = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
+
+            if (!accountSid.HasValue())
+            {
+                accountSid = HttpProvider.GetConfiguration().AccountSid;
+            }
 
             // Create GET request
             var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/SMS/Messages.json");
@@ -114,7 +119,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return JsonConvert.DeserializeObject<SmsList>(response.Content);
+            return this.ReturnOrThrowException<SmsList>(response);
         }
 
         /// <summary>
@@ -150,7 +155,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         private void SetParamsForListSmsMessages(IRestRequest request, string to, string from, DateTime dateSentGte,
-            DateTime dateSentLt, int page, int pageSize)
+            DateTime dateSentLt, int? page, int? pageSize)
         {
             if (to.HasValue()) request.AddQueryParameter("To", to);
             if (from.HasValue()) request.AddQueryParameter("From", from);
@@ -158,8 +163,8 @@ namespace ZangAPI.Connectors
                 request.AddQueryParameter("DateSent", dateSentGte.ToString("yyyy-MM-dd"));
             if (dateSentLt != default(DateTime))
                 request.AddQueryParameter("DateSent", dateSentLt.ToString("yyyy-MM-dd"));
-            if (page != 0) request.AddQueryParameter("Page", page.ToString());
-            if (pageSize != 0) request.AddQueryParameter("PageSize", pageSize.ToString());
+            if (page != null) request.AddQueryParameter("Page", page.ToString());
+            if (pageSize != null) request.AddQueryParameter("PageSize", pageSize.ToString());
         }      
     }
 }
