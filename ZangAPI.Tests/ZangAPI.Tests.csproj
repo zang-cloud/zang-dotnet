@@ -75,8 +75,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="JsonRequest.cs" />
     <Compile Include="Parameter.cs" />
+    <Compile Include="ParametersHelper.cs" />
     <Compile Include="SmsConnectorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

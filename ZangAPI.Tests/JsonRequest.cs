@@ -54,6 +54,6 @@ namespace ZangAPI.Tests
         {
             this.BodyParams = new List<Parameter>();
             this.QueryParams = new List<Parameter>();
-        }
+        }      
     }
 }
