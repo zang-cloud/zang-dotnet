@@ -49,14 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connectors\AccountsConnector.cs" />
     <Compile Include="Connectors\AConnector.cs" />
     <Compile Include="Connectors\CallsConnector.cs" />
     <Compile Include="Configuration\IZangConfiguration.cs" />
     <Compile Include="ConnectionManager\HttpManager.cs" />
     <Compile Include="ConnectionManager\IHttpManager.cs" />
     <Compile Include="ConnectionManager\IHttpProvider.cs" />
+    <Compile Include="Connectors\ConferencesConnector.cs" />
     <Compile Include="Connectors\RestRequestHelper.cs" />
     <Compile Include="Connectors\SmsConnector.cs" />
+    <Compile Include="Connectors\UsagesConnector.cs" />
     <Compile Include="Exceptions\ZangException.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Application.cs" />
@@ -74,15 +77,22 @@
     <Compile Include="Model\Domain.cs" />
     <Compile Include="Model\DomainSubresourceUris.cs" />
     <Compile Include="Model\Enums\AnsweredBy.cs" />
+    <Compile Include="Model\Enums\AudioDirection.cs" />
     <Compile Include="Model\Enums\CallDirection.cs" />
     <Compile Include="Model\Enums\CallStatus.cs" />
     <Compile Include="Model\Enums\ConferenceStatus.cs" />
     <Compile Include="Model\Enums\HttpMethod.cs" />
     <Compile Include="Model\Enums\IfMachine.cs" />
     <Compile Include="Model\Enums\Product.cs" />
+    <Compile Include="Model\Enums\RecordingAudioDirection.cs" />
+    <Compile Include="Model\Enums\RecordingFileFormat..cs" />
     <Compile Include="Model\Enums\SmsDirection.cs" />
+    <Compile Include="Model\Enums\TranscribeQuality.cs" />
     <Compile Include="Model\Lists\CallList.cs" />
+    <Compile Include="Model\Lists\ConferenceList.cs" />
+    <Compile Include="Model\Lists\ParticipantList.cs" />
     <Compile Include="Model\Lists\SmsList.cs" />
+    <Compile Include="Model\Lists\UsageList.cs" />
     <Compile Include="Model\Lists\ZangObjectsList.cs" />
     <Compile Include="Model\SmsMessage.cs" />
     <Compile Include="Model\Usage.cs" />
