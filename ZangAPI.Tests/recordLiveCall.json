@@ -1,0 +1,44 @@
+﻿{
+  "method": "POST",
+  "path": "Calls/TestCallSid/Recordings.json",
+  "bodyParams": [
+    {
+      "name": "Record",
+      "value": "true"
+    },
+    {
+      "name": "Direction",
+      "value": "both"
+    },
+    {
+      "name": "TimeLimit",
+      "value": "15"
+    },
+    {
+      "name": "CallbackUrl",
+      "value": "TestUrl"
+    },
+    {
+      "name": "FileFormat",
+      "value": "mp3"
+    },
+    {
+      "name": "TrimSilence",
+      "value": "true"
+    },
+    {
+      "name": "Transcribe",
+      "value": "true"
+    },
+    {
+      "name": "TranscribeQuality",
+      "value": "hybrid"
+    },
+    {
+      "name": "TranscribeCallback",
+      "value": "TestTranscribeUrl"
+    }
+  ],
+  "queryParams": null,
+  "response": "/calls/call.json"
+}

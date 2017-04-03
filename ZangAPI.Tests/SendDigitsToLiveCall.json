@@ -1,0 +1,16 @@
+﻿{
+  "method": "POST",
+  "path": "Calls/TestCallSid.json",
+  "bodyParams": [
+    {
+      "name": "PlayDtmf",
+      "value": "0123#"
+    },
+    {
+      "name": "PlayDtmfDirection",
+      "value": "out"
+    }
+  ],
+  "queryParams": null,
+  "response": "/calls/call.json"
+}

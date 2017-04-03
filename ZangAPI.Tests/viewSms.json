@@ -1,0 +1,7 @@
+﻿{
+  "method": "GET",
+  "path": "SMS/Messages/TestSmsSid.json",
+  "bodyParams": null,
+  "queryParams": null,
+  "response": "/sms/sms.json"
+}

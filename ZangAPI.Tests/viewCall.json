@@ -1,0 +1,7 @@
+﻿{
+  "method": "GET",
+  "path": "Calls/TestCallSid.json",
+  "bodyParams": null,
+  "queryParams": null,
+  "response": "/calls/call.json"
+}

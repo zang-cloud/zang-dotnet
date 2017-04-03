@@ -1,0 +1,20 @@
+﻿{
+  "method": "POST",
+  "path": "Calls/TestCallSid/Play.json",
+  "bodyParams": [
+    {
+      "name": "AudioUrl",
+      "value": "AudioUrl"
+    },
+    {
+      "name": "Direction",
+      "value": "both"
+    },
+    {
+      "name": "Loop",
+      "value": "true"
+    }
+  ],
+  "queryParams": null,
+  "response": "/calls/call.json"
+}

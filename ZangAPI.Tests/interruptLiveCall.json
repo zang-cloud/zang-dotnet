@@ -1,0 +1,20 @@
+﻿{
+  "method": "POST",
+  "path": "Calls/TestCallSid.json",
+  "bodyParams": [
+    {
+      "name": "Url",
+      "value": "TestUrl"
+    },
+    {
+      "name": "Method",
+      "value": "GET"
+    },
+    {
+      "name": "Status",
+      "value": "canceled"
+    }
+  ],
+  "queryParams": null,
+  "response": "/calls/call.json"
+}
