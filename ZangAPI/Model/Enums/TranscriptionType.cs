@@ -5,6 +5,9 @@
     /// </summary>
     public enum TranscriptionType
     {
+        /// <summary>
+        /// The automatic
+        /// </summary>
         AUTO
     }
 }

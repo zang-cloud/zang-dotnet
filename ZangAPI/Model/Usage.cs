@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ZangAPI.Helpers;
 using ZangAPI.Model.Enums;
 
 namespace ZangAPI.Model
@@ -16,6 +17,8 @@ namespace ZangAPI.Model
         /// The product.
         /// </value>
         [JsonProperty(PropertyName = "product")]
+        [JsonConverter(typeof(ProductConverter))]
+
         public Product Product { get; set; }
 
         /// <summary>

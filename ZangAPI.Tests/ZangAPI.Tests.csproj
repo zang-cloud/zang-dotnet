@@ -75,20 +75,32 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ConnectorsTests\AccountsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\CallsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\ConferencesConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\UsagesConnectorTests.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="JsonRequest.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="ParametersHelper.cs" />
-    <Compile Include="SmsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\SmsConnectorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="Responses\call.json" />
+    <EmbeddedResource Include="Responses\callList.json" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="sms.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="sendSms.json" />
+    <EmbeddedResource Include="Responses\sms.json" />
+    <EmbeddedResource Include="Responses\smsList.json" />
+    <EmbeddedResource Include="testExpectations.json" />
+    <EmbeddedResource Include="Responses\usage.json" />
+    <EmbeddedResource Include="Responses\usageList.json" />
+    <EmbeddedResource Include="Responses\account.json" />
+    <EmbeddedResource Include="Responses\conference.json" />
+    <EmbeddedResource Include="Responses\conferenceList.json" />
+    <EmbeddedResource Include="Responses\participant.json" />
+    <EmbeddedResource Include="Responses\participantList.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

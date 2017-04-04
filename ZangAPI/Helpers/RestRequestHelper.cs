@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 
-namespace ZangAPI.Connectors
+namespace ZangAPI.Helpers
 {
     /// <summary>
     /// Rest request helper

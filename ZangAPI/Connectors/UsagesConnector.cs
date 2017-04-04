@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using ZangAPI.ConnectionManager;
+using ZangAPI.Helpers;
 using ZangAPI.Model;
 using ZangAPI.Model.Enums;
 using ZangAPI.Model.Lists;
@@ -116,7 +117,7 @@ namespace ZangAPI.Connectors
             if (day != null) request.AddQueryParameter("Day", day.ToString());
             if (month != null) request.AddQueryParameter("Month", month.ToString());
             if (year != null) request.AddQueryParameter("Year", year.ToString());
-            if (product != null) request.AddQueryParameter("Product", product.ToString());
+            if (product != null) request.AddQueryParameter("Product", ProductStringConverter.GetProduct(product.Value));
             if (page != null) request.AddQueryParameter("Page", page.ToString());
             if (pageSize != null) request.AddQueryParameter("PageSize", pageSize.ToString());
         }

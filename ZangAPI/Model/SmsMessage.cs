@@ -54,7 +54,7 @@ namespace ZangAPI.Model
         /// The status.
         /// </value>
         [JsonProperty(PropertyName = "status")]
-        public string Status { get; set; }
+        public SmsStatus Status { get; set; }
 
         /// <summary>
         /// Gets or sets the direction.

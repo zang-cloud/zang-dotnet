@@ -34,6 +34,30 @@ namespace ZangAPI
         /// </value>
         public SmsConnector SmsConnector { get; set; }
 
+        /// <summary>
+        /// Gets or sets the usages connector.
+        /// </summary>
+        /// <value>
+        /// The usages connector.
+        /// </value>
+        public UsagesConnector UsagesConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the accounts connector.
+        /// </summary>
+        /// <value>
+        /// The accounts connector.
+        /// </value>
+        public AccountsConnector AccountsConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the conferences connector.
+        /// </summary>
+        /// <value>
+        /// The conferences connector.
+        /// </value>
+        public ConferencesConnector ConferencesConnector { get; set; }
+
         //todo ostali konektori
 
         /// <summary>
@@ -62,6 +86,9 @@ namespace ZangAPI
         {
             this.CallsConnector = new CallsConnector(this.HttpManager);
             this.SmsConnector = new SmsConnector(this.HttpManager);
+            this.UsagesConnector = new UsagesConnector(this.HttpManager);
+            this.AccountsConnector = new AccountsConnector(this.HttpManager);
+            this.ConferencesConnector = new ConferencesConnector(this.HttpManager);
 
             //todo ostali
         }

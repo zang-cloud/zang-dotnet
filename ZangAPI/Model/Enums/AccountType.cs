@@ -1,19 +1,18 @@
 ﻿namespace ZangAPI.Model.Enums
 {
     /// <summary>
-    /// Recording file format
+    /// Account type
     /// </summary>
-    public enum RecordingFileFormat
+    public enum AccountType
     {
+        /// <summary>
+        /// The trial
+        /// </summary>
+        TRIAL,
 
         /// <summary>
-        /// The mp3
+        /// The full
         /// </summary>
-        MP3,
-
-        /// <summary>
-        /// The wav
-        /// </summary>
-        WAV
+        FULL
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ZangAPI.Model.Enums;
 
 namespace ZangAPI.Model
 {
@@ -24,7 +25,7 @@ namespace ZangAPI.Model
         /// The status.
         /// </value>
         [JsonProperty(PropertyName = "status")]
-        public string Status { get; set; }
+        public AccountStatus Status { get; set; }
 
         /// <summary>
         /// Gets or sets the account balance.
@@ -51,7 +52,7 @@ namespace ZangAPI.Model
         /// The type.
         /// </value>
         [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
+        public AccountType Type { get; set; }
 
         /// <summary>
         /// Gets or sets the time zone.

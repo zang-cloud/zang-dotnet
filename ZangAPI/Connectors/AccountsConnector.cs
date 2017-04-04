@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using RestSharp.Extensions;
 using ZangAPI.ConnectionManager;
+using ZangAPI.Helpers;
 using ZangAPI.Model;
 
 namespace ZangAPI.Connectors

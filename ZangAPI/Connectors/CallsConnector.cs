@@ -3,6 +3,7 @@ using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
 using ZangAPI.ConnectionManager;
+using ZangAPI.Helpers;
 using ZangAPI.Model;
 using ZangAPI.Model.Lists;
 using ZangAPI.Model.Enums;
@@ -326,7 +327,7 @@ namespace ZangAPI.Connectors
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Calls/{callSid}/Recordings.json");
 
             // Add RecordLiveCall query and body parameters
-            this.SetParamsForRecordLiveCall(request, direction, timeLimit, callbackUrl, fileFormat, trimSilence, transcribe, 
+            this.SetParamsForRecordLiveCall(request, record, direction, timeLimit, callbackUrl, fileFormat, trimSilence, transcribe, 
                 transcribeQuality, transcribeCallback);
 
             // Send request
@@ -382,7 +383,7 @@ namespace ZangAPI.Connectors
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Calls/{callSid}/Play.json");
 
             // Add PlayAudioToLiveCall query and body parameters
-            this.SetParamsForPlayAudioToLiveCall(request, direction, loop);
+            this.SetParamsForPlayAudioToLiveCall(request, audioUrl, direction, loop);
 
             // Send request
             var response = client.Execute(request);
@@ -511,7 +512,7 @@ namespace ZangAPI.Connectors
             request.AddParameter("Transcribe", transcribe);
             if (transcribeCallback.HasValue()) request.AddParameter("TranscribeCallback", transcribeCallback);
             request.AddParameter("StraightToVoicemail", straightToVoicemail);
-            request.AddParameter("IfMachine", ifMachine.ToString().ToUpper());
+            request.AddParameter("IfMachine", EnumHelper.GetEnumValue(ifMachine));
             if (ifMachineUrl.HasValue()) request.AddParameter("IfMachineUrl", ifMachineUrl);
             request.AddParameter("IfMachineMethod", ifMachineMethod.ToString().ToUpper());
             if (sipAuthUsername.HasValue()) request.AddParameter("SipAuthUsername", sipAuthUsername);
@@ -533,11 +534,12 @@ namespace ZangAPI.Connectors
         {
             if (to.HasValue()) request.AddQueryParameter("To", to);
             if (from.HasValue()) request.AddQueryParameter("From", from);
-            if (status != null) request.AddQueryParameter("Status", status.ToString());
+            if (status != null)
+                request.AddQueryParameter("Status", EnumHelper.GetEnumValue(status));
             if (startTimeGte != default(DateTime))
-                request.AddQueryParameter("StartTime", startTimeGte.ToString("yyyy-MM-dd"));
+                request.AddQueryParameter("StartTime>", startTimeGte.ToString("yyyy-MM-dd"));
             if (startTimeLt != default(DateTime))
-                request.AddQueryParameter("StartTime", startTimeLt.ToString("yyyy-MM-dd"));
+                request.AddQueryParameter("StartTime<", startTimeLt.ToString("yyyy-MM-dd"));
             if (page != null) request.AddQueryParameter("Page", page.ToString());
             if (pageSize != null) request.AddQueryParameter("PageSize", pageSize.ToString());
         }
@@ -553,7 +555,7 @@ namespace ZangAPI.Connectors
         {
             if (url.HasValue()) request.AddParameter("Url", url);
             request.AddParameter("Method", method.ToString().ToUpper());
-            if (status != null) request.AddParameter("Status", status.ToString());
+            if (status != null) request.AddParameter("Status", EnumHelper.GetEnumValue(status));
         }
 
         /// <summary>
@@ -565,13 +567,14 @@ namespace ZangAPI.Connectors
         private void SetParamsForSendDigitsToLiveCall(RestRequest request, string playDtmf, AudioDirection? playDtmfDirection)
         {
             if (playDtmf.HasValue()) request.AddParameter("PlayDtmf", playDtmf);
-            if (playDtmfDirection != null) request.AddParameter("PlayDtmfDirection", playDtmfDirection.ToString());
+            if (playDtmfDirection != null) request.AddParameter("PlayDtmfDirection", EnumHelper.GetEnumValue(playDtmfDirection));
         }
 
         /// <summary>
         /// Sets the parameters for record live call.
         /// </summary>
         /// <param name="request">The request.</param>
+        /// <param name="record">if set to <c>true</c> [record].</param>
         /// <param name="direction">The direction.</param>
         /// <param name="timeLimit">The time limit.</param>
         /// <param name="callbackUrl">The callback URL.</param>
@@ -580,17 +583,18 @@ namespace ZangAPI.Connectors
         /// <param name="transcribe">if set to <c>true</c> [transcribe].</param>
         /// <param name="transcribeQuality">The transcribe quality.</param>
         /// <param name="transcribeCallback">The transcribe callback.</param>
-        private void SetParamsForRecordLiveCall(RestRequest request, RecordingAudioDirection direction, int? timeLimit,
+        private void SetParamsForRecordLiveCall(RestRequest request, bool record, RecordingAudioDirection direction, int? timeLimit,
             string callbackUrl, RecordingFileFormat fileFormat, bool trimSilence, bool transcribe,
             TranscribeQuality transcribeQuality, string transcribeCallback)
         {
-            request.AddParameter("Direction", direction);
+            request.AddParameter("Record", record);
+            request.AddParameter("Direction", EnumHelper.GetEnumValue(direction));
             if (timeLimit != null) request.AddParameter("TimeLimit", timeLimit.ToString());
             if (callbackUrl.HasValue()) request.AddParameter("CallbackUrl", callbackUrl);
-            request.AddParameter("FileFormat", fileFormat);
+            request.AddParameter("FileFormat", EnumHelper.GetEnumValue(fileFormat));
             request.AddParameter("TrimSilence", trimSilence);
             request.AddParameter("Transcribe", transcribe);
-            request.AddParameter("TranscribeQuality", transcribeQuality);
+            request.AddParameter("TranscribeQuality", EnumHelper.GetEnumValue(transcribeQuality));
             if (transcribeCallback.HasValue()) request.AddParameter("TranscribeCallback", transcribeCallback);
         }
 
@@ -598,11 +602,13 @@ namespace ZangAPI.Connectors
         /// Sets the parameters for play audio to live call.
         /// </summary>
         /// <param name="request">The request.</param>
+        /// <param name="audioUrl">The audio URL.</param>
         /// <param name="direction">The direction.</param>
         /// <param name="loop">if set to <c>true</c> [loop].</param>
-        private void SetParamsForPlayAudioToLiveCall(RestRequest request, RecordingAudioDirection direction, bool loop)
+        private void SetParamsForPlayAudioToLiveCall(RestRequest request, string audioUrl, RecordingAudioDirection direction, bool loop)
         {
-            request.AddParameter("Direction", direction);
+            request.AddParameter("AudioUrl", audioUrl);
+            request.AddParameter("Direction", EnumHelper.GetEnumValue(direction));
             request.AddParameter("Loop", loop);
         }
 
@@ -619,7 +625,7 @@ namespace ZangAPI.Connectors
         private void SetParamsForApplyVoiceEffect(RestRequest request, AudioDirection direction = AudioDirection.OUT, int pitch = 1, int pitchSemiTones = 1,
             int pitchOctaves = 1, int rate = 1, int tempo = 1)
         {
-            request.AddParameter("AudioDirection", direction);
+            request.AddParameter("AudioDirection", EnumHelper.GetEnumValue(direction));
             request.AddParameter("Pitch", pitch);
             request.AddParameter("PitchSemiTones", pitchSemiTones);
             request.AddParameter("PitchOctaves", pitchOctaves);

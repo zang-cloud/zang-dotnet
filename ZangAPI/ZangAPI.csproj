@@ -57,7 +57,9 @@
     <Compile Include="ConnectionManager\IHttpManager.cs" />
     <Compile Include="ConnectionManager\IHttpProvider.cs" />
     <Compile Include="Connectors\ConferencesConnector.cs" />
-    <Compile Include="Connectors\RestRequestHelper.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\ProductConverter.cs" />
+    <Compile Include="Helpers\RestRequestHelper.cs" />
     <Compile Include="Connectors\SmsConnector.cs" />
     <Compile Include="Connectors\UsagesConnector.cs" />
     <Compile Include="Exceptions\ZangException.cs" />
@@ -76,6 +78,8 @@
     <Compile Include="Model\CredentialSubresourceUris.cs" />
     <Compile Include="Model\Domain.cs" />
     <Compile Include="Model\DomainSubresourceUris.cs" />
+    <Compile Include="Model\Enums\AccountStatus.cs" />
+    <Compile Include="Model\Enums\AccountType.cs" />
     <Compile Include="Model\Enums\AnsweredBy.cs" />
     <Compile Include="Model\Enums\AudioDirection.cs" />
     <Compile Include="Model\Enums\CallDirection.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Model\Enums\RecordingAudioDirection.cs" />
     <Compile Include="Model\Enums\RecordingFileFormat..cs" />
     <Compile Include="Model\Enums\SmsDirection.cs" />
+    <Compile Include="Model\Enums\SmsStatus.cs" />
     <Compile Include="Model\Enums\TranscribeQuality.cs" />
     <Compile Include="Model\Lists\CallList.cs" />
     <Compile Include="Model\Lists\ConferenceList.cs" />
