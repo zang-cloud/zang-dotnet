@@ -1,5 +1,5 @@
 ﻿{
-  "first_page_uri": "/v2/Accounts/TestAccountSid/Calls.json?Page=0&amp;PageSize=50",
+  "first_page_uri": "/v2/Accounts/TestAccountSid/Calls.json?Page=0&amp;PageSize=10",
   "end": 0,
   "total": 1,
   "previous_page_uri": "",
@@ -34,9 +34,9 @@
     }
   ],
   "uri": "/v2/Accounts/TestAccountSid/Calls.json",
-  "page_size": 50,
+  "page_size": 10,
   "start": 0,
   "next_page_uri": "",
-  "last_page_uri": "/v2/Accounts/TestAccountSid/Calls.json?Page=0&PageSize=50",
+  "last_page_uri": "/v2/Accounts/TestAccountSid/Calls.json?Page=0&PageSize=10",
   "page": 0
 }

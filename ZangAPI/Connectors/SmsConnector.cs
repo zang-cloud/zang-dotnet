@@ -3,6 +3,7 @@ using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
 using ZangAPI.ConnectionManager;
+using ZangAPI.Helpers;
 using ZangAPI.Model;
 using ZangAPI.Model.Enums;
 using ZangAPI.Model.Lists;
@@ -197,9 +198,9 @@ namespace ZangAPI.Connectors
             if (to.HasValue()) request.AddQueryParameter("To", to);
             if (from.HasValue()) request.AddQueryParameter("From", from);
             if (dateSentGte != default(DateTime))
-                request.AddQueryParameter("DateSent", dateSentGte.ToString("yyyy-MM-dd"));
+                request.AddQueryParameter("DateSent>", dateSentGte.ToString("yyyy-MM-dd"));
             if (dateSentLt != default(DateTime))
-                request.AddQueryParameter("DateSent", dateSentLt.ToString("yyyy-MM-dd"));
+                request.AddQueryParameter("DateSent<", dateSentLt.ToString("yyyy-MM-dd"));
             if (page != null) request.AddQueryParameter("Page", page.ToString());
             if (pageSize != null) request.AddQueryParameter("PageSize", pageSize.ToString());
         }      

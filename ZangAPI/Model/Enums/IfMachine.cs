@@ -1,4 +1,6 @@
-﻿namespace ZangAPI.Model.Enums
+﻿using System.Runtime.Serialization;
+
+namespace ZangAPI.Model.Enums
 {
     /// <summary>
     /// If machine enumerator

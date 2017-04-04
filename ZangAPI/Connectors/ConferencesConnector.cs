@@ -2,6 +2,7 @@
 using RestSharp;
 using RestSharp.Extensions;
 using ZangAPI.ConnectionManager;
+using ZangAPI.Helpers;
 using ZangAPI.Model;
 using ZangAPI.Model.Enums;
 using ZangAPI.Model.Lists;
@@ -330,15 +331,15 @@ namespace ZangAPI.Connectors
             DateTime dateCreatedLt, DateTime dateUpdatedGte, DateTime dateUpdatedLt, int? page, int? pageSize)
         {
             if (friendlyName.HasValue()) request.AddQueryParameter("FriendlyName", friendlyName);
-            if (status != null) request.AddQueryParameter("Status", status.ToString());
+            if (status != null) request.AddQueryParameter("Status", EnumHelper.GetEnumValue(status));
             if (dateCreatedGte != default(DateTime))
-                request.AddQueryParameter("DateCreated", dateCreatedGte.ToString("yyyy-MM-dd"));
+                request.AddQueryParameter("DateCreated>", dateCreatedGte.ToString("yyyy-MM-dd"));
             if (dateCreatedLt != default(DateTime))
-                request.AddQueryParameter("DateCreated", dateCreatedLt.ToString("yyyy-MM-dd"));
+                request.AddQueryParameter("DateCreated<", dateCreatedLt.ToString("yyyy-MM-dd"));
             if (dateUpdatedGte != default(DateTime))
-                request.AddQueryParameter("DateUpdated", dateUpdatedGte.ToString("yyyy-MM-dd"));
+                request.AddQueryParameter("DateUpdated>", dateUpdatedGte.ToString("yyyy-MM-dd"));
             if (dateUpdatedLt != default(DateTime))
-                request.AddQueryParameter("DateUpdated", dateUpdatedLt.ToString("yyyy-MM-dd"));
+                request.AddQueryParameter("DateUpdated<", dateUpdatedLt.ToString("yyyy-MM-dd"));
             if (page != null) request.AddQueryParameter("Page", page.ToString());
             if (pageSize != null) request.AddQueryParameter("PageSize", pageSize.ToString());
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,19 +9,25 @@ using Newtonsoft.Json;
 
 namespace ZangAPI.Tests
 {
+    /// <summary>
+    /// Helper class for handling expected parameters in tests
+    /// </summary>
     public static class ParametersHelper
     {
+        private const string TestExpectationsJsonFilePath = "ZangAPI.Tests.testExpectations.json";
+
         /// <summary>
         /// Checks the parameters equality.
         /// </summary>
-        /// <param name="jsonFileName">Name of the json file.</param>
+        /// <param name="testGroupName">Name of the test group.</param>
+        /// <param name="methodName">Name of the method.</param>
         /// <param name="paramsType">Type of the parameters.</param>
         /// <param name="request">The request.</param>
         /// <exception cref="System.ArgumentException"></exception>
-        public static void CheckParametersEquality(string jsonFileName, string paramsType, HttpListenerRequest request)
+        public static void CheckParametersEquality(string testGroupName, string methodName, string paramsType, HttpListenerRequest request)
         {
             // Get body parameters from json file
-            var paramsFromJsonDict = GetParamsFromJsonFile(jsonFileName, paramsType);
+            var paramsFromJsonDict = GetParamsFromJsonFile(testGroupName, methodName, paramsType);
 
             if (paramsFromJsonDict.Count != 0)
             {
@@ -44,13 +51,14 @@ namespace ZangAPI.Tests
         /// <summary>
         /// Gets the parameters from json file.
         /// </summary>
-        /// <param name="jsonFileName">Name of the json file.</param>
+        /// <param name="testGroupName">Name of the test group.</param>
+        /// <param name="methodName">Name of the method.</param>
         /// <param name="paramsType">Type of the parameters.</param>
-        /// <returns>Returns parameters (body or query) from json file</returns>
-        public static Dictionary<string, string> GetParamsFromJsonFile(string jsonFileName, string paramsType)
+        /// <returns>Returns parameters from json file</returns>
+        public static Dictionary<string, string> GetParamsFromJsonFile(string testGroupName, string methodName, string paramsType)
         {
             // Get json request from json file
-            var jsonRequest = GetJsonRequestFromFile(jsonFileName);
+            var jsonRequest = GetJsonRequestByGroupAndMethod(testGroupName, methodName);
 
             var paramsJson = new List<Parameter>();
 
@@ -69,21 +77,6 @@ namespace ZangAPI.Tests
         }
 
         /// <summary>
-        /// Gets the json request from file.
-        /// </summary>
-        /// <param name="jsonFileName">Name of the json file.</param>
-        /// <returns>Returns json request from json file</returns>
-        public static JsonRequest GetJsonRequestFromFile(string jsonFileName)
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var streamReader = new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{jsonFileName}"));
-            var objectJson = streamReader.ReadToEnd();
-
-            // Get json request from json file
-            return JsonConvert.DeserializeObject<JsonRequest>(objectJson);
-        }
-
-        /// <summary>
         /// Gets the body parameters from request.
         /// </summary>
         /// <param name="request">The request.</param>
@@ -94,7 +87,7 @@ namespace ZangAPI.Tests
 
             return data.Split('&')
                 .Select(x => x.Split('='))
-                .ToDictionary(x => x[0], x => Uri.UnescapeDataString(x[1]));
+                .ToDictionary(x => x[0], x => ToLowerCaseIfNeeded(Uri.UnescapeDataString(x[1])));
         }
 
         /// <summary>
@@ -105,7 +98,7 @@ namespace ZangAPI.Tests
         public static Dictionary<string, string> GetQueryParamsFromRequest(HttpListenerRequest request)
         {
             var qsArray = request.QueryString.AllKeys
-                    .Select(key => new { Key = key.ToString(), Value = Uri.UnescapeDataString(request.QueryString[key.ToString()]) })
+                    .Select(key => new { Key = key.ToString(), Value = ToLowerCaseIfNeeded(Uri.UnescapeDataString(request.QueryString[key.ToString()])) })
                     .ToArray();
 
             return qsArray.ToDictionary(pair => pair.Key, pair => pair.Value);
@@ -145,6 +138,46 @@ namespace ZangAPI.Tests
                 .OrderBy(kvp => kvp.Key)
                 .SequenceEqual((dictionary ?? new Dictionary<TKey, TValue>())
                                    .OrderBy(kvp => kvp.Key));
+        }
+
+        /// <summary>
+        /// To the lower case if needed.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <returns>Returns lowercase string if it needs to be lowercase</returns>
+        private static string ToLowerCaseIfNeeded(string str)
+        {
+            if (str.Equals("True") || str.Equals("False"))
+                return str.ToLower();
+
+            return str;
+        }
+
+        /// <summary>
+        /// Gets the json request by group and method.
+        /// </summary>
+        /// <param name="groupName">Name of the group.</param>
+        /// <param name="methodName">Name of the method.</param>
+        /// <returns>Returns json request for group of tests and method which is tested</returns>
+        public static JsonRequest GetJsonRequestByGroupAndMethod(string groupName, string methodName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var streamReader = new StreamReader(assembly.GetManifestResourceStream(TestExpectationsJsonFilePath));
+            var objectJson = streamReader.ReadToEnd();
+
+            var jsonFile = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, JsonRequest>>>(objectJson);
+
+            return jsonFile[groupName][methodName];
+        }
+
+        /// <summary>
+        /// Gets the date from string.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns>Returns date time from string date format "yyyy-MM-dd"</returns>
+        public static DateTime GetDateFromString(string date)
+        {
+            return DateTime.ParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture);
         }
     }
 }
