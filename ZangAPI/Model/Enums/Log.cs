@@ -1,23 +1,23 @@
 ﻿namespace ZangAPI.Model.Enums
 {
     /// <summary>
-    /// Transcribe quality
+    /// Log level
     /// </summary>
-    public enum TranscribeQuality
+    public enum Log
     {
         /// <summary>
-        /// The automatic
+        /// The error
         /// </summary>
-        AUTO,
+        ERROR,
 
         /// <summary>
-        /// The hybrid
+        /// The warning
         /// </summary>
-        HYBRID,
+        WARNING,
 
         /// <summary>
-        /// The keywords
+        /// The information
         /// </summary>
-        KEYWORDS
+        INFO
     }
 }
