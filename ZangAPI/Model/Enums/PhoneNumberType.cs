@@ -8,6 +8,11 @@
         /// <summary>
         /// The local
         /// </summary>
-        LOCAL
+        LOCAL,
+
+        /// <summary>
+        /// The tollfree
+        /// </summary>
+        TOLLFREE
     }
 }
