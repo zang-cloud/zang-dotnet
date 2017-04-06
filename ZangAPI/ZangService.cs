@@ -58,6 +58,62 @@ namespace ZangAPI
         /// </value>
         public ConferencesConnector ConferencesConnector { get; set; }
 
+        /// <summary>
+        /// Gets or sets the applications connector.
+        /// </summary>
+        /// <value>
+        /// The applications connector.
+        /// </value>
+        public ApplicationsConnector ApplicationsConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the application clients connector.
+        /// </summary>
+        /// <value>
+        /// The application clients connector.
+        /// </value>
+        public ApplicationClientsConnector ApplicationClientsConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the incoming numbers connector.
+        /// </summary>
+        /// <value>
+        /// The incoming numbers connector.
+        /// </value>
+        public IncomingNumbersConnector IncomingNumbersConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the recordings connector.
+        /// </summary>
+        /// <value>
+        /// The recordings connector.
+        /// </value>
+        public RecordingsConnector RecordingsConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the notifications connector.
+        /// </summary>
+        /// <value>
+        /// The notifications connector.
+        /// </value>
+        public NotificationsConnector NotificationsConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the available phone numbers connector.
+        /// </summary>
+        /// <value>
+        /// The available phone numbers connector.
+        /// </value>
+        public AvailablePhoneNumbersConnector AvailablePhoneNumbersConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the transcriptions connector.
+        /// </summary>
+        /// <value>
+        /// The transcriptions connector.
+        /// </value>
+        public TranscriptionsConnector TranscriptionsConnector { get; set; }
+
         //todo ostali konektori
 
         /// <summary>
@@ -89,6 +145,13 @@ namespace ZangAPI
             this.UsagesConnector = new UsagesConnector(this.HttpManager);
             this.AccountsConnector = new AccountsConnector(this.HttpManager);
             this.ConferencesConnector = new ConferencesConnector(this.HttpManager);
+            this.ApplicationsConnector = new ApplicationsConnector(this.HttpManager);
+            this.ApplicationClientsConnector = new ApplicationClientsConnector(this.HttpManager);
+            this.IncomingNumbersConnector = new IncomingNumbersConnector(this.HttpManager);
+            this.RecordingsConnector = new RecordingsConnector(this.HttpManager);
+            this.NotificationsConnector = new NotificationsConnector(this.HttpManager);
+            this.AvailablePhoneNumbersConnector = new AvailablePhoneNumbersConnector(this.HttpManager);
+            this.TranscriptionsConnector = new TranscriptionsConnector(this.HttpManager);
 
             //todo ostali
         }

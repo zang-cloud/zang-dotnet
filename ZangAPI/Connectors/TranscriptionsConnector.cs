@@ -171,7 +171,9 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
-            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Applications.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Transcriptions.json");
+
+            if (audioUrl.HasValue()) request.AddParameter("AudioUrl", audioUrl);
 
             // Add TranscribeAudioUrl query and body parameters
             this.SetParamsForTranscribeRecordingOrAudioUrl(request, transcribeCallback, callbackMethod, sliceStart, sliceDuration, quality);
@@ -183,22 +185,22 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Transcribes the audio URL. Uses {accountSid} from configuration in HttpProvider
+        /// Transcribes the audio URL.
         /// </summary>
-        /// <param name="recordingSid">The recording sid.</param>
+        /// <param name="audioUrl">The audio URL.</param>
         /// <param name="transcribeCallback">The transcribe callback.</param>
         /// <param name="callbackMethod">The callback method.</param>
         /// <param name="sliceStart">The slice start.</param>
         /// <param name="sliceDuration">Duration of the slice.</param>
         /// <param name="quality">The quality.</param>
         /// <returns>Returns transcription</returns>
-        public Transcription TranscribeAudioUrl(string recordingSid, string transcribeCallback = null, HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
+        public Transcription TranscribeAudioUrl(string audioUrl, string transcribeCallback = null, HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
             int? sliceDuration = null, TranscribeQuality quality = TranscribeQuality.AUTO)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.TranscribeAudioUrl(accountSid, recordingSid, transcribeCallback, callbackMethod, sliceStart, sliceDuration, quality);
+            return this.TranscribeAudioUrl(accountSid, audioUrl, transcribeCallback, callbackMethod, sliceStart, sliceDuration, quality);
         }
 
         /// <summary>
@@ -239,7 +241,7 @@ namespace ZangAPI.Connectors
             request.AddParameter("CallbackMethod", callbackMethod);
             if (sliceStart != null) request.AddParameter("SliceStart", sliceStart.ToString());
             if (sliceDuration != null) request.AddParameter("SliceDuration", sliceDuration);
-            request.AddParameter("VoiceFallbackMethod", EnumHelper.GetEnumValue(quality));
+            request.AddParameter("Quality", EnumHelper.GetEnumValue(quality));
         }
     }
 }
