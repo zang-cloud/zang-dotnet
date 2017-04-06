@@ -1,28 +1,32 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MockHttpServer;
 using ZangAPI.Configuration;
+using ZangAPI.Helpers;
+using ZangAPI.Model.Enums;
 
 namespace ZangAPI.Tests.ConnectorsTests
 {
     [TestClass]
-    public class AccountsConnectorTests
+    public class NotificationsConnectorTests
     {
         private const int Port = 21513;
         private const string AccountSid = "TestAccountSid";
         private const string AuthToken = "TestAuthToken";
-        private const string ResponseJsonFileName = "Responses.account.json";
-        private const string TestGroupName = "AccountsTest";
+        private const string ResponseJsonFileName = "Responses.notification.json";
+        private const string ResponseListJsonFileName = "Responses.notificationList.json";
+        private const string TestGroupName = "NotificationsTest";
 
         [TestMethod]
-        public void AccountsConnectorViewAccountTest()
+        public void NotificationsConnectorViewNotificationTest()
         {
-            const string methodName = "viewAccount";
+            const string methodName = "viewNotification";
 
-            using (new MockServer(Port, "Accounts/{accountSid}.json", (req, rsp, prm) =>
+            using (new MockServer(Port, "/Accounts/{accountSid}/Notifications/{notificationSid}.json", (req, rsp, prm) =>
             {
                 // Check http method
                 if (!req.HttpMethod.Equals("GET")) throw new ArgumentException();
@@ -51,20 +55,23 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Create service
                 var service = new ZangService(configuration);
 
-                // View account using accounts connector
-                var account = service.AccountsConnector.ViewAccount();
+                // View notification using notifications connector
+                var notification = service.NotificationsConnector.ViewNotification("TestNotificationSid");
+
+                Assert.AreEqual(0, notification.Log);
+                Assert.AreEqual(21227, notification.ErrorCode);
             }
         }
 
         [TestMethod]
-        public void AccountsConnectorUpdateAccountTest()
+        public void NotificationsConnectorListNotificationsTest()
         {
-            const string methodName = "updateAccount";
+            const string methodName = "listNotifications";
 
-            using (new MockServer(Port, "Accounts/{accountSid}.json", (req, rsp, prm) =>
+            using (new MockServer(Port, "Accounts/{accountSid}/Notifications.json", (req, rsp, prm) =>
             {
                 // Check http method
-                if (!req.HttpMethod.Equals("POST")) throw new ArgumentException();
+                if (!req.HttpMethod.Equals("GET")) throw new ArgumentException();
 
                 // Check parameter equality
                 ParametersHelper.CheckParametersEquality(TestGroupName, methodName, "bodyParams", req);
@@ -73,7 +80,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileName}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseListJsonFileName}"));
                 var smsJson = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(smsJson);
@@ -90,10 +97,18 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Create service
                 var service = new ZangService(configuration);
 
-                // Update account using accounts connector
-                var account = service.AccountsConnector.UpdateAccount(jsonRequest.BodyParameter("FriendlyName"));
+                // List notifications using notifications connector
+                var notificationList = service.NotificationsConnector.ListNotifications(EnumHelper.ParseEnum<Log>(jsonRequest.QueryParameter("Log")),
+                    Convert.ToInt32(jsonRequest.QueryParameter("Page")), Convert.ToInt32(jsonRequest.QueryParameter("PageSize")));
 
-                Assert.AreEqual(jsonRequest.BodyParameter("FriendlyName"), account.FriendlyName);
+                Assert.AreEqual(Convert.ToInt32(jsonRequest.QueryParameter("PageSize")), notificationList.Pagesize);
+                Assert.AreEqual(Convert.ToInt32(jsonRequest.QueryParameter("Page")), notificationList.Page);
+                Assert.AreEqual(23, notificationList.Total);
+
+                var notification = notificationList.Elements.First();
+
+                Assert.AreEqual(0, notification.Log);
+                Assert.AreEqual(21227, notification.ErrorCode);
             }
         }
     }

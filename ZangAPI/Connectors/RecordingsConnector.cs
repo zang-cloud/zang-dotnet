@@ -224,13 +224,13 @@ namespace ZangAPI.Connectors
             string transcribeCallback)
         {
             request.AddParameter("Record", record);
-            request.AddParameter("Direction", direction);
+            request.AddParameter("Direction", EnumHelper.GetEnumValue(direction));
             if (timeLimit != null) request.AddParameter("TimeLimit", timeLimit);
             if (callbackUrl.HasValue()) request.AddParameter("CallbackUrl", callbackUrl);
-            request.AddParameter("FileFormat", fileFormat);
+            request.AddParameter("FileFormat", EnumHelper.GetEnumValue(fileFormat));
             request.AddParameter("TrimSilence", trimSilence);
             request.AddParameter("Transcribe", transcribe);
-            request.AddParameter("TranscribeQuality", transcribeQuality);
+            request.AddParameter("TranscribeQuality", EnumHelper.GetEnumValue(transcribeQuality));
             if (transcribeCallback.HasValue()) request.AddParameter("TranscribeCallback", transcribeCallback);
         }
     }
