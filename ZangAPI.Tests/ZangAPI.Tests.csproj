@@ -101,6 +101,20 @@
     <EmbeddedResource Include="Responses\conferenceList.json" />
     <EmbeddedResource Include="Responses\participant.json" />
     <EmbeddedResource Include="Responses\participantList.json" />
+    <EmbeddedResource Include="Responses\authorized.json" />
+    <EmbeddedResource Include="Responses\blocked.json" />
+    <EmbeddedResource Include="Responses\fraudcontrollist.json" />
+    <EmbeddedResource Include="Responses\whitelisted.json" />
+    <None Include="Responses\credential.json" />
+    <None Include="Responses\credentialsList.json" />
+    <None Include="Responses\credentialslistlist.json" />
+    <None Include="Responses\domain.json" />
+    <None Include="Responses\domainslist.json" />
+    <None Include="Responses\ipacl.json" />
+    <None Include="Responses\ipacllist.json" />
+    <None Include="Responses\ipaddress.json" />
+    <None Include="Responses\ipaddresslist.json" />
+    <None Include="Responses\listofcredentials.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

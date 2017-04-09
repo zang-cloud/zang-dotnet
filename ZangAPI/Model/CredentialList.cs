@@ -6,7 +6,7 @@ namespace ZangAPI.Model
     /// Credential list
     /// </summary>
     /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class CredentialsList : BaseZangObject
+    public class CredentialList : BaseZangObject
     {
         /// <summary>
         /// Gets or sets the credentials count.
