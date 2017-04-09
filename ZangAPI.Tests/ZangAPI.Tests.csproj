@@ -105,16 +105,16 @@
     <EmbeddedResource Include="Responses\blocked.json" />
     <EmbeddedResource Include="Responses\fraudcontrollist.json" />
     <EmbeddedResource Include="Responses\whitelisted.json" />
-    <None Include="Responses\credential.json" />
-    <None Include="Responses\credentialsList.json" />
-    <None Include="Responses\credentialslistlist.json" />
-    <None Include="Responses\domain.json" />
-    <None Include="Responses\domainslist.json" />
-    <None Include="Responses\ipacl.json" />
-    <None Include="Responses\ipacllist.json" />
-    <None Include="Responses\ipaddress.json" />
-    <None Include="Responses\ipaddresslist.json" />
-    <None Include="Responses\listofcredentials.json" />
+    <EmbeddedResource Include="Responses\credential.json" />
+    <EmbeddedResource Include="Responses\credentialsList.json" />
+    <EmbeddedResource Include="Responses\credentialslistlist.json" />
+    <EmbeddedResource Include="Responses\domain.json" />
+    <EmbeddedResource Include="Responses\domainslist.json" />
+    <EmbeddedResource Include="Responses\ipacl.json" />
+    <EmbeddedResource Include="Responses\ipacllist.json" />
+    <EmbeddedResource Include="Responses\ipaddress.json" />
+    <EmbeddedResource Include="Responses\ipaddresslist.json" />
+    <EmbeddedResource Include="Responses\listofcredentials.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
