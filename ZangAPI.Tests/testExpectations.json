@@ -872,11 +872,11 @@
       "bodyParams": [
         {
           "name": "FriendlyName",
-          "value": "MyNumber"
+          "value": "(989) 494-5633"
         },
         {
           "name": "PhoneNumber",
-          "value": "+1234"
+          "value": "+19894945633"
         },
         {
           "name": "AreaCode",
@@ -884,7 +884,7 @@
         },
         {
           "name": "VoiceCallerIdLookup",
-          "value": "true"
+          "value": "false"
         },
         {
           "name": "VoiceApplicationSid",
@@ -912,7 +912,7 @@
         },
         {
           "name": "SmsUrl",
-          "value": "SmsUrl"
+          "value": "http://www.zang.io/ivr/welcome/sms"
         },
         {
           "name": "SmsMethod",
@@ -964,7 +964,7 @@
         },
         {
           "name": "VoiceCallerIdLookup",
-          "value": "true"
+          "value": "false"
         },
         {
           "name": "VoiceUrl",
@@ -1057,7 +1057,7 @@
         },
         {
           "name": "PageSize",
-          "value": "33"
+          "value": "50"
         }
       ],
       "response": "/notifications/notificationslist.json"
@@ -1094,7 +1094,7 @@
         },
         {
           "name": "PageSize",
-          "value": "33"
+          "value": "50"
         }
       ],
       "response": "/recordings/recordingslist.json"
@@ -1103,10 +1103,6 @@
       "method": "POST",
       "path": "Calls/TestCallSid/Recordings.json",
       "bodyParams": [
-        {
-          "name": "",
-          "value": ""
-        },
         {
           "name": "Record",
           "value": "true"
@@ -1605,7 +1601,7 @@
         {"name": "DateTranscribed>", "value": "2016-12-12"},
         {"name": "DateTranscribed<", "value": "2017-03-19"},
         {"name": "Page", "value": "0"},
-        {"name": "PageSize", "value": "33"}
+        {"name": "PageSize", "value": "50"}
       ],
       "response": "/transcriptions/transcriptionslist.json"
     },

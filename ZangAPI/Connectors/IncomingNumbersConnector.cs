@@ -285,7 +285,7 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="incomingPhoneNumberSid">The incoming phone number sid.</param>
         /// <returns>Returns deleted incoming phone number</returns>
-        public IncomingPhoneNumber DeleteApplication(string incomingPhoneNumberSid)
+        public IncomingPhoneNumber DeleteIncomingPhoneNumber(string incomingPhoneNumberSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;

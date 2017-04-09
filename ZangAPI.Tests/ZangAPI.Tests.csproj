@@ -76,8 +76,15 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConnectorsTests\AccountsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\ApplicationsClientsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\ApplicationsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\AvailablePhoneNumbersConnectorTests.cs" />
     <Compile Include="ConnectorsTests\CallsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\ConferencesConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\IncomingPhoneNumbersConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\NotificationsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\RecordingsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\TranscriptionsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\UsagesConnectorTests.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="JsonRequest.cs" />
@@ -115,6 +122,19 @@
     <EmbeddedResource Include="Responses\ipaddress.json" />
     <EmbeddedResource Include="Responses\ipaddresslist.json" />
     <EmbeddedResource Include="Responses\listofcredentials.json" />
+    <EmbeddedResource Include="Responses\application.json" />
+    <EmbeddedResource Include="Responses\applicationClient.json" />
+    <EmbeddedResource Include="Responses\applicationClientList.json" />
+    <EmbeddedResource Include="Responses\applicationList.json" />
+    <EmbeddedResource Include="Responses\availablePhoneNumberList.json" />
+    <EmbeddedResource Include="Responses\incomingPhoneNumber.json" />
+    <EmbeddedResource Include="Responses\incomingPhoneNumberList.json" />
+    <EmbeddedResource Include="Responses\notification.json" />
+    <EmbeddedResource Include="Responses\notificationList.json" />
+    <EmbeddedResource Include="Responses\recording.json" />
+    <EmbeddedResource Include="Responses\recordingList.json" />
+    <EmbeddedResource Include="Responses\transcription.json" />
+    <EmbeddedResource Include="Responses\transcriptionList.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
