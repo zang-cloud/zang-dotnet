@@ -26,14 +26,18 @@ namespace ZangAPI.Connectors
         /// Carriers the lookup.
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
+        /// <param name="phoneNumber">The phone number.</param>
         /// <returns>Returns carrier lookup</returns>
-        public CarrierLookup CarrierLookup(string accountSid)
+        public CarrierLookup CarrierLookup(string accountSid, string phoneNumber)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Lookups/Carrier.json");
+
+            // Add CarrierLookup query and body parameters
+            request.AddParameter("PhoneNumber", phoneNumber);
 
             // Send request
             var response = client.Execute(request);
@@ -44,13 +48,14 @@ namespace ZangAPI.Connectors
         /// <summary>
         /// Carriers the lookup. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
+        /// <param name="phoneNumber">The phone number.</param>
         /// <returns>Returns carrier lookup</returns>
-        public CarrierLookup CarrierLookup()
+        public CarrierLookup CarrierLookup(string phoneNumber)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.CarrierLookup(accountSid);
+            return this.CarrierLookup(accountSid, phoneNumber);
         }
 
         /// <summary>
@@ -60,7 +65,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns carrier lookup list</returns>
-        public CarrierLookupList CarrierLookupList(string accountSid, int? page = null, int? pageSize = null)
+        public CarrierLookupsList CarrierLookupList(string accountSid, int? page = null, int? pageSize = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -74,7 +79,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<CarrierLookupList>(response);
+            return this.ReturnOrThrowException<CarrierLookupsList>(response);
         }
 
         /// <summary>
@@ -83,7 +88,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns carrier lookup list</returns>
-        public CarrierLookupList CarrierLookupList(int? page = null, int? pageSize = null)
+        public CarrierLookupsList CarrierLookupList(int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -135,7 +140,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns cnam lookup list</returns>
-        public CnamLookupList CnamLookupList(string accountSid, int? page = null, int? pageSize = null)
+        public CnamLookupsList CnamLookupList(string accountSid, int? page = null, int? pageSize = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -149,7 +154,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<CnamLookupList>(response);
+            return this.ReturnOrThrowException<CnamLookupsList>(response);
         }
 
         /// <summary> 
@@ -158,7 +163,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns cnam lookup</returns>
-        public CnamLookupList CnamLookupList(int? page = null, int? pageSize = null)
+        public CnamLookupsList CnamLookupList(int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -210,7 +215,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns bna lookup list</returns>
-        public BnaLookupList BnaLookupList(string accountSid, int? page = null, int? pageSize = null)
+        public BnaLookupsList BnaLookupList(string accountSid, int? page = null, int? pageSize = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -224,7 +229,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<BnaLookupList>(response);
+            return this.ReturnOrThrowException<BnaLookupsList>(response);
         }
 
         /// <summary>
@@ -233,7 +238,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns bna lookup list</returns>
-        public BnaLookupList BnaLookupList(int? page = null, int? pageSize = null)
+        public BnaLookupsList BnaLookupList(int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;

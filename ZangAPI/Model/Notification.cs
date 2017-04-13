@@ -26,7 +26,7 @@ namespace ZangAPI.Model
         /// The log.
         /// </value>
         [JsonProperty(PropertyName = "log")]
-        public int Log { get; set; }
+        public Log Log { get; set; }
 
         /// <summary>
         /// Gets or sets the error code.

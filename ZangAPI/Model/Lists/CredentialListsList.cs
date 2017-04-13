@@ -7,7 +7,7 @@ namespace ZangAPI.Model.Lists
     /// Credentials lists list
     /// </summary>
     /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{CredentialList}" />
-    public class CredentialsListsList : ZangObjectsList<CredentialList>
+    public class CredentialListsList : ZangObjectsList<CredentialList>
     {
         /// <summary>
         /// Gets or sets the elements.

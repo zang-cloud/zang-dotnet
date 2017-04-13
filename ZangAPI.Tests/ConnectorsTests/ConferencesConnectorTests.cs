@@ -42,9 +42,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var streamReader =
                     new StreamReader(
                         assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameConference}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -86,9 +86,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var streamReader =
                     new StreamReader(
                         assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseListJsonFileNameConference}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -142,9 +142,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var streamReader =
                     new StreamReader(
                         assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameParticipant}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -186,9 +186,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var streamReader =
                     new StreamReader(
                         assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseListJsonFileNameParticipant}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -237,9 +237,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var streamReader =
                     new StreamReader(
                         assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameParticipant}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -282,9 +282,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var streamReader =
                     new StreamReader(
                         assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameParticipant}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -327,9 +327,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var streamReader =
                     new StreamReader(
                         assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameParticipant}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {

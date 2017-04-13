@@ -6,7 +6,7 @@ namespace ZangAPI.Model
     /// IP access control list
     /// </summary>
     /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class IPAccessControlList : BaseZangObject
+    public class IpAccessControlList : BaseZangObject
     {
         /// <summary>
         /// Gets or sets the ip addresses count.
@@ -15,7 +15,7 @@ namespace ZangAPI.Model
         /// The ip addresses count.
         /// </value>
         [JsonProperty(PropertyName = "ip_addresses_count")]
-        public int IPAddressesCount{ get; set; }
+        public int IpAddressesCount{ get; set; }
 
         /// <summary>
         /// Gets or sets the subresource uris.

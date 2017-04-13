@@ -80,7 +80,7 @@ namespace ZangAPI
         /// <value>
         /// The incoming numbers connector.
         /// </value>
-        public IncomingNumbersConnector IncomingNumbersConnector { get; set; }
+        public IncomingPhoneNumbersConnector IncomingPhoneNumbersConnector { get; set; }
 
         /// <summary>
         /// Gets or sets the recordings connector.
@@ -114,7 +114,45 @@ namespace ZangAPI
         /// </value>
         public TranscriptionsConnector TranscriptionsConnector { get; set; }
 
-        //todo ostali konektori
+        /// <summary>
+        /// Gets or sets the sip domains connector.
+        /// </summary>
+        /// <value>
+        /// The sip domains connector.
+        /// </value>
+        public SipDomainsConnector SipDomainsConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sip credentials connector.
+        /// </summary>
+        /// <value>
+        /// The sip credentials connector.
+        /// </value>
+        public SipCredentialsConnector SipCredentialsConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sip ip access control lists connector.
+        /// </summary>
+        /// <value>
+        /// The sip ip access control lists connector.
+        /// </value>
+        public SipIpAccessControlListsConnector SipIpAccessControlListsConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the carrier services connector.
+        /// </summary>
+        /// <value>
+        /// The carrier services connector.
+        /// </value>
+        public CarrierServicesConnector CarrierServicesConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the fraud control connector.
+        /// </summary>
+        /// <value>
+        /// The fraud control connector.
+        /// </value>
+        public FraudControlConnector FraudControlConnector { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ZangService"/> class.
@@ -147,13 +185,16 @@ namespace ZangAPI
             this.ConferencesConnector = new ConferencesConnector(this.HttpManager);
             this.ApplicationsConnector = new ApplicationsConnector(this.HttpManager);
             this.ApplicationClientsConnector = new ApplicationClientsConnector(this.HttpManager);
-            this.IncomingNumbersConnector = new IncomingNumbersConnector(this.HttpManager);
+            this.IncomingPhoneNumbersConnector = new IncomingPhoneNumbersConnector(this.HttpManager);
             this.RecordingsConnector = new RecordingsConnector(this.HttpManager);
             this.NotificationsConnector = new NotificationsConnector(this.HttpManager);
             this.AvailablePhoneNumbersConnector = new AvailablePhoneNumbersConnector(this.HttpManager);
             this.TranscriptionsConnector = new TranscriptionsConnector(this.HttpManager);
-
-            //todo ostali
+            this.SipDomainsConnector = new SipDomainsConnector(this.HttpManager);
+            this.SipCredentialsConnector = new SipCredentialsConnector(this.HttpManager);
+            this.SipIpAccessControlListsConnector = new SipIpAccessControlListsConnector(this.HttpManager);
+            this.CarrierServicesConnector = new CarrierServicesConnector(this.HttpManager);
+            this.FraudControlConnector = new FraudControlConnector(this.HttpManager);
         }
 
         /// <summary>

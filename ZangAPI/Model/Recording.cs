@@ -27,6 +27,15 @@ namespace ZangAPI.Model
         public int Duration{ get; set; }
 
         /// <summary>
+        /// Gets or sets the price.
+        /// </summary>
+        /// <value>
+        /// The price.
+        /// </value>
+        [JsonProperty(PropertyName = "price")]
+        public decimal Price { get; set; }
+
+        /// <summary>
         /// Gets or sets the recording URL.
         /// </summary>
         /// <value>
@@ -34,5 +43,7 @@ namespace ZangAPI.Model
         /// </value>
         [JsonProperty(PropertyName = "recording_url")]
         public string RecordingUrl { get; set; }
+
+        //todo result ima jos svasta, al pise da je response isti
     }
 }

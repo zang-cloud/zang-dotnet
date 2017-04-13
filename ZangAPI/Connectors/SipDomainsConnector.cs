@@ -62,7 +62,7 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
         /// <returns>Returns domains list</returns>
-        public DomainList ListDomains(string accountSid)
+        public DomainsList ListDomains(string accountSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -73,14 +73,14 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<DomainList>(response);
+            return this.ReturnOrThrowException<DomainsList>(response);
         }
 
         /// <summary>
         /// Lists the domains. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
         /// <returns>Returns domains list</returns>
-        public DomainList ListDomains()
+        public DomainsList ListDomains()
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -119,6 +119,8 @@ namespace ZangAPI.Connectors
             Require.Argument("DomainName", domainName);
 
             // Add CreateDomain query and body parameters
+            request.AddParameter("DomainName", domainName);
+            
             this.SetParamsForCreateOrUpdateDomain(request, friendlyName, voiceUrl, voiceMethod, voiceFallbackUrl, voiceFallbackMethod, hearbeatUrl,
                 hearbeatMethod, voiceStatusCallback, voiceStatusCallbackMethod);
 
@@ -257,7 +259,7 @@ namespace ZangAPI.Connectors
         /// <param name="domainSid">The domain sid.</param>
         /// <param name="credentialListSid">The credential list sid.</param>
         /// <returns>Returns credentials list</returns>
-        public CredentialsList MapCredentialsList(string accountSid, string domainSid, string credentialListSid)
+        public CredentialList MapCredentialsList(string accountSid, string domainSid, string credentialListSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -274,7 +276,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<CredentialsList>(response);
+            return this.ReturnOrThrowException<CredentialList>(response);
         }
 
         /// <summary>
@@ -283,7 +285,7 @@ namespace ZangAPI.Connectors
         /// <param name="domainSid">The domain sid.</param>
         /// <param name="credentialListSid">The credential list sid.</param>
         /// <returns>Returns credentials list</returns>
-        public CredentialsList MapCredentialsList(string domainSid, string credentialListSid)
+        public CredentialList MapCredentialsList(string domainSid, string credentialListSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -297,7 +299,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="domainSid">The domain sid.</param>
         /// <returns>Returns credential lists list</returns>
-        public CredentialsListsList ListCredentialLists(string accountSid, string domainSid)
+        public CredentialListsList ListMappedCredentialsLists(string accountSid, string domainSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -308,7 +310,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<CredentialsListsList>(response);
+            return this.ReturnOrThrowException<CredentialListsList>(response);
         }
 
         /// <summary>
@@ -316,12 +318,12 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="domainSid">The domain sid.</param>
         /// <returns>Returns credential lists list</returns>
-        public CredentialsListsList ListCredentialLists(string domainSid)
+        public CredentialListsList ListMappedCredentialsLists(string domainSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.ListCredentialLists(accountSid, domainSid);
+            return this.ListMappedCredentialsLists(accountSid, domainSid);
         }
 
         /// <summary>
@@ -331,7 +333,7 @@ namespace ZangAPI.Connectors
         /// <param name="domainSid">The domain sid.</param>
         /// <param name="clSid">The cl sid.</param>
         /// <returns>Returns deleted credentials list</returns>
-        public CredentialsList DeleteCredentialsList(string accountSid, string domainSid, string clSid)
+        public CredentialList DeleteMappedCredentialsList(string accountSid, string domainSid, string clSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -342,7 +344,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<CredentialsList>(response);
+            return this.ReturnOrThrowException<CredentialList>(response);
         }
 
         /// <summary>
@@ -351,12 +353,12 @@ namespace ZangAPI.Connectors
         /// <param name="domainSid">The domain sid.</param>
         /// <param name="clSid">The cl sid.</param>
         /// <returns>Returns deleted credentials list</returns>
-        public CredentialsList DeleteCredentialsList(string domainSid, string clSid)
+        public CredentialList DeleteMappedCredentialsList(string domainSid, string clSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.DeleteCredentialsList(accountSid, domainSid, clSid);
+            return this.DeleteMappedCredentialsList(accountSid, domainSid, clSid);
         }
 
         /// <summary>
@@ -366,7 +368,7 @@ namespace ZangAPI.Connectors
         /// <param name="domainSid">The domain sid.</param>
         /// <param name="ipAccessControlListSid">The ip access control list sid.</param>
         /// <returns>Returns IP access control list</returns>
-        public IPAccessControlList MapIPAccessControlList(string accountSid, string domainSid, string ipAccessControlListSid)
+        public IpAccessControlList MapIpAccessControlList(string accountSid, string domainSid, string ipAccessControlListSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -383,7 +385,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IPAccessControlList>(response);
+            return this.ReturnOrThrowException<IpAccessControlList>(response);
         }
 
         /// <summary>
@@ -392,12 +394,12 @@ namespace ZangAPI.Connectors
         /// <param name="domainSid">The domain sid.</param>
         /// <param name="ipAccessControlListSid">The ip access control list sid.</param>
         /// <returns>Returns IP access control list</returns>
-        public IPAccessControlList MapIPAccessControlList(string domainSid, string ipAccessControlListSid)
+        public IpAccessControlList MapIpAccessControlList(string domainSid, string ipAccessControlListSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.MapIPAccessControlList(accountSid, domainSid, ipAccessControlListSid);
+            return this.MapIpAccessControlList(accountSid, domainSid, ipAccessControlListSid);
         }
 
         /// <summary>
@@ -406,7 +408,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="domainSid">The domain sid.</param>
         /// <returns>Returns IP access control lists list</returns>
-        public IPAccessControlListsList ListIPAccessControlLists(string accountSid, string domainSid)
+        public IpAccessControlListsList ListMappedIpAccessControlLists(string accountSid, string domainSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -417,7 +419,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IPAccessControlListsList>(response);
+            return this.ReturnOrThrowException<IpAccessControlListsList>(response);
         }
 
         /// <summary>
@@ -425,12 +427,12 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="domainSid">The domain sid.</param>
         /// <returns>Returns IP access control lists list</returns>
-        public IPAccessControlListsList ListIPAccessControlLists(string domainSid)
+        public IpAccessControlListsList ListMappedIpAccessControlLists(string domainSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.ListIPAccessControlLists(accountSid, domainSid);
+            return this.ListMappedIpAccessControlLists(accountSid, domainSid);
         }
 
         /// <summary>
@@ -440,7 +442,7 @@ namespace ZangAPI.Connectors
         /// <param name="domainSid">The domain sid.</param>
         /// <param name="alSid">The al sid.</param>
         /// <returns>Returns deleted IP access control list</returns>
-        public IPAccessControlList DeleteIPAccessControlList(string accountSid, string domainSid, string alSid)
+        public IpAccessControlList DeleteMappedIpAccessControlList(string accountSid, string domainSid, string alSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -451,7 +453,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IPAccessControlList>(response);
+            return this.ReturnOrThrowException<IpAccessControlList>(response);
         }
 
         /// <summary>
@@ -460,12 +462,12 @@ namespace ZangAPI.Connectors
         /// <param name="domainSid">The domain sid.</param>
         /// <param name="alSid">The al sid.</param>
         /// <returns>Returns deleted IP access control list</returns>
-        public IPAccessControlList DeleteIPAccessControlList(string domainSid, string alSid)
+        public IpAccessControlList DeleteMappedIpAccessControlList(string domainSid, string alSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.DeleteIPAccessControlList(accountSid, domainSid, alSid);
+            return this.DeleteMappedIpAccessControlList(accountSid, domainSid, alSid);
         }
 
         /// <summary>

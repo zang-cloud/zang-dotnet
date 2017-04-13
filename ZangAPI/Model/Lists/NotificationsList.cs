@@ -7,7 +7,7 @@ namespace ZangAPI.Model.Lists
     /// Notification list
     /// </summary>
     /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{Notification}" />
-    public class NotificationList : ZangObjectsList<Notification>
+    public class NotificationsList : ZangObjectsList<Notification>
     {
         /// <summary>
         /// Gets or sets the elements.

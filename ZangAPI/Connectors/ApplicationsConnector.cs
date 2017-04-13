@@ -57,6 +57,48 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
+        /// Lists the applications.
+        /// </summary>
+        /// <param name="accountSid">The account sid.</param>
+        /// <param name="friendlyName">Name of the friendly.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <returns>Returns list of applications</returns>
+        public ApplicationsList ListApplications(string accountSid, string friendlyName = null, int? page = null,
+            int? pageSize = null)
+        {
+            // Get client to make request
+            var client = HttpProvider.GetHttpClient();
+
+            // Create GET request
+            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Applications.json");
+
+            // Add ListApplications query and body parameters
+            this.SetParamsForListApplications(request, friendlyName, page, pageSize);
+
+            // Send request
+            var response = client.Execute(request);
+
+            return this.ReturnOrThrowException<ApplicationsList>(response);
+        }
+
+        /// <summary>
+        /// Lists the applications. Uses {accountSid} from configuration in HttpProvider
+        /// </summary>
+        /// <param name="friendlyName">Name of the friendly.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <returns>Returns application list</returns>
+        public ApplicationsList ListApplications(string friendlyName = null, int? page = null, int? pageSize = null)
+        {
+            // Get account sid from configuration
+            var accountSid = HttpProvider.GetConfiguration().AccountSid;
+
+            return this.ListApplications(accountSid, friendlyName, page, pageSize);
+        }
+
+
+        /// <summary>
         /// Creates the application.
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
@@ -243,48 +285,7 @@ namespace ZangAPI.Connectors
 
             return this.DeleteApplication(accountSid, applicationSid);
         }
-
-        /// <summary>
-        /// Lists the applications.
-        /// </summary>
-        /// <param name="accountSid">The account sid.</param>
-        /// <param name="friendlyName">Name of the friendly.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
-        /// <returns>Returns list of applications</returns>
-        public ApplicationList ListApplications(string accountSid, string friendlyName = null, int? page = null,
-            int? pageSize = null)
-        {
-            // Get client to make request
-            var client = HttpProvider.GetHttpClient();
-
-            // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Applications.json");
-
-            // Add ListApplications query and body parameters
-            this.SetParamsForListApplications(request, friendlyName, page, pageSize);
-
-            // Send request
-            var response = client.Execute(request);
-
-            return this.ReturnOrThrowException<ApplicationList>(response);
-        }
-
-        /// <summary>
-        /// Lists the applications. Uses {accountSid} from configuration in HttpProvider
-        /// </summary>
-        /// <param name="friendlyName">Name of the friendly.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
-        /// <returns>Returns application list</returns>
-        public ApplicationList ListApplications(string friendlyName = null, int? page = null, int? pageSize = null)
-        {
-            // Get account sid from configuration
-            var accountSid = HttpProvider.GetConfiguration().AccountSid;
-
-            return this.ListApplications(accountSid, friendlyName, page, pageSize);
-        }
-
+     
         /// <summary>
         /// Sets the parameters for create or update application.
         /// </summary>

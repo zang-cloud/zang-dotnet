@@ -13,7 +13,7 @@
       "subresource_uris": {
         "credentials": "/v2/Accounts/ACe1889084056167d57a944486a50ceb46/SIP/IpAccessControlLists/ALe188908469f51e7663014ea98f776862/IpAddresses"
       },
-      "sid": "ALe188908469f51e7663014ea98f776862",
+      "sid": "TestIpAccessControlListSid",
       "date_updated": "Fri, 24 Mar 2017 14:02:20 -0000",
       "date_created": "Fri, 24 Mar 2017 14:02:20 -0000",
       "friendly_name": "MyAclList",

@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 namespace ZangAPI.Model.Lists
 {
     /// <summary>
-    /// Recording list
+    /// Domains list
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{Recording}" />
-    public class RecordingList : ZangObjectsList<Recording>
+    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{Domain}" />
+    public class DomainsList : ZangObjectsList<Domain>
     {
         /// <summary>
         /// Gets or sets the elements.
@@ -15,7 +15,7 @@ namespace ZangAPI.Model.Lists
         /// <value>
         /// The elements.
         /// </value>
-        [JsonProperty(PropertyName = "recordings")]
-        public override ICollection<Recording> Elements { get; set; }
+        [JsonProperty(PropertyName = "domains")]
+        public override ICollection<Domain> Elements { get; set; }
     }
 }

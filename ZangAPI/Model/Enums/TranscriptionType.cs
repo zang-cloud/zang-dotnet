@@ -8,6 +8,11 @@
         /// <summary>
         /// The automatic
         /// </summary>
-        AUTO
+        AUTO,
+
+        /// <summary>
+        /// The hybrid
+        /// </summary>
+        HYBRID
     }
 }

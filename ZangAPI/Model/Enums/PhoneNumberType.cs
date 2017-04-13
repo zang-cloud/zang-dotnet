@@ -11,6 +11,11 @@
         LOCAL,
 
         /// <summary>
+        /// The international
+        /// </summary>
+        INTERNATIONAL,
+
+        /// <summary>
         /// The tollfree
         /// </summary>
         TOLLFREE

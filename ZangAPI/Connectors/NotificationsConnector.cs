@@ -63,7 +63,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns notification list</returns>
-        public NotificationList ListNotifications(string accountSid, Log? log = null, int? page = null,
+        public NotificationsList ListNotifications(string accountSid, Log? log = null, int? page = null,
             int? pageSize = null)
         {
             // Get client to make request
@@ -78,7 +78,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<NotificationList>(response);
+            return this.ReturnOrThrowException<NotificationsList>(response);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns notification list</returns>
-        public NotificationList ListNotifications(Log? log = null, int? page = null, int? pageSize = null)
+        public NotificationsList ListNotifications(Log? log = null, int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;

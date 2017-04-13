@@ -17,6 +17,7 @@ namespace ZangAPI.Model.Enums
         /// </summary>
         IDLE,
 
+        //todo loggedin
         /// <summary>
         /// The logged in
         /// </summary>

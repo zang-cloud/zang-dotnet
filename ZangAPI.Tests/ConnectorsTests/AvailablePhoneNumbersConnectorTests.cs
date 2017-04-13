@@ -37,9 +37,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
                     new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseListJsonFileName}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {

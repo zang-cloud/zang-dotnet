@@ -26,6 +26,88 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
+        /// Views the call.
+        /// </summary>
+        /// <param name="accountSid">The account sid.</param>
+        /// <param name="callSid">The call sid.</param>
+        /// <returns>Returns call</returns>
+        public Call ViewCall(string accountSid, string callSid)
+        {
+            // Get client to make request
+            var client = HttpProvider.GetHttpClient();
+
+            // Create GET request
+            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Calls/{callSid}.json");
+
+            // Send request
+            var response = client.Execute(request);
+
+            return this.ReturnOrThrowException<Call>(response);
+        }
+
+        /// <summary>
+        /// Views the call. Uses {accountSid} from configuration in HttpProvider
+        /// </summary>
+        /// <param name="callSid">The call sid.</param>
+        /// <returns>Returns call</returns>
+        public Call ViewCall(string callSid)
+        {
+            // Get account sid from configuration
+            var accountSid = HttpProvider.GetConfiguration().AccountSid;
+
+            return this.ViewCall(accountSid, callSid);
+        }
+
+        /// <summary>
+        /// Lists the calls.
+        /// </summary>
+        /// <param name="accountSid">The account sid.</param>
+        /// <param name="to">To.</param>
+        /// <param name="from">From.</param>
+        /// <param name="status">The status.</param>
+        /// <param name="startTimeGte">The start time gte.</param>
+        /// <param name="startTimeLt">The start time lt.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <returns>Returns call list</returns>
+        public CallsList ListCalls(string accountSid, string to = null, string from = null, CallStatus? status = null, DateTime startTimeGte = default(DateTime), DateTime startTimeLt = default(DateTime), int? page = null, int? pageSize = null)
+        {
+            // Get client to make request
+            var client = HttpProvider.GetHttpClient();
+
+            // Create GET request
+            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Calls.json");
+
+            // Add ListCalls query and body parameters
+            this.SetParamsForListCalls(request, to, from, status, startTimeGte, startTimeLt, page, pageSize);
+
+            // Send request
+            var response = client.Execute(request);
+
+            return this.ReturnOrThrowException<CallsList>(response);
+        }
+
+        /// <summary>
+        /// Lists the calls. Uses {accountSid} from configuration in HttpProvider
+        /// </summary>
+        /// <param name="to">To.</param>
+        /// <param name="from">From.</param>
+        /// <param name="status">The status.</param>
+        /// <param name="startTimeGte">The start time gte.</param>
+        /// <param name="startTimeLt">The start time lt.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <returns>Returns call list</returns>
+        public CallsList ListCalls(string to = null, string from = null, CallStatus? status = null, DateTime startTimeGte = default(DateTime),
+            DateTime startTimeLt = default(DateTime), int? page = null, int? pageSize = null)
+        {
+            // Get account sid from configuration
+            var accountSid = HttpProvider.GetConfiguration().AccountSid;
+
+            return this.ListCalls(accountSid, to, from, status, startTimeGte, startTimeLt, page, pageSize);
+        }
+
+        /// <summary>
         /// Makes the call.
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
@@ -128,88 +210,6 @@ namespace ZangAPI.Connectors
             return this.MakeCall(accountSid, to, from, url, method, fallbackUrl, fallbackMethod, statusCallback, statusCallbackMethod, heartbeatUrl, heartbeatMethod, 
                 forwardedFrom, playDtmf, timeout, hideCallerId, record, recordCallback, recordCallbackMethod, transcribe, transcribeCallback, 
                 straightToVoicemail, ifMachine, ifMachineUrl, ifMachineMethod, sipAuthUsername, sipAuthPassword);
-        }
-
-        /// <summary>
-        /// Views the call.
-        /// </summary>
-        /// <param name="accountSid">The account sid.</param>
-        /// <param name="callSid">The call sid.</param>
-        /// <returns>Returns call</returns>
-        public Call ViewCall(string accountSid, string callSid)
-        {
-            // Get client to make request
-            var client = HttpProvider.GetHttpClient();
-
-            // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Calls/{callSid}.json");
-
-            // Send request
-            var response = client.Execute(request);
-
-            return this.ReturnOrThrowException<Call>(response);
-        }
-
-        /// <summary>
-        /// Views the call. Uses {accountSid} from configuration in HttpProvider
-        /// </summary>
-        /// <param name="callSid">The call sid.</param>
-        /// <returns>Returns call</returns>
-        public Call ViewCall(string callSid)
-        {
-            // Get account sid from configuration
-            var accountSid = HttpProvider.GetConfiguration().AccountSid;
-
-            return this.ViewCall(accountSid, callSid);
-        }
-
-        /// <summary>
-        /// Lists the calls.
-        /// </summary>
-        /// <param name="accountSid">The account sid.</param>
-        /// <param name="to">To.</param>
-        /// <param name="from">From.</param>
-        /// <param name="status">The status.</param>
-        /// <param name="startTimeGte">The start time gte.</param>
-        /// <param name="startTimeLt">The start time lt.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
-        /// <returns>Returns call list</returns>
-        public CallList ListCalls(string accountSid, string to = null, string from = null, CallStatus? status = null, DateTime startTimeGte = default(DateTime), DateTime startTimeLt = default(DateTime), int? page = null, int? pageSize = null)
-        {
-            // Get client to make request
-            var client = HttpProvider.GetHttpClient();
-
-            // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Calls.json");
-
-            // Add ListCalls query and body parameters
-            this.SetParamsForListCalls(request, to, from, status, startTimeGte, startTimeLt, page, pageSize);
-
-            // Send request
-            var response = client.Execute(request);
-
-            return this.ReturnOrThrowException<CallList>(response);
-        }
-
-        /// <summary>
-        /// Lists the calls. Uses {accountSid} from configuration in HttpProvider
-        /// </summary>
-        /// <param name="to">To.</param>
-        /// <param name="from">From.</param>
-        /// <param name="status">The status.</param>
-        /// <param name="startTimeGte">The start time gte.</param>
-        /// <param name="startTimeLt">The start time lt.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
-        /// <returns>Returns call list</returns>
-        public CallList ListCalls(string to = null, string from = null, CallStatus? status = null, DateTime startTimeGte = default(DateTime), 
-            DateTime startTimeLt = default(DateTime), int? page = null, int? pageSize = null)
-        {
-            // Get account sid from configuration
-            var accountSid = HttpProvider.GetConfiguration().AccountSid;
-
-            return this.ListCalls(accountSid, to, from, status, startTimeGte, startTimeLt, page, pageSize);
         }
 
         /// <summary>

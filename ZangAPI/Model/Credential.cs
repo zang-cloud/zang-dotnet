@@ -24,7 +24,7 @@ namespace ZangAPI.Model
         /// The subresource uris.
         /// </value>
         [JsonProperty(PropertyName = "subresource_uris")]
-        public CredentialSubresourceUris SubresourceUris { get; set; }
+        public EmptySubresourceUris SubresourceUris { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the friendly.

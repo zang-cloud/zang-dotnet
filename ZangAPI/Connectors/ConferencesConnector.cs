@@ -70,7 +70,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns conference list</returns>
-        public ConferenceList ListConferences(string accountSid, string friendlyName = null, ConferenceStatus? status = null,
+        public ConferencesList ListConferences(string accountSid, string friendlyName = null, ConferenceStatus? status = null,
            DateTime dateCreatedGte = default(DateTime), DateTime dateCreatedLt = default(DateTime),
             DateTime dateUpdatedGte = default(DateTime), DateTime dateUpdatedLt = default(DateTime),
            int? page = null, int? pageSize = null)
@@ -88,7 +88,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<ConferenceList>(response);
+            return this.ReturnOrThrowException<ConferencesList>(response);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns conference list</returns>
-        public ConferenceList ListConferences(string friendlyName = null, ConferenceStatus? status = null,
+        public ConferencesList ListConferences(string friendlyName = null, ConferenceStatus? status = null,
            DateTime dateCreatedGte = default(DateTime), DateTime dateCreatedLt = default(DateTime),
             DateTime dateUpdatedGte = default(DateTime), DateTime dateUpdatedLt = default(DateTime),
            int? page = null, int? pageSize = null)
@@ -160,7 +160,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns participant list</returns>
-        public ParticipantList ListParticipants(string accountSid, string conferenceSid, 
+        public ParticipantsList ListParticipants(string accountSid, string conferenceSid, 
             bool muted = false, bool deaf = false, int? page = null, int? pageSize = null)
         {
             // Get client to make request
@@ -175,7 +175,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<ParticipantList>(response);
+            return this.ReturnOrThrowException<ParticipantsList>(response);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns participant list</returns>
-        public ParticipantList ListParticipants(string conferenceSid,
+        public ParticipantsList ListParticipants(string conferenceSid,
             bool muted = false, bool deaf = false, int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration

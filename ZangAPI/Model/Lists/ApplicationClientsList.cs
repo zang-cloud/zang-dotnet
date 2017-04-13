@@ -7,7 +7,7 @@ namespace ZangAPI.Model.Lists
     /// Application client list
     /// </summary>
     /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{ApplicationClient}" />
-    public class ApplicationClientList : ZangObjectsList<ApplicationClient>
+    public class ApplicationClientsList : ZangObjectsList<ApplicationClient>
     {
         /// <summary>
         /// Gets or sets the elements.

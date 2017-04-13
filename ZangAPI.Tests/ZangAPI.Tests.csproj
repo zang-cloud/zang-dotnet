@@ -76,14 +76,19 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConnectorsTests\AccountsConnectorTests.cs" />
-    <Compile Include="ConnectorsTests\ApplicationsClientsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\ApplicationClientsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\ApplicationsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\AvailablePhoneNumbersConnectorTests.cs" />
     <Compile Include="ConnectorsTests\CallsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\CarrierServicesConnectorTests.cs" />
     <Compile Include="ConnectorsTests\ConferencesConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\FraudControlConnectorTests.cs" />
     <Compile Include="ConnectorsTests\IncomingPhoneNumbersConnectorTests.cs" />
     <Compile Include="ConnectorsTests\NotificationsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\RecordingsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\SipCredentialsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\SipDomainsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\SipIpAccessControlListsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\TranscriptionsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\UsagesConnectorTests.cs" />
     <Compile Include="ExtensionMethods.cs" />
@@ -110,17 +115,17 @@
     <EmbeddedResource Include="Responses\participantList.json" />
     <EmbeddedResource Include="Responses\authorized.json" />
     <EmbeddedResource Include="Responses\blocked.json" />
-    <EmbeddedResource Include="Responses\fraudcontrollist.json" />
+    <EmbeddedResource Include="Responses\fraudControlList.json" />
     <EmbeddedResource Include="Responses\whitelisted.json" />
     <EmbeddedResource Include="Responses\credential.json" />
-    <EmbeddedResource Include="Responses\credentialsList.json" />
-    <EmbeddedResource Include="Responses\credentialslistlist.json" />
+    <EmbeddedResource Include="Responses\credentialList.json" />
+    <EmbeddedResource Include="Responses\credentialsListList.json" />
     <EmbeddedResource Include="Responses\domain.json" />
-    <EmbeddedResource Include="Responses\domainslist.json" />
+    <EmbeddedResource Include="Responses\domainList.json" />
     <EmbeddedResource Include="Responses\ipacl.json" />
-    <EmbeddedResource Include="Responses\ipacllist.json" />
+    <EmbeddedResource Include="Responses\ipaclList.json" />
     <EmbeddedResource Include="Responses\ipaddress.json" />
-    <EmbeddedResource Include="Responses\ipaddresslist.json" />
+    <EmbeddedResource Include="Responses\ipaddressList.json" />
     <EmbeddedResource Include="Responses\listofcredentials.json" />
     <EmbeddedResource Include="Responses\application.json" />
     <EmbeddedResource Include="Responses\applicationClient.json" />
@@ -135,6 +140,12 @@
     <EmbeddedResource Include="Responses\recordingList.json" />
     <EmbeddedResource Include="Responses\transcription.json" />
     <EmbeddedResource Include="Responses\transcriptionList.json" />
+    <EmbeddedResource Include="Responses\bnaLookup.json" />
+    <EmbeddedResource Include="Responses\bnaLookupList.json" />
+    <EmbeddedResource Include="Responses\carrierLookup.json" />
+    <EmbeddedResource Include="Responses\carrierLookupList.json" />
+    <EmbeddedResource Include="Responses\cnamLookup.json" />
+    <EmbeddedResource Include="Responses\cnamLookupList.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
