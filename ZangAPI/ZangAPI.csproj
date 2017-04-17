@@ -75,6 +75,28 @@
     <Compile Include="Connectors\SmsConnector.cs" />
     <Compile Include="Connectors\UsagesConnector.cs" />
     <Compile Include="Exceptions\ZangException.cs" />
+    <Compile Include="InboundXml\InboundNodes\ANode.cs" />
+    <Compile Include="InboundXml\InboundNodes\ConferenceNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\DialNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\GatherNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\HangupNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\NumberNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\PauseNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\PingNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\PlayLastRecordingNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\PlayNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\RecordNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\RedirectNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\RejectNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\ResponseNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\SayNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\SipNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\SmsNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\UserNode.cs" />
+    <Compile Include="InboundXml\InboundXmlBuilder.cs" />
+    <Compile Include="InboundXml\InboundXmlInterfaces.cs" />
+    <Compile Include="InboundXml\InboundXmlTestingClass.cs" />
+    <Compile Include="InboundXml\Nodes.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Application.cs" />
     <Compile Include="Model\ApplicationClient.cs" />
@@ -156,6 +178,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
