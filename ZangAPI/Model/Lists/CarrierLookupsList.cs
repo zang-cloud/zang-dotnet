@@ -7,7 +7,7 @@ namespace ZangAPI.Model.Lists
     /// Carrier lookups list
     /// </summary>
     /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{CarrierLookup}" />
-    public class CarrierLookupList : ZangObjectsList<CarrierLookup>
+    public class CarrierLookupsList : ZangObjectsList<CarrierLookup>
     {
         /// <summary>
         /// Gets or sets the elements.

@@ -8,7 +8,7 @@
     "sid": "TestFraudControlRuleSid",
     "country_name": "Germany",
     "date_created": "Thu, 23 Mar 2017 14:22:59 -0000",
-    "sms_enabled": true,
+    "sms_enabled": false,
     "country_prefix": "+49"
   }
 }

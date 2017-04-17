@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace ZangAPI.Model.Lists
 {
-    public class CnamLookupList : ZangObjectsList<CnamLookup>
+    public class CnamLookupsList : ZangObjectsList<CnamLookup>
     {
         /// <summary>
         /// Gets or sets the elements.

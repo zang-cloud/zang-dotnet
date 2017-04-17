@@ -41,9 +41,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                         var assembly = Assembly.GetExecutingAssembly();
                         var streamReader =
                             new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileName}"));
-                        var smsJson = streamReader.ReadToEnd();
+                        var json = streamReader.ReadToEnd();
 
-                        var buffer = Encoding.ASCII.GetBytes(smsJson);
+                        var buffer = Encoding.ASCII.GetBytes(json);
                         rsp.Content(buffer);
                     }))
             {
@@ -58,7 +58,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // View incoming phone number using incoming phone numbers connector
-                var phoneNumber = service.IncomingNumbersConnector.ViewIncomingNumber("TestIncomingPhoneNumberSid");
+                var phoneNumber = service.IncomingPhoneNumbersConnector.ViewIncomingNumber("TestIncomingPhoneNumberSid");
 
                 Assert.AreEqual("(989) 494-5633", phoneNumber.FriendlyName);
                 Assert.AreEqual(PhoneNumberType.LOCAL, phoneNumber.Type);
@@ -83,9 +83,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
                     new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseListJsonFileName}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -101,7 +101,7 @@ namespace ZangAPI.Tests.ConnectorsTests
 
                 // List View incoming phone numbers using incoming phone numbers connector
                 var phoneNumbersList =
-                    service.IncomingNumbersConnector.ListIncomingNumbers(jsonRequest.QueryParameter("Contains"),
+                    service.IncomingPhoneNumbersConnector.ListIncomingNumbers(jsonRequest.QueryParameter("Contains"),
                         jsonRequest.QueryParameter("FriendlyName"), Convert.ToInt32(jsonRequest.QueryParameter("Page")),
                         Convert.ToInt32(jsonRequest.QueryParameter("PageSize")));
 
@@ -135,9 +135,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
                     new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileName}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -152,7 +152,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // Purchase incoming phone number using incoming phone numbers connector
-                var phoneNumber = service.IncomingNumbersConnector.PurchaseIncomingNumber("TestAccountSid", 
+                var phoneNumber = service.IncomingPhoneNumbersConnector.PurchaseIncomingNumber("TestAccountSid", 
                     jsonRequest.BodyParameter("PhoneNumber"), jsonRequest.BodyParameter("AreaCode"), jsonRequest.BodyParameter("FriendlyName"), 
                     jsonRequest.BodyParameter("VoiceUrl"), EnumHelper.ParseEnum<HttpMethod>(jsonRequest.BodyParameter("VoiceMethod")),
                     jsonRequest.BodyParameter("VoiceFallbackUrl"), EnumHelper.ParseEnum<HttpMethod>(jsonRequest.BodyParameter("VoiceFallbackMethod")),
@@ -188,9 +188,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
                     new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileName}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -205,7 +205,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // Update incoming phone number application using applications connector
-                var phoneNumber = service.IncomingNumbersConnector.UpdateIncomingNumber("TestAccountSid", "TestIncomingPhoneNumberSid",
+                var phoneNumber = service.IncomingPhoneNumbersConnector.UpdateIncomingNumber("TestAccountSid", "TestIncomingPhoneNumberSid",
                     jsonRequest.BodyParameter("FriendlyName"),
                     jsonRequest.BodyParameter("VoiceUrl"), EnumHelper.ParseEnum<HttpMethod>(jsonRequest.BodyParameter("VoiceMethod")),
                     jsonRequest.BodyParameter("VoiceFallbackUrl"), EnumHelper.ParseEnum<HttpMethod>(jsonRequest.BodyParameter("VoiceFallbackMethod")),
@@ -239,9 +239,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
                     new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileName}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -256,7 +256,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // Delete incoming phone number application using applications connector
-                var phoneNumber = service.IncomingNumbersConnector.DeleteIncomingPhoneNumber("TestIncomingPhoneNumberSid");
+                var phoneNumber = service.IncomingPhoneNumbersConnector.DeleteIncomingNumber("TestIncomingPhoneNumberSid");
 
                 Assert.AreEqual("(989) 494-5633", phoneNumber.FriendlyName);
                 Assert.AreEqual(PhoneNumberType.LOCAL, phoneNumber.Type);

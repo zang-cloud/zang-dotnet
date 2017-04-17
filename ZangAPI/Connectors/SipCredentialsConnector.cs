@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using RestSharp.Extensions;
 using RestSharp.Validation;
 using ZangAPI.ConnectionManager;
 using ZangAPI.Helpers;
@@ -104,15 +105,14 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
-            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/SIP/CredentialLists/:CLSid/Credentials.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/SIP/CredentialLists/{clSid}/Credentials.json");
 
             // Mark obligatory parameters
             Require.Argument("Username", username);
             Require.Argument("Password", password);
 
             // Add CreateCredential query and body parameters
-            request.AddParameter("Username", username);
-            request.AddParameter("Password", password);
+            this.SetParamsForCreateCredential(request, username, password);
 
             // Send request
             var response = client.Execute(request);
@@ -219,7 +219,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="clSid">The cl sid.</param>
         /// <returns></returns>
-        public CredentialList ViewCredentialList(string accountSid, string clSid)
+        public CredentialList ViewCredentialsList(string accountSid, string clSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -238,12 +238,12 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="clSid">The cl sid.</param>
         /// <returns></returns>
-        public CredentialList ViewCredentialList(string clSid)
+        public CredentialList ViewCredentialsList(string clSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.ViewCredentialList(accountSid, clSid);
+            return this.ViewCredentialsList(accountSid, clSid);
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
         /// <returns></returns>
-        public CredentialsListsList ListCredentialLists(string accountSid)
+        public CredentialListsList ListCredentialsLists(string accountSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -262,19 +262,19 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<CredentialsListsList>(response);
+            return this.ReturnOrThrowException<CredentialListsList>(response);
         }
 
         /// <summary>
         /// Lists the credentials. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
         /// <returns></returns>
-        public CredentialsListsList ListCredentialLists()
+        public CredentialListsList ListCredentialsLists()
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.ListCredentialLists(accountSid);
+            return this.ListCredentialsLists(accountSid);
         }
 
         /// <summary>
@@ -283,7 +283,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns></returns>
-        public CredentialList CreateCredentialList(string accountSid, string friendlyName)
+        public CredentialList CreateCredentialsList(string accountSid, string friendlyName)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -308,12 +308,12 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns></returns>
-        public CredentialList CreateCredentialList(string friendlyName)
+        public CredentialList CreateCredentialsList(string friendlyName)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.CreateCredentialList(accountSid, friendlyName);
+            return this.CreateCredentialsList(accountSid, friendlyName);
         }
 
         /// <summary>
@@ -321,14 +321,17 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
         /// <param name="clSid">The cl sid.</param>
+        /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns></returns>
-        public CredentialList UpdateCredentialList(string accountSid, string clSid)
+        public CredentialList UpdateCredentialList(string accountSid, string clSid, string friendlyName = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/SIP/CredentialLists/{clSid}.json");
+
+            if (friendlyName.HasValue()) request.AddParameter("FriendlyName", friendlyName);
 
             // Send request
             var response = client.Execute(request);
@@ -340,13 +343,14 @@ namespace ZangAPI.Connectors
         /// Updates the credential list. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
         /// <param name="clSid">The cl sid.</param>
+        /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns></returns>
-        public CredentialList UpdateCredentialList(string clSid)
+        public CredentialList UpdateCredentialList(string clSid, string friendlyName = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.UpdateCredentialList(accountSid, clSid);
+            return this.UpdateCredentialList(accountSid, clSid, friendlyName);
         }
 
         /// <summary>
@@ -355,7 +359,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="clSid">The cl sid.</param>
         /// <returns></returns>
-        public CredentialList DeleteCredentialList(string accountSid, string clSid)
+        public CredentialList DeleteCredentialsList(string accountSid, string clSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -374,12 +378,24 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="clSid">The cl sid.</param>
         /// <returns></returns>
-        public CredentialList DeleteCredentialList(string clSid)
+        public CredentialList DeleteCredentialsList(string clSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.DeleteCredentialList(accountSid, clSid);
+            return this.DeleteCredentialsList(accountSid, clSid);
+        }
+
+        /// <summary>
+        /// Sets the parameters for create credential.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        private void SetParamsForCreateCredential(IRestRequest request, string username, string password)
+        {
+            request.AddParameter("Username", username);
+            request.AddParameter("Password", password);
         }
     }
 }

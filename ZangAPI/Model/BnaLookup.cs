@@ -62,7 +62,6 @@ namespace ZangAPI.Model
         [JsonProperty(PropertyName = "state")]
         public string State { get; set; }
 
-        //todo ovoga nema u dokumentaciji
         /// <summary>
         /// Gets or sets the zip code.
         /// </summary>

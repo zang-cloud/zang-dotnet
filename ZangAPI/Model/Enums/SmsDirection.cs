@@ -28,11 +28,6 @@ namespace ZangAPI.Model.Enums
         /// The outbound reply
         /// </summary>
         [EnumMember(Value = "outbound-reply")]
-        OUTBOUND_REPLY,
-
-        /// <summary>
-        /// The unknown
-        /// </summary>
-        UNKNOWN
+        OUTBOUND_REPLY
     }
 }

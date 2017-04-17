@@ -22,11 +22,6 @@ namespace ZangAPI.Model.Enums
         /// The outbound dial
         /// </summary>
         [EnumMember(Value = "outbound-dial")]
-        OUTBOUND_DIAL,
-
-        /// <summary>
-        /// The unknown
-        /// </summary>
-        UNKNOWN
+        OUTBOUND_DIAL
     }
 }

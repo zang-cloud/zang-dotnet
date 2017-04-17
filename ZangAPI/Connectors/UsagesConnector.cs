@@ -66,7 +66,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns usage list</returns>
-        public UsageList ListUsages(string accountSid, int? day = null, int? month = null, int? year = null, Product? product = null, int? page = null, int? pageSize = null)
+        public UsagesList ListUsages(string accountSid, int? day = null, int? month = null, int? year = null, Product? product = null, int? page = null, int? pageSize = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -80,7 +80,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<UsageList>(response);
+            return this.ReturnOrThrowException<UsagesList>(response);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>REturns usage list</returns>
-        public UsageList ListUsages(int? day = null, int? month = null, int? year = null,
+        public UsagesList ListUsages(int? day = null, int? month = null, int? year = null,
             Product? product = null, int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration

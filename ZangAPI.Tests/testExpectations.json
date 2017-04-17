@@ -554,7 +554,7 @@
       "bodyParams": [
         {
           "name": "PhoneNumber",
-          "value": "+1234"
+          "value": "+14086474636"
         }
       ],
       "queryParams": null,
@@ -571,7 +571,7 @@
         },
         {
           "name": "PageSize",
-          "value": "33"
+          "value": "50"
         }
       ],
       "response": "/carrierservices/carrierlookupslist.json"
@@ -582,7 +582,7 @@
       "bodyParams": [
         {
           "name": "PhoneNumber",
-          "value": "+1234"
+          "value": "+19093900002"
         }
       ],
       "queryParams": null,
@@ -599,7 +599,7 @@
         },
         {
           "name": "PageSize",
-          "value": "33"
+          "value": "50"
         }
       ],
       "response": "/carrierservices/cnamlookupslist.json"
@@ -610,7 +610,7 @@
       "bodyParams": [
         {
           "name": "PhoneNumber",
-          "value": "+1234"
+          "value": "+14086474636"
         }
       ],
       "queryParams": null,
@@ -627,7 +627,7 @@
         },
         {
           "name": "PageSize",
-          "value": "33"
+          "value": "50"
         }
       ],
       "response": "/carrierservices/bnalookupslist.json"
@@ -814,9 +814,9 @@
       "response": "/fraudcontrol/authorized.json"
     },
     "whitelistDestination": {
-      "method": "POST",
+      "method": "GET",
       "path": "Fraud/Whitelist/HR.json",
-      "bodyParams": [
+      "queryParams": [
         {
           "name": "MobileEnabled",
           "value": "false"
@@ -830,7 +830,7 @@
           "value": "false"
         }
       ],
-      "queryParams": null,
+      "bodyParams": null,
       "response": "/fraudcontrol/whitelisted.json"
     }
   },
@@ -1049,7 +1049,7 @@
       "queryParams": [
         {
           "name": "Log",
-          "value": "2"
+          "value": "0"
         },
         {
           "name": "Page",
@@ -1170,7 +1170,7 @@
         },
         {
           "name": "PageSize",
-          "value": "50"
+          "value": "100"
         }
       ],
       "response": "/sipdomains/ipacllist.json"
@@ -1193,7 +1193,7 @@
       "bodyParams": [
         {
           "name": "FriendlyName",
-          "value": "NewIpAclList"
+          "value": "MyIpAclList"
         }
       ],
       "queryParams": null,
@@ -1230,7 +1230,7 @@
         },
         {
           "name": "IpAddress",
-          "value": "10.0.0.1"
+          "value": "192.168.12.12"
         }
       ],
       "queryParams": null,
@@ -1242,11 +1242,11 @@
       "bodyParams": [
         {
           "name": "FriendlyName",
-          "value": "NewIpAddress"
+          "value": "MyIpAddress"
         },
         {
           "name": "IpAddress",
-          "value": "10.0.0.2"
+          "value": "192.168.12.12"
         }
       ],
       "queryParams": null,
@@ -1281,7 +1281,7 @@
       "bodyParams": [
         {
           "name": "FriendlyName",
-          "value": "MyCredentialsList"
+          "value": "MyCredentialsList2"
         }
       ],
       "queryParams": null,
@@ -1293,7 +1293,7 @@
       "bodyParams": [
         {
           "name": "FriendlyName",
-          "value": "NewCredentialsList"
+          "value": "MyCredentialsList2"
         }
       ],
       "queryParams": null,
@@ -1326,7 +1326,7 @@
       "bodyParams": [
         {
           "name": "Username",
-          "value": "username"
+          "value": "testuser123"
         },
         {
           "name": "Password",
@@ -1377,11 +1377,11 @@
       "bodyParams": [
         {
           "name": "DomainName",
-          "value": "mydomain.com"
+          "value": "mytestdomain.com"
         },
         {
           "name": "FriendlyName",
-          "value": "MyDomain"
+          "value": "MyDomain2"
         },
         {
           "name": "VoiceUrl",
@@ -1412,7 +1412,7 @@
           "value": "VoiceStatusCallback"
         },
         {
-          "name": "VoiceStatusMethod",
+          "name": "VoiceStatusCallbackMethod",
           "value": "GET"
         }
       ],
@@ -1425,7 +1425,7 @@
       "bodyParams": [
         {
           "name": "FriendlyName",
-          "value": "MyDomain"
+          "value": "MyDomain2"
         },
         {
           "name": "VoiceUrl",
@@ -1456,7 +1456,7 @@
           "value": "VoiceStatusCallback"
         },
         {
-          "name": "VoiceStatusMethod",
+          "name": "VoiceStatusCallbackMethod",
           "value": "GET"
         }
       ],

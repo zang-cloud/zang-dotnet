@@ -85,6 +85,11 @@ namespace ZangAPI.Tests
         {
             var data = GetRequestPostData(request);
 
+            if (data == null)
+            {
+                return new Dictionary<string, string>();
+            }
+
             return data.Split('&')
                 .Select(x => x.Split('='))
                 .ToDictionary(x => x[0], x => ToLowerCaseIfNeeded(Uri.UnescapeDataString(x[1])));

@@ -11,7 +11,7 @@ using ZangAPI.Model.Enums;
 namespace ZangAPI.Tests.ConnectorsTests
 {
     [TestClass]
-    public class ApplicationsClientsConnectorTests
+    public class ApplicationClientsConnectorTests
     {
         private const int Port = 21513;
         private const string AccountSid = "TestAccountSid";
@@ -38,9 +38,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
                     new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileName}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -67,7 +67,7 @@ namespace ZangAPI.Tests.ConnectorsTests
         }
 
         [TestMethod]
-        public void ApplicationsClientsConnectorListApplicationClientsTest()
+        public void ApplicationClientsConnectorListApplicationClientsTest()
         {
             const string methodName = "listApplicationClients";
 
@@ -84,9 +84,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
                     new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseListJsonFileName}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {
@@ -115,7 +115,7 @@ namespace ZangAPI.Tests.ConnectorsTests
         }
 
         [TestMethod]
-        public void ApplicationsClientsConnectorCreateApplicationClientTest()
+        public void ApplicationClientsConnectorCreateApplicationClientTest()
         {
             const string methodName = "createApplicationClient";
 
@@ -132,9 +132,9 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
                     new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileName}"));
-                var smsJson = streamReader.ReadToEnd();
+                var json = streamReader.ReadToEnd();
 
-                var buffer = Encoding.ASCII.GetBytes(smsJson);
+                var buffer = Encoding.ASCII.GetBytes(json);
                 rsp.Content(buffer);
             }))
             {

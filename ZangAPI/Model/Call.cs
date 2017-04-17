@@ -157,5 +157,32 @@ namespace ZangAPI.Model
         /// </value>
         [JsonProperty(PropertyName = "duration_billed")]
         public int DurationBilled { get; set; }
+
+        /// <summary>
+        /// Gets or sets the p asserted identity.
+        /// </summary>
+        /// <value>
+        /// The p asserted identity.
+        /// </value>
+        [JsonProperty(PropertyName = "p_asserted_identity")]
+        public string PAssertedIdentity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sip privacy.
+        /// </summary>
+        /// <value>
+        /// The sip privacy.
+        /// </value>
+        [JsonProperty(PropertyName = "sip_privacy")]
+        public string SipPrivacy { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [privacy hide number].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [privacy hide number]; otherwise, <c>false</c>.
+        /// </value>
+        [JsonProperty(PropertyName = "privacy_hide_number")]
+        public bool PrivacyHideNumber { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace ZangAPI.Model.Lists
     /// Available phone number list 
     /// </summary>
     /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{AvailablePhoneNumber}" />
-    public class AvailablePhoneNumberList : ZangObjectsList<AvailablePhoneNumber>
+    public class AvailablePhoneNumbersList : ZangObjectsList<AvailablePhoneNumber>
     {
         /// <summary>
         /// Gets or sets the elements.

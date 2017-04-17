@@ -6,8 +6,8 @@ namespace ZangAPI.Model.Lists
     /// <summary>
     /// IP access control lists list
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{IPAccessControlList}" />
-    public class IPAccessControlListsList : ZangObjectsList<IPAccessControlList>
+    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{IpAccessControlList}" />
+    public class IpAccessControlListsList : ZangObjectsList<IpAccessControlList>
     {
         /// <summary>
         /// Gets or sets the elements.
@@ -16,6 +16,6 @@ namespace ZangAPI.Model.Lists
         /// The elements.
         /// </value>
         [JsonProperty(PropertyName = "ip_access_control")]
-        public override ICollection<IPAccessControlList> Elements { get; set; }
+        public override ICollection<IpAccessControlList> Elements { get; set; }
     }
 }

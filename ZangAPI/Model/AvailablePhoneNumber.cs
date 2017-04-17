@@ -36,6 +36,88 @@ namespace ZangAPI.Model
         public string FriendlyName { get; set; }
 
         /// <summary>
+        /// Gets or sets the lata.
+        /// </summary>
+        /// <value>
+        /// The lata.
+        /// </value>
+        [JsonProperty(PropertyName = "lata")]
+        public string Lata { get; set; }
+
+        /// <summary>
+        /// Gets or sets the rate center.
+        /// </summary>
+        /// <value>
+        /// The rate center.
+        /// </value>
+        [JsonProperty(PropertyName = "rate_center")]
+        public string RateCenter { get; set; }
+
+        /// <summary>
+        /// Gets or sets the latitude.
+        /// </summary>
+        /// <value>
+        /// The latitude.
+        /// </value>
+        [JsonProperty(PropertyName = "latitude")]
+        public string Latitude { get; set; }
+
+        /// <summary>
+        /// Gets or sets the longitude.
+        /// </summary>
+        /// <value>
+        /// The longitude.
+        /// </value>
+        [JsonProperty(PropertyName = "longitude")]
+        public string Longitude { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the npa.
+        /// </summary>
+        /// <value>
+        /// The npa.
+        /// </value>
+        [JsonProperty(PropertyName = "npa")]
+        public string Npa { get; set; }
+
+        /// <summary>
+        /// Gets or sets the exchange.
+        /// </summary>
+        /// <value>
+        /// The exchange.
+        /// </value>
+        [JsonProperty(PropertyName = "exchange")]
+        public string Exchange { get; set; }
+
+        /// <summary>
+        /// Gets or sets the city.
+        /// </summary>
+        /// <value>
+        /// The city.
+        /// </value>
+        [JsonProperty(PropertyName = "city")]
+        public string City { get; set; }
+
+        /// <summary>
+        /// Gets or sets the region.
+        /// </summary>
+        /// <value>
+        /// The region.
+        /// </value>
+        [JsonProperty(PropertyName = "region")]
+        public string Region { get; set; }
+
+        /// <summary>
+        /// Gets or sets the postal code.
+        /// </summary>
+        /// <value>
+        /// The postal code.
+        /// </value>
+        [JsonProperty(PropertyName = "postalCode")]
+        public string PostalCode { get; set; }
+
+        /// <summary>
         /// Gets or sets the iso country.
         /// </summary>
         /// <value>

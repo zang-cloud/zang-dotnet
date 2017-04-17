@@ -26,6 +26,39 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
+        /// Views the recording.
+        /// </summary>
+        /// <param name="accountSid">The account sid.</param>
+        /// <param name="recordingSid">The recording sid.</param>
+        /// <returns>Returns recording</returns>
+        public Recording ViewRecording(string accountSid, string recordingSid)
+        {
+            // Get client to make request
+            var client = HttpProvider.GetHttpClient();
+
+            // Create GET request
+            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Recordings/{recordingSid}.json");
+
+            // Send request
+            var response = client.Execute(request);
+
+            return this.ReturnOrThrowException<Recording>(response);
+        }
+
+        /// <summary>
+        /// Views the recording. Uses {accountSid} from configuration in HttpProvider
+        /// </summary>
+        /// <param name="recordingSid">The recording sid.</param>
+        /// <returns>Returns recording</returns>
+        public Recording ViewRecording(string recordingSid)
+        {
+            // Get account sid from configuration
+            var accountSid = HttpProvider.GetConfiguration().AccountSid;
+
+            return this.ViewRecording(accountSid, recordingSid);
+        }
+
+        /// <summary>
         /// Lists the recordings.
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
@@ -35,7 +68,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns recording list</returns>
-        public RecordingList ListRecordings(string accountSid, string callSid = null, DateTime dateCreatedGte = default(DateTime), 
+        public RecordingsList ListRecordings(string accountSid, string callSid = null, DateTime dateCreatedGte = default(DateTime), 
             DateTime dateCreatedLt = default(DateTime), int? page = null, int? pageSize = null)
         {
             // Get client to make request
@@ -50,7 +83,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<RecordingList>(response);
+            return this.ReturnOrThrowException<RecordingsList>(response);
         }
 
         /// <summary>
@@ -62,13 +95,76 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns recording list</returns>
-        public RecordingList ListRecordings(string callSid = null, DateTime dateCreatedGte = default(DateTime),
+        public RecordingsList ListRecordings(string callSid = null, DateTime dateCreatedGte = default(DateTime),
             DateTime dateCreatedLt = default(DateTime), int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
             return this.ListRecordings(accountSid, callSid, dateCreatedGte, dateCreatedLt, page, pageSize);
+        }
+
+        /// <summary>
+        /// Records the call.
+        /// </summary>
+        /// <param name="accountSid">The account sid.</param>
+        /// <param name="callSid">The call sid.</param>
+        /// <param name="record">if set to <c>true</c> [record].</param>
+        /// <param name="direction">The direction.</param>
+        /// <param name="timeLimit">The time limit.</param>
+        /// <param name="callbackUrl">The callback URL.</param>
+        /// <param name="fileFormat">The file format.</param>
+        /// <param name="trimSilence">if set to <c>true</c> [trim silence].</param>
+        /// <param name="transcribe">if set to <c>true</c> [transcribe].</param>
+        /// <param name="transcribeQuality">The transcribe quality.</param>
+        /// <param name="transcribeCallback">The transcribe callback.</param>
+        /// <returns></returns>
+        public Recording RecordCall(string accountSid, string callSid, bool record, RecordingAudioDirection direction = RecordingAudioDirection.BOTH, int? timeLimit = null,
+            string callbackUrl = null, RecordingFileFormat fileFormat = RecordingFileFormat.MP3, bool trimSilence = false, bool transcribe = false, TranscribeQuality transcribeQuality = TranscribeQuality.AUTO,
+            string transcribeCallback = null)
+        {
+            // Get client to make request
+            var client = HttpProvider.GetHttpClient();
+
+            // Create POST request
+            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Calls/{callSid}/Recordings.json");
+
+            // Mark obligatory parameters
+            Require.Argument("Record", record);
+
+            // Add RecordCall query and body parameters
+            this.SetParamsForRecordCall(request, record, direction, timeLimit, callbackUrl, fileFormat, trimSilence,
+                transcribe, transcribeQuality, transcribeCallback);
+
+            // Send request
+            var response = client.Execute(request);
+
+            return this.ReturnOrThrowException<Recording>(response);
+        }
+
+        /// <summary>
+        /// Records the call. Uses {accountSid} from configuration in HttpProvider
+        /// </summary>
+        /// <param name="callSid">The call sid.</param>
+        /// <param name="record">if set to <c>true</c> [record].</param>
+        /// <param name="direction">The direction.</param>
+        /// <param name="timeLimit">The time limit.</param>
+        /// <param name="callbackUrl">The callback URL.</param>
+        /// <param name="fileFormat">The file format.</param>
+        /// <param name="trimSilence">if set to <c>true</c> [trim silence].</param>
+        /// <param name="transcribe">if set to <c>true</c> [transcribe].</param>
+        /// <param name="transcribeQuality">The transcribe quality.</param>
+        /// <param name="transcribeCallback">The transcribe callback.</param>
+        /// <returns>Returns recording</returns>
+        public Recording RecordCall(string callSid, bool record, RecordingAudioDirection direction = RecordingAudioDirection.BOTH, int? timeLimit = null,
+            string callbackUrl = null, RecordingFileFormat fileFormat = RecordingFileFormat.MP3, bool trimSilence = false, bool transcribe = false, TranscribeQuality transcribeQuality = TranscribeQuality.AUTO,
+            string transcribeCallback = null)
+        {
+            // Get account sid from configuration
+            var accountSid = HttpProvider.GetConfiguration().AccountSid;
+
+            return this.RecordCall(accountSid, callSid, record, direction, timeLimit, callbackUrl, fileFormat, trimSilence,
+                transcribe, transcribeQuality, transcribeCallback);
         }
 
         /// <summary>
@@ -102,88 +198,7 @@ namespace ZangAPI.Connectors
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
             return this.DeleteRecording(accountSid, recordingSid);
-        }
-
-        public Recording RecordCall(string accountSid, string callSid, bool record, RecordingAudioDirection direction = RecordingAudioDirection.BOTH, int? timeLimit = null,
-            string callbackUrl = null, RecordingFileFormat fileFormat = RecordingFileFormat.MP3, bool trimSilence = false, bool transcribe = false, TranscribeQuality transcribeQuality = TranscribeQuality.AUTO,
-            string transcribeCallback = null)
-        {
-            // Get client to make request
-            var client = HttpProvider.GetHttpClient();
-
-            // Create POST request
-            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Calls/{callSid}/Recordings.json");
-
-            // Mark obligatory parameters
-            Require.Argument("Record", record);
-
-            // Add RecordCall query and body parameters
-            this.SetParamsForRecordCall(request, record, direction, timeLimit, callbackUrl, fileFormat, trimSilence,
-                transcribe, transcribeQuality, transcribeCallback);
-            
-            // Send request
-            var response = client.Execute(request);
-
-            return this.ReturnOrThrowException<Recording>(response);
-        }
-
-        /// <summary>
-        /// Records the call. Uses {accountSid} from configuration in HttpProvider
-        /// </summary>
-        /// <param name="callSid">The call sid.</param>
-        /// <param name="record">if set to <c>true</c> [record].</param>
-        /// <param name="direction">The direction.</param>
-        /// <param name="timeLimit">The time limit.</param>
-        /// <param name="callbackUrl">The callback URL.</param>
-        /// <param name="fileFormat">The file format.</param>
-        /// <param name="trimSilence">if set to <c>true</c> [trim silence].</param>
-        /// <param name="transcribe">if set to <c>true</c> [transcribe].</param>
-        /// <param name="transcribeQuality">The transcribe quality.</param>
-        /// <param name="transcribeCallback">The transcribe callback.</param>
-        /// <returns>Returns recording</returns>
-        public Recording RecordCall(string callSid, bool record, RecordingAudioDirection direction = RecordingAudioDirection.BOTH, int? timeLimit = null,
-            string callbackUrl = null, RecordingFileFormat fileFormat = RecordingFileFormat.MP3, bool trimSilence = false, bool transcribe = false, TranscribeQuality transcribeQuality = TranscribeQuality.AUTO,
-            string transcribeCallback = null)
-        {
-            // Get account sid from configuration
-            var accountSid = HttpProvider.GetConfiguration().AccountSid;
-
-            return this.RecordCall(accountSid, callSid, record, direction, timeLimit, callbackUrl, fileFormat, trimSilence,
-                transcribe, transcribeQuality, transcribeCallback);
-        }
-
-        /// <summary>
-        /// Views the recording.
-        /// </summary>
-        /// <param name="accountSid">The account sid.</param>
-        /// <param name="recordingSid">The recording sid.</param>
-        /// <returns>Returns recording</returns>
-        public Recording ViewRecording(string accountSid, string recordingSid)
-        {
-            // Get client to make request
-            var client = HttpProvider.GetHttpClient();
-
-            // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Recordings/{recordingSid}.json");
-
-            // Send request
-            var response = client.Execute(request);
-
-            return this.ReturnOrThrowException<Recording>(response);
-        }
-
-        /// <summary>
-        /// Views the recording. Uses {accountSid} from configuration in HttpProvider
-        /// </summary>
-        /// <param name="recordingSid">The recording sid.</param>
-        /// <returns>Returns recording</returns>
-        public Recording ViewRecording(string recordingSid)
-        {
-            // Get account sid from configuration
-            var accountSid = HttpProvider.GetConfiguration().AccountSid;
-
-            return this.ViewRecording(accountSid, recordingSid);
-        }
+        }  
 
         /// <summary>
         /// Sets the parameters for list recordings.

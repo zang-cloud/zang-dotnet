@@ -3,9 +3,9 @@
 namespace ZangAPI.Model
 {
     /// <summary>
-    /// Subresource uris
+    /// Account Subresource uris
     /// </summary>
-    public class SubresourceUris
+    public class AccountSubresourceUris
     {
         /// <summary>
         /// Gets or sets the available phone numbers.

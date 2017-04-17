@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using RestSharp.Extensions;
 using RestSharp.Validation;
 using ZangAPI.ConnectionManager;
 using ZangAPI.Helpers;
@@ -28,7 +29,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="ipAccessControlListSid">The ip access control list sid.</param>
         /// <returns>Returns IP access control list</returns>
-        public IPAccessControlList ViewIPAccessControlList(string accountSid, string ipAccessControlListSid)
+        public IpAccessControlList ViewIpAccessControlList(string accountSid, string ipAccessControlListSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -39,7 +40,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IPAccessControlList>(response);
+            return this.ReturnOrThrowException<IpAccessControlList>(response);
         }
 
         /// <summary>
@@ -47,12 +48,12 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="ipAccessControlListSid">The ip access control list sid.</param>
         /// <returns>Returns IP access control list</returns>
-        public IPAccessControlList ViewIPAccessControlList(string ipAccessControlListSid)
+        public IpAccessControlList ViewIpAccessControlList(string ipAccessControlListSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.ViewIPAccessControlList(accountSid, ipAccessControlListSid);
+            return this.ViewIpAccessControlList(accountSid, ipAccessControlListSid);
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns IP access control lists list</returns>
-        public IPAccessControlListsList ListIPAccessControlLists(string accountSid, int? page = null,
+        public IpAccessControlListsList ListIpAccessControlLists(string accountSid, int? page = null,
             int? pageSize = null)
         {
             // Get client to make request
@@ -72,12 +73,12 @@ namespace ZangAPI.Connectors
             var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/SIP/IpAccessControlLists.json");
 
             // Add ListApplications query and body parameters
-            this.SetParamsForListIPAccessControlLists(request, page, pageSize);
+            this.SetParamsForListIpAccessControlLists(request, page, pageSize);
 
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IPAccessControlListsList>(response);
+            return this.ReturnOrThrowException<IpAccessControlListsList>(response);
         }
 
         /// <summary>
@@ -86,12 +87,12 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns IP access control lists list</returns>
-        public IPAccessControlListsList ListIPAccessControlLists(int? page = null, int? pageSize = null)
+        public IpAccessControlListsList ListIpAccessControlLists(int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.ListIPAccessControlLists(accountSid, page, pageSize);
+            return this.ListIpAccessControlLists(accountSid, page, pageSize);
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns>Returns created IP access control list</returns>
-        public IPAccessControlList CreateIPAccessControlList(string accountSid, string friendlyName)
+        public IpAccessControlList CreateIpAccessControlList(string accountSid, string friendlyName)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -111,13 +112,13 @@ namespace ZangAPI.Connectors
             // Mark obligatory parameters
             Require.Argument("FriendlyName", friendlyName);
 
-            // Add CreateIPAccessControlList query and body parameters
+            // Add CreateIpAccessControlList query and body parameters
             request.AddParameter("FriendlyName", friendlyName);
 
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IPAccessControlList>(response);
+            return this.ReturnOrThrowException<IpAccessControlList>(response);
         }
 
         /// <summary>
@@ -125,12 +126,12 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns>Returns created IP access control list</returns>
-        public IPAccessControlList CreateIPAccessControlList(string friendlyName)
+        public IpAccessControlList CreateIpAccessControlList(string friendlyName)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.CreateIPAccessControlList(accountSid, friendlyName);
+            return this.CreateIpAccessControlList(accountSid, friendlyName);
         }
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace ZangAPI.Connectors
         /// <param name="ipAccessControlListSid">The ip access control list sid.</param>
         /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns>Returns updated IP access control list</returns>
-        public IPAccessControlList UpdateIPAccessControlList(string accountSid, string ipAccessControlListSid, string friendlyName)
+        public IpAccessControlList UpdateIpAccessControlList(string accountSid, string ipAccessControlListSid, string friendlyName)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -157,7 +158,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IPAccessControlList>(response);
+            return this.ReturnOrThrowException<IpAccessControlList>(response);
         }
 
         /// <summary>
@@ -166,12 +167,12 @@ namespace ZangAPI.Connectors
         /// <param name="ipAccessControlListSid">The ip access control list sid.</param>
         /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns>Returns updated IP access control list</returns>
-        public IPAccessControlList UpdateIPAccessControlList(string ipAccessControlListSid, string friendlyName)
+        public IpAccessControlList UpdateIpAccessControlList(string ipAccessControlListSid, string friendlyName)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.UpdateIPAccessControlList(accountSid, ipAccessControlListSid, friendlyName);
+            return this.UpdateIpAccessControlList(accountSid, ipAccessControlListSid, friendlyName);
         }
 
         /// <summary>
@@ -180,7 +181,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="ipAccessControlListSid">The ip access control list sid.</param>
         /// <returns>Returns deleted IP access control list</returns>
-        public IPAccessControlList DeleteIPAccessControlList(string accountSid, string ipAccessControlListSid)
+        public IpAccessControlList DeleteIpAccessControlList(string accountSid, string ipAccessControlListSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -191,7 +192,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IPAccessControlList>(response);
+            return this.ReturnOrThrowException<IpAccessControlList>(response);
         }
 
         /// <summary>
@@ -199,12 +200,12 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="ipAccessControlListSid">The ip access control list sid.</param>
         /// <returns>Returns deleted IP  access control list</returns>
-        public IPAccessControlList DeleteIPAccessControlList(string ipAccessControlListSid)
+        public IpAccessControlList DeleteIpAccessControlList(string ipAccessControlListSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.DeleteIPAccessControlList(accountSid, ipAccessControlListSid);
+            return this.DeleteIpAccessControlList(accountSid, ipAccessControlListSid);
         }
 
         /// <summary>
@@ -248,7 +249,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="aclSid">The acl sid.</param>
         /// <returns>Returns list of access control list IPs</returns>
-        public IpAddressList ListAclIps(string accountSid, string aclSid)
+        public IpAddressesList ListAclIps(string accountSid, string aclSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -259,7 +260,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IpAddressList>(response);
+            return this.ReturnOrThrowException<IpAddressesList>(response);
         }
 
         /// <summary>
@@ -267,7 +268,7 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="aclSid">The acl sid.</param>
         /// <returns>Returns list of access control list IPs</returns>
-        public IpAddressList ListAclIps(string aclSid)
+        public IpAddressesList ListAclIps(string aclSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -296,8 +297,7 @@ namespace ZangAPI.Connectors
             Require.Argument("IpAddress", ipAddress);
 
             // Add AddAclIp query and body parameters
-            request.AddParameter("FriendlyName", friendlyName);
-            request.AddParameter("IpAddress", ipAddress);
+            this.SetParamsForAddOrUpdateAclIp(request, friendlyName, ipAddress);
 
             // Send request
             var response = client.Execute(request);
@@ -326,14 +326,19 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="aclSid">The acl sid.</param>
         /// <param name="ipSid">The ip sid.</param>
+        /// <param name="friendlyName">Name of the friendly.</param>
+        /// <param name="ipAddress">The ip address.</param>
         /// <returns>Returns updated access control list IP</returns>
-        public IpAddress UpdateAclIp(string accountSid, string aclSid, string ipSid)
+        public IpAddress UpdateAclIp(string accountSid, string aclSid, string ipSid, string friendlyName = null, string ipAddress = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/SIP/IpAccessControlLists/{aclSid}/IpAddresses/{ipSid}.json");
+
+            // Add UpdateAclIp query and body parameters
+            this.SetParamsForAddOrUpdateAclIp(request, friendlyName, ipAddress);
 
             // Send request
             var response = client.Execute(request);
@@ -346,13 +351,15 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="aclSid">The acl sid.</param>
         /// <param name="ipSid">The ip sid.</param>
+        /// <param name="friendlyName">Name of the friendly.</param>
+        /// <param name="ipAddress">The ip address.</param>
         /// <returns>Returns updated access control list IP</returns>
-        public IpAddress UpdateAclIp(string aclSid, string ipSid)
+        public IpAddress UpdateAclIp(string aclSid, string ipSid, string friendlyName = null, string ipAddress = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.UpdateAclIp(accountSid, aclSid, ipSid);
+            return this.UpdateAclIp(accountSid, aclSid, ipSid, friendlyName, ipAddress);
         }
 
         /// <summary>
@@ -396,10 +403,22 @@ namespace ZangAPI.Connectors
         /// <param name="request">The request.</param>
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
-        private void SetParamsForListIPAccessControlLists(IRestRequest request, int? page, int? pageSize)
+        private void SetParamsForListIpAccessControlLists(IRestRequest request, int? page, int? pageSize)
         {
             if (page != null) request.AddQueryParameter("Page", page.ToString());
             if (pageSize != null) request.AddQueryParameter("PageSize", pageSize.ToString());
+        }
+
+        /// <summary>
+        /// Sets the parameters for add acl ip.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <param name="friendlyName">Name of the friendly.</param>
+        /// <param name="ipAddress">The ip address.</param>
+        private void SetParamsForAddOrUpdateAclIp(IRestRequest request, string friendlyName, string ipAddress)
+        {
+            if (friendlyName.HasValue()) request.AddParameter("FriendlyName", friendlyName);
+            if (ipAddress.HasValue()) request.AddParameter("IpAddress", ipAddress);
         }
     }
 }

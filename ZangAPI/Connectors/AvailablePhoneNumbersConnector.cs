@@ -35,7 +35,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns available phone number list</returns>
-        public AvailablePhoneNumberList ListAvailableNumbers(string accountSid, string country, PhoneNumberType type,            
+        public AvailablePhoneNumbersList ListAvailableNumbers(string accountSid, string country, PhoneNumberType type,            
             string contains = null, string areaCode = null, string inRegion = null, string inPostalCode = null, int? page = null, int? pageSize = null)
         {
             // Get client to make request
@@ -46,13 +46,13 @@ namespace ZangAPI.Connectors
             // Create GET request
             var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/AvailablePhoneNumbers/{country}/{typeString}.json");
 
-            // Add ListNotifications query and body parameters
-            this.SetParamsForListNotifications(request, contains, areaCode, inRegion, inPostalCode, page, pageSize);
+            // Add ListAvailableNumbers query and body parameters
+            this.SetParamsForListAvailablePhoneNumbers(request, contains, areaCode, inRegion, inPostalCode, page, pageSize);
 
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<AvailablePhoneNumberList>(response);
+            return this.ReturnOrThrowException<AvailablePhoneNumbersList>(response);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns available phone nu,ber list</returns>
-        public AvailablePhoneNumberList ListAvailableNumbers(string country, PhoneNumberType type,
+        public AvailablePhoneNumbersList ListAvailableNumbers(string country, PhoneNumberType type,
             string contains = null, string areaCode = null, string inRegion = null, string inPostalCode = null, int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
@@ -77,7 +77,7 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Sets the parameters for list notifications.
+        /// Sets the parameters for list available phone numbers.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="contains">The contains.</param>
@@ -86,7 +86,7 @@ namespace ZangAPI.Connectors
         /// <param name="inPostalCode">The in postal code.</param>
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
-        private void SetParamsForListNotifications(IRestRequest request, string contains, string areaCode, string inRegion, string inPostalCode, int? page, int? pageSize)
+        private void SetParamsForListAvailablePhoneNumbers(IRestRequest request, string contains, string areaCode, string inRegion, string inPostalCode, int? page, int? pageSize)
         {
             if (contains.HasValue()) request.AddQueryParameter("Contains", contains);
             if (areaCode.HasValue()) request.AddQueryParameter("AreaCode", areaCode);

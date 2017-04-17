@@ -6,8 +6,18 @@
     public enum TranscriptionStatus
     {
         /// <summary>
+        /// The in progress
+        /// </summary>
+        IN_PROGRESS, 
+
+        /// <summary>
         /// The completed
         /// </summary>
-        COMPLETED
+        COMPLETED,
+
+        /// <summary>
+        /// The failed
+        /// </summary>
+        FAILED
     }
 }

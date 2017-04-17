@@ -12,13 +12,13 @@ namespace ZangAPI.Connectors
     /// Incoming numbers connector
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
-    public class IncomingNumbersConnector : AConnector
+    public class IncomingPhoneNumbersConnector : AConnector
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="IncomingNumbersConnector"/> class.
+        /// Initializes a new instance of the <see cref="IncomingPhoneNumbersConnector"/> class.
         /// </summary>
         /// <param name="httpProvider">The HTTP provider.</param>
-        public IncomingNumbersConnector(IHttpProvider httpProvider) 
+        public IncomingPhoneNumbersConnector(IHttpProvider httpProvider) 
             : base(httpProvider)
         {
         }
@@ -65,7 +65,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns incoming phone number list</returns>
-        public IncomingPhoneNumberList ListIncomingNumbers(string accountSid, string contains = null, string friendlyName = null,
+        public IncomingPhoneNumbersList ListIncomingNumbers(string accountSid, string contains = null, string friendlyName = null,
             int? page = null, int? pageSize = null)
         {
             // Get client to make request
@@ -75,12 +75,12 @@ namespace ZangAPI.Connectors
             var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/IncomingPhoneNumbers.json");
 
             // Add ListIncomingNumbers query and body parameters
-            this.SetParamsForListIncomingPhoneNumbers(request, contains, friendlyName, page, pageSize);
+            this.SetParamsForListIncomingNumbers(request, contains, friendlyName, page, pageSize);
 
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<IncomingPhoneNumberList>(response);
+            return this.ReturnOrThrowException<IncomingPhoneNumbersList>(response);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns incoming phone number list</returns>
-        public IncomingPhoneNumberList ListIncomingNumbers(string contains = null, string friendlyName = null,
+        public IncomingPhoneNumbersList ListIncomingNumbers(string contains = null, string friendlyName = null,
             int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
@@ -266,7 +266,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="incomingPhoneNumberSid">The incoming phone number sid.</param>
         /// <returns>Returns deleted incoming phone number</returns>
-        public IncomingPhoneNumber DeleteIncomingPhoneNumber(string accountSid, string incomingPhoneNumberSid)
+        public IncomingPhoneNumber DeleteIncomingNumber(string accountSid, string incomingPhoneNumberSid)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -285,12 +285,12 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="incomingPhoneNumberSid">The incoming phone number sid.</param>
         /// <returns>Returns deleted incoming phone number</returns>
-        public IncomingPhoneNumber DeleteIncomingPhoneNumber(string incomingPhoneNumberSid)
+        public IncomingPhoneNumber DeleteIncomingNumber(string incomingPhoneNumberSid)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.DeleteIncomingPhoneNumber(accountSid, incomingPhoneNumberSid);
+            return this.DeleteIncomingNumber(accountSid, incomingPhoneNumberSid);
         }
 
         /// <summary>
@@ -301,7 +301,7 @@ namespace ZangAPI.Connectors
         /// <param name="friendlyName">Name of the friendly.</param>
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
-        private void SetParamsForListIncomingPhoneNumbers(IRestRequest request, string contains, string friendlyName, int? page, int? pageSize)
+        private void SetParamsForListIncomingNumbers(IRestRequest request, string contains, string friendlyName, int? page, int? pageSize)
         {
             if (contains.HasValue()) request.AddQueryParameter("Contains", contains);
             if (friendlyName.HasValue()) request.AddQueryParameter("FriendlyName", friendlyName);

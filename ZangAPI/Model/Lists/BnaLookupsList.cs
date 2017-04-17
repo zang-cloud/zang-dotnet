@@ -4,9 +4,10 @@ using Newtonsoft.Json;
 namespace ZangAPI.Model.Lists
 {
     /// <summary>
-    /// Call list
+    /// Bna lookups list
     /// </summary>
-    public class CallList : ZangObjectsList<Call>
+    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{BnaLookup}" />
+    public class BnaLookupsList : ZangObjectsList<BnaLookup>
     {
         /// <summary>
         /// Gets the elements.
@@ -14,7 +15,7 @@ namespace ZangAPI.Model.Lists
         /// <value>
         /// The elements.
         /// </value>
-        [JsonProperty(PropertyName = "calls")]
-        public override ICollection<Call> Elements { get; set; }
+        [JsonProperty(PropertyName = "bna_lookups")]
+        public override ICollection<BnaLookup> Elements { get; set; }
     }
 }

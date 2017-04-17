@@ -45,11 +45,6 @@ namespace ZangAPI.Model.Enums
         NO_ANSWER,
 
         /// <summary>
-        /// The unknown
-        /// </summary>
-        UNKNOWN,
-
-        /// <summary>
         /// The pre-queued
         /// </summary>
         [EnumMember(Value = "pre-queued")]

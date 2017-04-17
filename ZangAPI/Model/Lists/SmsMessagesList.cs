@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 namespace ZangAPI.Model.Lists
 {
     /// <summary>
-    /// IP addresses list
+    /// List of SMS messages
     /// </summary>
-    /// <seealso cref="IpAddress" />
-    public class IpAddressList : ZangObjectsList<IpAddress>
+    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{SmsMessage}" />
+    public class SmsMessagesList : ZangObjectsList<SmsMessage>
     {
         /// <summary>
         /// Gets or sets the elements.
@@ -15,7 +15,7 @@ namespace ZangAPI.Model.Lists
         /// <value>
         /// The elements.
         /// </value>
-        [JsonProperty(PropertyName = "ip_addresses")]
-        public override ICollection<IpAddress> Elements { get; set; }
+        [JsonProperty(PropertyName = "sms_messages")]
+        public override ICollection<SmsMessage> Elements { get; set; }
     }
 }

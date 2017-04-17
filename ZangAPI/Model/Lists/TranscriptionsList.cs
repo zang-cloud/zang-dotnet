@@ -7,7 +7,7 @@ namespace ZangAPI.Model.Lists
     /// Transcription list
     /// </summary>
     /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{Transcription}" />
-    public class TranscriptionList : ZangObjectsList<Transcription>
+    public class TranscriptionsList : ZangObjectsList<Transcription>
     {
         /// <summary>
         /// Gets or sets the elements.

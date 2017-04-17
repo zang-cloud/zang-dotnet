@@ -1,7 +1,9 @@
-﻿using RestSharp;
+﻿using System.Collections.Generic;
+using RestSharp;
 using ZangAPI.ConnectionManager;
 using ZangAPI.Helpers;
 using ZangAPI.Model;
+using ZangAPI.Model.Enums;
 using ZangAPI.Model.Lists;
 
 namespace ZangAPI.Connectors
@@ -40,12 +42,24 @@ namespace ZangAPI.Connectors
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Fraud/Block/{countryCode}.json");
 
             // Add BlockDestination query and body parameters
-            this.SetParamsForBlockOrAuthorizeOrWhitelistDestination(request, mobileEnabled, landlineEnabled, smsEnabled);
+            this.SetParamsForBlockOrAuthorizeDestination(request, mobileEnabled, landlineEnabled, smsEnabled);
 
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<FraudControlRule>(response);
+            var fraudControlRuleElement = this.ReturnOrThrowException<FraudControlRuleElement>(response);
+
+            // If blocked part of a fraud control rule element is null return null
+            if (fraudControlRuleElement.Blocked == null)
+            {
+                return null;
+            }
+
+            // Get blocked part of fraud control rule element and set type
+            var fraudControlRuleBlocked = fraudControlRuleElement.Blocked;
+            fraudControlRuleBlocked.Type = FraudControlType.BLOCKED;
+
+            return fraudControlRuleBlocked;
         }
 
         /// <summary>
@@ -83,12 +97,24 @@ namespace ZangAPI.Connectors
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Fraud/Authorize/{countryCode}.json");
 
             // Add AuthorizeDestination query and body parameters
-            this.SetParamsForBlockOrAuthorizeOrWhitelistDestination(request, mobileEnabled, landlineEnabled, smsEnabled);
+            this.SetParamsForBlockOrAuthorizeDestination(request, mobileEnabled, landlineEnabled, smsEnabled);
 
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<FraudControlRule>(response);
+            var fraudControlRuleElement = this.ReturnOrThrowException<FraudControlRuleElement>(response);
+
+            // If authorized part of a fraud control rule element is null return null
+            if (fraudControlRuleElement.Authorized == null)
+            {
+                return null;
+            }
+
+            // Get authorized part of fraud control rule element and set type
+            var fraudControlRuleAuthorized = fraudControlRuleElement.Authorized;
+            fraudControlRuleAuthorized.Type = FraudControlType.AUTHORIZED;
+
+            return fraudControlRuleAuthorized;
         }
 
         /// <summary>
@@ -124,7 +150,19 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<FraudControlRule>(response);
+            var fraudControlRuleElement = this.ReturnOrThrowException<FraudControlRuleElement>(response);
+
+            // If authorized part of a fraud control rule element is null return null
+            if (fraudControlRuleElement.Authorized == null)
+            {
+                return null;
+            }
+
+            // Get authorized part of fraud control rule element and set type
+            var fraudControlRuleAuthorized = fraudControlRuleElement.Authorized;
+            fraudControlRuleAuthorized.Type = FraudControlType.AUTHORIZED;
+
+            return fraudControlRuleAuthorized;
         }
 
         /// <summary>
@@ -139,8 +177,7 @@ namespace ZangAPI.Connectors
 
             return this.ExtendDestinationAuthorization(accountSid, countryCode);
         }
-
-        //todo kako get?        
+      
         /// <summary>
         /// Whitelists the destination.
         /// </summary>
@@ -160,12 +197,24 @@ namespace ZangAPI.Connectors
             var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Fraud/Whitelist/{countryCode}.json");
 
             // Add WhitelistDestination query and body parameters
-            this.SetParamsForBlockOrAuthorizeOrWhitelistDestination(request, mobileEnabled, landlineEnabled, smsEnabled);
+            this.SetParamsForWhitelistDestination(request, mobileEnabled, landlineEnabled, smsEnabled);
 
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<FraudControlRule>(response);
+            var fraudControlRuleElement = this.ReturnOrThrowException<FraudControlRuleElement>(response);
+
+            // If whitelisted part of a fraud control rule element is null return null
+            if (fraudControlRuleElement.Whitelisted == null)
+            {
+                return null;
+            }
+
+            // Get whitelisted part of fraud control rule element and set type
+            var fraudControlRuleWhitelisted = fraudControlRuleElement.Whitelisted;
+            fraudControlRuleWhitelisted.Type = FraudControlType.WHITELISTED;
+
+            return fraudControlRuleWhitelisted;
         }
 
         /// <summary>
@@ -191,7 +240,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns fraud control rules list</returns>
-        public FraudControlRuleList ListFraudControlResources(string accountSid, int? page = null, int? pageSize = null)
+        public FraudControlRulesList ListFraudControlResources(string accountSid, int? page = null, int? pageSize = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -205,7 +254,43 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<FraudControlRuleList>(response);
+            var fraudControlRules = this.ReturnOrThrowException<FraudControlRulesList>(response);
+
+            // If fraud control rules are null return null
+            if (fraudControlRules == null)
+            {
+                return null;
+            }
+
+            fraudControlRules.Authorized = new List<FraudControlRule>();
+            fraudControlRules.Blocked = new List<FraudControlRule>();
+            fraudControlRules.Whitelisted = new List<FraudControlRule>();
+
+            foreach (var element in fraudControlRules.Elements)
+            {
+                // Determine which type of rule is the rule and add it to appropriate list
+                var authorizedRule = element.Authorized;
+                var blockedRule = element.Blocked;
+                var whitelistedRule = element.Whitelisted;
+
+                if (authorizedRule != null)
+                {
+                    authorizedRule.Type = FraudControlType.AUTHORIZED;
+                    fraudControlRules.Authorized.Add(authorizedRule);
+                }
+                else if (blockedRule != null)
+                {
+                    blockedRule.Type = FraudControlType.BLOCKED;
+                    fraudControlRules.Blocked.Add(blockedRule);
+                }
+                else if (whitelistedRule != null)
+                {
+                    whitelistedRule.Type = FraudControlType.WHITELISTED;
+                    fraudControlRules.Whitelisted.Add(whitelistedRule);
+                }
+            }
+
+            return fraudControlRules;
         }
 
         /// <summary>
@@ -214,7 +299,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns fraud control rules list</returns>
-        public FraudControlRuleList ListFraudControlResources(int? page = null, int? pageSize = null)
+        public FraudControlRulesList ListFraudControlResources(int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -222,15 +307,29 @@ namespace ZangAPI.Connectors
             return this.ListFraudControlResources(accountSid, page, pageSize);
         }
 
-        //todo ime?
         /// <summary>
-        /// Sets the parameters for block destination.
+        /// Sets the parameters for block or authorize destination.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="mobileEnabled">if set to <c>true</c> [mobile enabled].</param>
         /// <param name="landlineEnabled">if set to <c>true</c> [landline enabled].</param>
         /// <param name="smsEnabled">if set to <c>true</c> [SMS enabled].</param>
-        private void SetParamsForBlockOrAuthorizeOrWhitelistDestination(IRestRequest request, bool mobileEnabled, bool landlineEnabled,
+        private void SetParamsForBlockOrAuthorizeDestination(IRestRequest request, bool mobileEnabled, bool landlineEnabled,
+            bool smsEnabled)
+        {
+            request.AddParameter("MobileEnabled", mobileEnabled.ToString());
+            request.AddParameter("LandlineEnabled", landlineEnabled.ToString());
+            request.AddParameter("SmsEnabled", smsEnabled.ToString());
+        }
+
+        /// <summary>
+        /// Sets the parameters for whitelist destination.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <param name="mobileEnabled">if set to <c>true</c> [mobile enabled].</param>
+        /// <param name="landlineEnabled">if set to <c>true</c> [landline enabled].</param>
+        /// <param name="smsEnabled">if set to <c>true</c> [SMS enabled].</param>
+        private void SetParamsForWhitelistDestination(IRestRequest request, bool mobileEnabled, bool landlineEnabled,
             bool smsEnabled)
         {
             request.AddQueryParameter("MobileEnabled", mobileEnabled.ToString());

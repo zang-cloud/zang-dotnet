@@ -67,7 +67,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns transcription list</returns>
-        public TranscriptionList ListTranscriptions(string accountSid, TranscriptionStatus? status = null, 
+        public TranscriptionsList ListTranscriptions(string accountSid, TranscriptionStatus? status = null, 
             DateTime dateTranscribedGte = default(DateTime), DateTime dateTranscribedLt = default(DateTime), 
             int? page = null, int? pageSize = null)
         {
@@ -83,7 +83,7 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<TranscriptionList>(response);
+            return this.ReturnOrThrowException<TranscriptionsList>(response);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns transcription list</returns>
-        public TranscriptionList ListTranscriptions(TranscriptionStatus? status = null,
+        public TranscriptionsList ListTranscriptions(TranscriptionStatus? status = null,
             DateTime dateTranscribedGte = default(DateTime), DateTime dateTranscribedLt = default(DateTime),
             int? page = null, int? pageSize = null)
         {
