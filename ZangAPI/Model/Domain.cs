@@ -16,7 +16,7 @@ namespace ZangAPI.Model
         /// The type of the authentication.
         /// </value>
         [JsonProperty(PropertyName = "auth_type")]
-        public string AuthType { get; set; }
+        public AuthType AuthType { get; set; }
 
         /// <summary>
         /// Gets or sets the voice status callback method.

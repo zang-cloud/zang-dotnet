@@ -98,6 +98,8 @@
     <Compile Include="Model\Enums\AccountType.cs" />
     <Compile Include="Model\Enums\AnsweredBy.cs" />
     <Compile Include="Model\Enums\AudioDirection.cs" />
+    <Compile Include="Model\Enums\AuthType.cs" />
+    <Compile Include="Model\Enums\AvailablePhoneNumberType.cs" />
     <Compile Include="Model\Enums\CallDirection.cs" />
     <Compile Include="Model\Enums\CallStatus.cs" />
     <Compile Include="Model\Enums\ConferenceStatus.cs" />
@@ -138,7 +140,7 @@
     <Compile Include="Model\Lists\ZangObjectsList.cs" />
     <Compile Include="Model\SmsMessage.cs" />
     <Compile Include="Model\Usage.cs" />
-    <Compile Include="Model\Enums\PhoneNumberType.cs" />
+    <Compile Include="Model\Enums\IncomingPhoneNumberType.cs" />
     <Compile Include="Model\Enums\PresenceStatus.cs" />
     <Compile Include="Model\Enums\TranscriptionStatus.cs" />
     <Compile Include="Model\Enums\TranscriptionType.cs" />

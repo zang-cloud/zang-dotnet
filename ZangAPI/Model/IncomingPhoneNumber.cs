@@ -53,7 +53,7 @@ namespace ZangAPI.Model
         /// The type.
         /// </value>
         [JsonProperty(PropertyName = "type")]
-        public PhoneNumberType Type { get; set; }
+        public IncomingPhoneNumberType Type { get; set; }
 
         /// <summary>
         /// Gets or sets the status callback method.

@@ -178,7 +178,7 @@ namespace ZangAPI.Model
         /// The type.
         /// </value>
         [JsonProperty(PropertyName = "type")]
-        public PhoneNumberType Type { get; set; }
+        public AvailablePhoneNumberType Type { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [SMS enabled].

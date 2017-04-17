@@ -35,7 +35,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns available phone number list</returns>
-        public AvailablePhoneNumbersList ListAvailableNumbers(string accountSid, string country, PhoneNumberType type,            
+        public AvailablePhoneNumbersList ListAvailableNumbers(string accountSid, string country, AvailablePhoneNumberType type,            
             string contains = null, string areaCode = null, string inRegion = null, string inPostalCode = null, int? page = null, int? pageSize = null)
         {
             // Get client to make request
@@ -67,7 +67,7 @@ namespace ZangAPI.Connectors
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <returns>Returns available phone nu,ber list</returns>
-        public AvailablePhoneNumbersList ListAvailableNumbers(string country, PhoneNumberType type,
+        public AvailablePhoneNumbersList ListAvailableNumbers(string country, AvailablePhoneNumberType type,
             string contains = null, string areaCode = null, string inRegion = null, string inPostalCode = null, int? page = null, int? pageSize = null)
         {
             // Get account sid from configuration
