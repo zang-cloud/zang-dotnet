@@ -61,7 +61,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var phoneNumber = service.IncomingPhoneNumbersConnector.ViewIncomingNumber("TestIncomingPhoneNumberSid");
 
                 Assert.AreEqual("(989) 494-5633", phoneNumber.FriendlyName);
-                Assert.AreEqual(PhoneNumberType.LOCAL, phoneNumber.Type);
+                Assert.AreEqual(IncomingPhoneNumberType.LOCAL, phoneNumber.Type);
             }
         }
 
@@ -113,7 +113,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var phoneNumber = phoneNumbersList.Elements.First();
 
                 Assert.AreEqual("(989) 494-5633", phoneNumber.FriendlyName);
-                Assert.AreEqual(PhoneNumberType.LOCAL, phoneNumber.Type);
+                Assert.AreEqual(IncomingPhoneNumberType.LOCAL, phoneNumber.Type);
             }
         }
 
@@ -259,7 +259,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var phoneNumber = service.IncomingPhoneNumbersConnector.DeleteIncomingNumber("TestIncomingPhoneNumberSid");
 
                 Assert.AreEqual("(989) 494-5633", phoneNumber.FriendlyName);
-                Assert.AreEqual(PhoneNumberType.LOCAL, phoneNumber.Type);
+                Assert.AreEqual(IncomingPhoneNumberType.LOCAL, phoneNumber.Type);
             }
         }
     }

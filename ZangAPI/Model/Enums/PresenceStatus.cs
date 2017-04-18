@@ -10,24 +10,25 @@ namespace ZangAPI.Model.Enums
         /// <summary>
         /// The initialize
         /// </summary>
+        [EnumMember(Value = "init")]
         INIT,
 
         /// <summary>
         /// The idle
         /// </summary>
+        [EnumMember(Value = "idle")]
         IDLE,
 
-        //todo loggedin
         /// <summary>
         /// The logged in
         /// </summary>
-        [EnumMember(Value = "logged-in")]
+        [EnumMember(Value = "loggedin")]
         LOGGED_IN,
 
         /// <summary>
         /// The logged out
         /// </summary>
-        [EnumMember(Value = "logged-out")]
+        [EnumMember(Value = "loggedout")]
         LOGGED_OUT
     }
 }

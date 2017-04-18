@@ -1,19 +1,14 @@
 ﻿namespace ZangAPI.Model.Enums
 {
     /// <summary>
-    /// Phone number type
+    /// Available phone number type
     /// </summary>
-    public enum PhoneNumberType
+    public enum AvailablePhoneNumberType
     {
         /// <summary>
         /// The local
         /// </summary>
         LOCAL,
-
-        /// <summary>
-        /// The international
-        /// </summary>
-        INTERNATIONAL,
 
         /// <summary>
         /// The tollfree

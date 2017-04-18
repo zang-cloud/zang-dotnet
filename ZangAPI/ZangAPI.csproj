@@ -39,6 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
@@ -98,6 +99,8 @@
     <Compile Include="Model\Enums\AccountType.cs" />
     <Compile Include="Model\Enums\AnsweredBy.cs" />
     <Compile Include="Model\Enums\AudioDirection.cs" />
+    <Compile Include="Model\Enums\AuthType.cs" />
+    <Compile Include="Model\Enums\AvailablePhoneNumberType.cs" />
     <Compile Include="Model\Enums\CallDirection.cs" />
     <Compile Include="Model\Enums\CallStatus.cs" />
     <Compile Include="Model\Enums\ConferenceStatus.cs" />
@@ -138,7 +141,7 @@
     <Compile Include="Model\Lists\ZangObjectsList.cs" />
     <Compile Include="Model\SmsMessage.cs" />
     <Compile Include="Model\Usage.cs" />
-    <Compile Include="Model\Enums\PhoneNumberType.cs" />
+    <Compile Include="Model\Enums\IncomingPhoneNumberType.cs" />
     <Compile Include="Model\Enums\PresenceStatus.cs" />
     <Compile Include="Model\Enums\TranscriptionStatus.cs" />
     <Compile Include="Model\Enums\TranscriptionType.cs" />
@@ -151,10 +154,20 @@
     <Compile Include="Model\Transcription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration\ZangConfiguration.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="ZangService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

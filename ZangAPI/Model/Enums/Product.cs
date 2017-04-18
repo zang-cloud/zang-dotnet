@@ -1,4 +1,6 @@
-﻿namespace ZangAPI.Model.Enums
+﻿using System.Collections.Generic;
+
+namespace ZangAPI.Model.Enums
 {
     /// <summary>
     /// Product
@@ -32,149 +34,89 @@
     {
         public static Product? GetProduct(string product)
         {
-            switch (product)
+            var dict = new Dictionary<string, Product>()
             {
-                case "Outbound Call":
-                    return Product.OUTBOUND_CALL;
-                case "Inbound Call":
-                    return Product.INBOUND_CALL;
-                case "Outbound SMS":
-                    return Product.OUTBOUND_SMS;
-                case "Inbound SMS":
-                    return Product.INBOUND_SMS;
-                case "Outbound SIP":
-                    return Product.OUTBOUND_SIP;
-                case "Inbound SIP":
-                    return Product.INBOUND_SIP;
-                case "Recording":
-                    return Product.RECORDING;
-                case "Recurring DID":
-                    return Product.RECURRING_DID;
-                case "Recurring DID (Premium)":
-                    return Product.RECURRING_DID_PREMIUM;
-                case "Transcription (Auto)":
-                    return Product.TRANSCRIPTION_AUTO;
-                case "Transcription (Hybrid)":
-                    return Product.TRANSCRIPTION_HYBRID;
-                case "Recurring Inbound Channel":
-                    return Product.RECURRING_INBOUND_CHANNEL;
-                case "Inbound Call (Channel)":
-                    return Product.INBOUND_CALL_CHANNEL;
-                case "CNAM Dip":
-                    return Product.CNAM_DIP;
-                case "Carrier Lookup":
-                    return Product.CARRIER_LOOKUP;
-                case "Outbound Call (Spoofed)":
-                    return Product.OUTBOUND_CALL_SPOOFED;
-                case "Inbound Call (Channel Overage)":
-                    return Product.INBOUND_CALL_CHANNEL_OVERAGE;
-                case "Recurring DID Unblock":
-                    return Product.RECURRING_DID_UNBLOCK;
-                case "Inbound Call Unblocked":
-                    return Product.INBOUND_CALL_UNBLOCKED;
-                case "Inbound Call Forwarded From":
-                    return Product.INBOUND_CALL_FORWARDED_FROM;
-            }
+                { "Outbound Call", Product.OUTBOUND_CALL},
+                { "Inbound Call", Product.INBOUND_CALL},
+                { "Outbound SMS", Product.OUTBOUND_SMS},
+                { "Inbound SMS", Product.INBOUND_SMS},
+                { "Outbound SIP", Product.OUTBOUND_SIP},
+                { "Inbound SIP", Product.INBOUND_SIP},
+                { "Recording", Product.RECORDING},
+                { "Recurring DID", Product.RECURRING_DID},
+                { "Recurring DID (Premium)", Product.RECURRING_DID_PREMIUM},
+                { "Transcription (Auto)", Product.TRANSCRIPTION_AUTO},
+                { "Transcription (Hybrid)", Product.TRANSCRIPTION_HYBRID},
+                { "Recurring Inbound Channel", Product.RECURRING_INBOUND_CHANNEL},
+                { "Inbound Call (Channel)", Product.INBOUND_CALL_CHANNEL},
+                { "CNAM Dip", Product.CNAM_DIP},
+                { "Carrier Lookup", Product.CARRIER_LOOKUP},
+                { "Outbound Call (Spoofed)", Product.OUTBOUND_CALL_SPOOFED},
+                { "Inbound Call (Channel Overage)", Product.INBOUND_CALL_CHANNEL_OVERAGE},
+                { "Recurring DID Unblock", Product.RECURRING_DID_UNBLOCK},
+                { "Inbound Call Unblocked", Product.INBOUND_CALL_UNBLOCKED},
+                { "Inbound Call Forwarded From", Product.INBOUND_CALL_FORWARDED_FROM}
+            };
 
-            return null;
+            return dict[product];
         }
 
         public static string GetProduct(Product product)
         {
-            switch (product)
+            var dict = new Dictionary<Product, string>()
             {
-                case Product.OUTBOUND_CALL:
-                    return "1";
-                case Product.INBOUND_CALL:
-                    return "2";
-                case Product.OUTBOUND_SMS:
-                    return "3";
-                case Product.INBOUND_SMS:
-                    return "4";
-                case Product.OUTBOUND_SIP:
-                    return "5";
-                case Product.INBOUND_SIP:
-                    return "6";
-                case Product.RECORDING:
-                    return "7";
-                case Product.RECURRING_DID:
-                    return "8";
-                case Product.RECURRING_DID_PREMIUM:
-                    return "9";
-                case Product.TRANSCRIPTION_AUTO:
-                    return "12";
-                case Product.TRANSCRIPTION_HYBRID:
-                    return "14";
-                case Product.RECURRING_INBOUND_CHANNEL:
-                    return "17";
-                case Product.INBOUND_CALL_CHANNEL:
-                    return "18";
-                case Product.CNAM_DIP:
-                    return "19";
-                case Product.CARRIER_LOOKUP:
-                    return "20";
-                case Product.OUTBOUND_CALL_SPOOFED:
-                    return "21";
-                case Product.INBOUND_CALL_CHANNEL_OVERAGE:
-                    return "22";
-                case Product.RECURRING_DID_UNBLOCK:
-                    return "23";
-                case Product.INBOUND_CALL_UNBLOCKED:
-                    return "24";
-                case Product.INBOUND_CALL_FORWARDED_FROM:
-                    return "25";
-            }
+                { Product.OUTBOUND_CALL, "1"},
+                { Product.INBOUND_CALL, "2"},
+                { Product.OUTBOUND_SMS, "3"},
+                { Product.INBOUND_SMS, "4"},
+                { Product.OUTBOUND_SIP, "5"},
+                { Product.INBOUND_SIP, "6"},
+                { Product.RECORDING, "7"},
+                { Product.RECURRING_DID, "8"},
+                { Product.RECURRING_DID_PREMIUM, "9"},
+                { Product.TRANSCRIPTION_AUTO, "12"},
+                { Product.TRANSCRIPTION_HYBRID, "14"},
+                { Product.RECURRING_INBOUND_CHANNEL, "17"},
+                { Product.INBOUND_CALL_CHANNEL, "18"},
+                { Product.CNAM_DIP, "19"},
+                { Product.CARRIER_LOOKUP, "20"},
+                { Product.OUTBOUND_CALL_SPOOFED, "21"},
+                { Product.INBOUND_CALL_CHANNEL_OVERAGE, "22"},
+                { Product.RECURRING_DID_UNBLOCK, "23"},
+                { Product.INBOUND_CALL_UNBLOCKED, "24"},
+                { Product.INBOUND_CALL_FORWARDED_FROM, "25"},
+            };
 
-            return null;
+            return dict[product];
         }
 
         public static Product? GetProduct(int productId)
         {
-            switch (productId)
+            var dict = new Dictionary<int, Product>()
             {
-                case 1:
-                    return Product.OUTBOUND_CALL;
-                case 2:
-                    return Product.INBOUND_CALL;
-                case 3:
-                    return Product.OUTBOUND_SMS;
-                case 4:
-                    return Product.INBOUND_SMS;
-                case 5:
-                    return Product.OUTBOUND_SIP;
-                case 6:
-                    return Product.INBOUND_SIP;
-                case 7:
-                    return Product.RECORDING;
-                case 8:
-                    return Product.RECURRING_DID;
-                case 9:
-                    return Product.RECURRING_DID_PREMIUM;
-                case 12:
-                    return Product.TRANSCRIPTION_AUTO;
-                case 14:
-                    return Product.TRANSCRIPTION_HYBRID;
-                case 17:
-                    return Product.RECURRING_INBOUND_CHANNEL;
-                case 18:
-                    return Product.INBOUND_CALL_CHANNEL;
-                case 19:
-                    return Product.CNAM_DIP;
-                case 20:
-                    return Product.CARRIER_LOOKUP;
-                case 21:
-                    return Product.OUTBOUND_CALL_SPOOFED;
-                case 22:
-                    return Product.INBOUND_CALL_CHANNEL_OVERAGE;
-                case 23:
-                    return Product.RECURRING_DID_UNBLOCK;
-                case 24:
-                    return Product.INBOUND_CALL_UNBLOCKED;
-                case 25:
-                    return Product.INBOUND_CALL_FORWARDED_FROM;
-            }
+                { 1, Product.OUTBOUND_CALL },
+                { 2, Product.INBOUND_CALL},
+                { 3, Product.OUTBOUND_SMS},
+                { 4, Product.INBOUND_SMS},
+                { 5, Product.OUTBOUND_SIP},
+                { 6, Product.INBOUND_SIP},
+                { 7, Product.RECORDING},
+                { 8, Product.RECURRING_DID},
+                { 9, Product.RECURRING_DID_PREMIUM},
+                { 12, Product.TRANSCRIPTION_AUTO},
+                { 14, Product.TRANSCRIPTION_HYBRID},
+                { 17, Product.RECURRING_INBOUND_CHANNEL},
+                { 18, Product.INBOUND_CALL_CHANNEL},
+                { 19, Product.CNAM_DIP},
+                { 20, Product.CARRIER_LOOKUP},
+                { 21, Product.OUTBOUND_CALL_SPOOFED},
+                { 22, Product.INBOUND_CALL_CHANNEL_OVERAGE},
+                { 23, Product.RECURRING_DID_UNBLOCK},
+                { 24, Product.INBOUND_CALL_UNBLOCKED},
+                { 25, Product.INBOUND_CALL_FORWARDED_FROM},
+            };
 
-            return null;
+            return dict[productId];
         }
     }
 }
