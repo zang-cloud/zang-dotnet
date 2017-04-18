@@ -203,7 +203,23 @@ namespace ZangAPI
         /// <exception cref="System.NotImplementedException"></exception>
         public void InitFromConfig()
         {
-            throw new NotImplementedException();
+            // Read configuration from application settings
+            var accountSid = Properties.Settings.Default.accountSid;
+            var authToken = Properties.Settings.Default.authToken;
+            var baseUrl = Properties.Settings.Default.baseUrl;
+            var proxyHost = Properties.Settings.Default.proxyHost;
+            var proxyPort = Properties.Settings.Default.proxyPort;
+            var useProxy = Properties.Settings.Default.useProxy;
+
+            var configuration = new ZangConfiguration(accountSid, authToken)
+            {
+                BaseUrl = baseUrl, ProxyHost = proxyHost, ProxyPort = proxyPort, 
+                UseProxy = Convert.ToBoolean(useProxy)
+
+            };
+
+            this.HttpManager = new HttpManager(configuration);
+            this.InitConnectors();
         }
     }
 }
