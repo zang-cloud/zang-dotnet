@@ -25,8 +25,6 @@ namespace ZangAPI.InboundXml
         /// </value>
         public int Loop
         {
-            // TODO, vidiš kad atribut nema vrijednost stringa, onda ti možeš postaviti taj izborni oblik,
-            // a onda u ovim getterima i setterima transformirati vrijednosti
             get
             {
                 // retrieves the loop value
@@ -47,33 +45,11 @@ namespace ZangAPI.InboundXml
         }
 
         /// <summary>
-        /// Gets or sets the tone stream.
-        /// </summary>
-        /// <value>
-        /// The tone stream.
-        /// </value>
-        public string ToneStream
-        {
-            get
-            {
-                // retruns the value of this node.
-                return this.Value;
-            }
-            set
-            {
-                // sets the value for the node.
-                this.SetValue(value);
-            }
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="PlayNode"/> class.
         /// </summary>
-        public PlayNode(string toneStream)
+        public PlayNode()
             : base(NODE_NAME)
         {
-            // sets the tone stream
-            this.ToneStream = toneStream;
         }
     }
 
@@ -91,16 +67,18 @@ namespace ZangAPI.InboundXml
         /// <returns></returns>
         public static INode<ResponseNode> Play(
             this INode<ResponseNode> responseNode,
-            int loop = 0,
-            string toneStream = null
-            // TODO također vidi ako treba više išta, ali mislim da ne treba
-            )
+            string toneStream = null,
+            int? loop = null
+        )
         {
             // creates the new play node
-            var play = new PlayNode(toneStream)
+            var play = new PlayNode()
             {
-                Loop = loop
+                Value = toneStream
             };
+
+            // sets the data
+            if (loop.HasValue) play.Loop = loop.Value;
 
             // adds the play to the response
             responseNode.CurrentNode.Add(play);
@@ -118,16 +96,18 @@ namespace ZangAPI.InboundXml
         /// <returns></returns>
         public static INodeInner<GatherNode, ResponseNode> Play(
             this INodeInner<GatherNode, ResponseNode> gatherNode,
-            int loop = 0,
-            string toneStream = null
-            // TODO također vidi ako treba više išta, ali mislim da ne treba
+            string toneStream = null,
+            int? loop = null
             )
         {
             // creates the new play node
-            var play = new PlayNode(toneStream)
+            var play = new PlayNode()
             {
-                Loop = loop
+                Value = toneStream,
             };
+
+            // sets the data
+            if (loop.HasValue) play.Loop = loop.Value;
 
             // adds the play to the gather
             gatherNode.CurrentNode.Add(play);

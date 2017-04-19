@@ -2,23 +2,12 @@
 
 namespace ZangAPI.InboundXml
 {
-    public class InboundXmlBuilder : INode<ResponseNode>
+    public class InboundXmlBuilder
     {
         /// <summary>
-        /// Gets the document.
+        /// The requrest node.
         /// </summary>
-        /// <value>
-        /// The document.
-        /// </value>
-        public XDocument Document { get; protected set; }
-
-        /// <summary>
-        /// Gets the current node.
-        /// </summary>
-        /// <value>
-        /// The current node.
-        /// </value>
-        public ResponseNode CurrentNode { get; protected set; }
+        private ResponseNode requestNode;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InboundXmlBuilder"/> class.
@@ -26,13 +15,24 @@ namespace ZangAPI.InboundXml
         public InboundXmlBuilder()
         {
             // sets the new document
-            this.Document = new XDocument();
+            XDocument document = new XDocument();
 
             // creates the response node
-            this.CurrentNode = new ResponseNode();
+            this.requestNode = new ResponseNode();
 
             // adds the response node to the document
-            this.Document.AddFirst(this.CurrentNode);
+            document.AddFirst(this.requestNode);
+        }
+
+        /// <summary>
+        /// Gets the request node.
+        /// You can start building with this.
+        /// </summary>
+        /// <returns></returns>
+        public INode<ResponseNode> GetRequestNode()
+        {
+            // returns the request node
+            return new InboundXmlNode<ResponseNode>(this.requestNode);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace ZangAPI.InboundXml
         public override string ToString()
         {
             // retruns the xml
-            return this.Document.ToString();
+            return this.requestNode.Document.ToString();
         }
     }
 }

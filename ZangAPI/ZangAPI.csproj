@@ -75,6 +75,13 @@
     <Compile Include="Connectors\SmsConnector.cs" />
     <Compile Include="Connectors\UsagesConnector.cs" />
     <Compile Include="Exceptions\ZangException.cs" />
+    <Compile Include="InboundXml\Enums\HangupReasonEnum.cs" />
+    <Compile Include="InboundXml\Enums\IfMachineEnum.cs" />
+    <Compile Include="InboundXml\Enums\LanguageEnum.cs" />
+    <Compile Include="InboundXml\Enums\RecordDirectionEnum.cs" />
+    <Compile Include="InboundXml\Enums\RecordFileFormatEnum.cs" />
+    <Compile Include="InboundXml\Enums\TranscribeQualityEnum.cs" />
+    <Compile Include="InboundXml\Enums\VoiceEnum.cs" />
     <Compile Include="InboundXml\InboundNodes\ANode.cs" />
     <Compile Include="InboundXml\InboundNodes\ConferenceNode.cs" />
     <Compile Include="InboundXml\InboundNodes\DialNode.cs" />
@@ -92,10 +99,8 @@
     <Compile Include="InboundXml\InboundNodes\SayNode.cs" />
     <Compile Include="InboundXml\InboundNodes\SipNode.cs" />
     <Compile Include="InboundXml\InboundNodes\SmsNode.cs" />
-    <Compile Include="InboundXml\InboundNodes\UserNode.cs" />
     <Compile Include="InboundXml\InboundXmlBuilder.cs" />
     <Compile Include="InboundXml\InboundXmlInterfaces.cs" />
-    <Compile Include="InboundXml\InboundXmlTestingClass.cs" />
     <Compile Include="InboundXml\Nodes.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Application.cs" />

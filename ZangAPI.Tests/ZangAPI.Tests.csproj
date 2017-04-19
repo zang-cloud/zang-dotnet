@@ -92,6 +92,7 @@
     <Compile Include="ConnectorsTests\TranscriptionsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\UsagesConnectorTests.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="InboundXmlTests\InboundXmlBuilderTests.cs" />
     <Compile Include="JsonRequest.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="ParametersHelper.cs" />
