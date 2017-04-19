@@ -13,12 +13,11 @@
         /// <summary>
         /// The credential list
         /// </summary>
-        CREDENTIAL_LIST, 
+        CREDENTIAL_LIST,
 
-        //todo nema u dokumentaciji
-        NO_TRAFFIC, 
-
-        //todo nema u dokumentaciji
-        IP_AND_CREDENTIAL
+        /// <summary>
+        /// The no traffic
+        /// </summary>
+        NO_TRAFFIC
     }
 }

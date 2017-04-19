@@ -270,7 +270,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // View access control list IP using ip acls connector
-                var aclIp = service.SipIpAccessControlListsConnector.ViewAclIp("TestIpAccessControlListSid", "TestIpAddressSid");
+                var aclIp = service.SipIpAccessControlListsConnector.ViewAccessControlListIp("TestIpAccessControlListSid", "TestIpAddressSid");
 
                 Assert.AreEqual("192.168.12.12", aclIp.IPAddress);
                 Assert.AreEqual("MyIpAddress", aclIp.FriendlyName);
@@ -312,7 +312,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // List access control list IPs using ip acls connector
-                var aclIpsList = service.SipIpAccessControlListsConnector.ListAclIps("TestIpAccessControlListSid");
+                var aclIpsList = service.SipIpAccessControlListsConnector.ListAccessControlListIps("TestIpAccessControlListSid");
 
                 var aclIp = aclIpsList.Elements.First();
 
@@ -356,7 +356,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // Add access control list IP using ip acls connector
-                var aclIp = service.SipIpAccessControlListsConnector.AddAclIp("TestIpAccessControlListSid", 
+                var aclIp = service.SipIpAccessControlListsConnector.AddAccessControlListIp("TestIpAccessControlListSid", 
                     jsonRequest.BodyParameter("FriendlyName"), jsonRequest.BodyParameter("IpAddress"));
 
                 Assert.AreEqual(jsonRequest.BodyParameter("IpAddress"), aclIp.IPAddress);
@@ -399,7 +399,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // Update access control list IP using ip acls connector
-                var aclIp = service.SipIpAccessControlListsConnector.UpdateAclIp("TestIpAccessControlListSid", "TestIpAddressSid", jsonRequest.BodyParameter("FriendlyName"), jsonRequest.BodyParameter("IpAddress"));
+                var aclIp = service.SipIpAccessControlListsConnector.UpdateAccessControlListIp("TestIpAccessControlListSid", "TestIpAddressSid", jsonRequest.BodyParameter("FriendlyName"), jsonRequest.BodyParameter("IpAddress"));
 
                 Assert.AreEqual(jsonRequest.BodyParameter("IpAddress"), aclIp.IPAddress);
                 Assert.AreEqual(jsonRequest.BodyParameter("FriendlyName"), aclIp.FriendlyName);
@@ -441,7 +441,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // Delete access control list IP using ip acls connector
-                var aclIp = service.SipIpAccessControlListsConnector.DeleteAclIp("TestIpAccessControlListSid", "TestIpAddressSid");
+                var aclIp = service.SipIpAccessControlListsConnector.DeleteAccessControlListIp("TestIpAccessControlListSid", "TestIpAddressSid");
             }
         }
     }

@@ -112,7 +112,7 @@ namespace ZangAPI.Connectors
         /// <param name="product">The product.</param>
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
-        private void SetParamsForListUsages(RestRequest request, int? day, int? month, int? year, Product? product, int? page, int? pageSize)
+        private void SetParamsForListUsages(IRestRequest request, int? day, int? month, int? year, Product? product, int? page, int? pageSize)
         {
             if (day != null) request.AddQueryParameter("Day", day.ToString());
             if (month != null) request.AddQueryParameter("Month", month.ToString());

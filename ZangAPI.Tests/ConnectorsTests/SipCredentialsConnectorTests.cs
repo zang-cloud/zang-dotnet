@@ -401,7 +401,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var service = new ZangService(configuration);
 
                 // Update credentials list using credentials connector
-                var credentialList = service.SipCredentialsConnector.UpdateCredentialList("TestCredentialsListSid", jsonRequest.BodyParameter("FriendlyName"));
+                var credentialList = service.SipCredentialsConnector.UpdateCredentialsList("TestCredentialsListSid", jsonRequest.BodyParameter("FriendlyName"));
 
                 Assert.AreEqual(jsonRequest.BodyParameter("FriendlyName"), credentialList.FriendlyName);
             }
