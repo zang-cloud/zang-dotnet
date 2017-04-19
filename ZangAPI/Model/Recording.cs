@@ -43,7 +43,5 @@ namespace ZangAPI.Model
         /// </value>
         [JsonProperty(PropertyName = "recording_url")]
         public string RecordingUrl { get; set; }
-
-        //todo result ima jos svasta, al pise da je response isti
     }
 }

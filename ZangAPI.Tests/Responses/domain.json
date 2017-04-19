@@ -1,5 +1,5 @@
 ﻿{
-  "auth_type": "ip_and_credential",
+  "auth_type": "no_traffic",
   "voice_status_callback_method": "POST",
   "voice_heartbeat_callback": null,
   "subresource_uris": {

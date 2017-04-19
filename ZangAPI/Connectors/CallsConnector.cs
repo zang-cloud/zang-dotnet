@@ -253,7 +253,7 @@ namespace ZangAPI.Connectors
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.InterruptLiveCall(callSid, accountSid, url, method, status);
+            return this.InterruptLiveCall(accountSid, callSid, url, method, status);
         }
 
         /// <summary>
@@ -530,7 +530,7 @@ namespace ZangAPI.Connectors
         /// <param name="startTimeLt">The start time lt.</param>
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
-        private void SetParamsForListCalls(RestRequest request, string to, string from, CallStatus? status, DateTime startTimeGte, DateTime startTimeLt, int? page, int? pageSize)
+        private void SetParamsForListCalls(IRestRequest request, string to, string from, CallStatus? status, DateTime startTimeGte, DateTime startTimeLt, int? page, int? pageSize)
         {
             if (to.HasValue()) request.AddQueryParameter("To", to);
             if (from.HasValue()) request.AddQueryParameter("From", from);
@@ -551,7 +551,7 @@ namespace ZangAPI.Connectors
         /// <param name="url">The URL.</param>
         /// <param name="method">The method.</param>
         /// <param name="status">The status.</param>
-        private void SetParamsForInterruptLiveCall(RestRequest request, string url, HttpMethod method, CallStatus? status)
+        private void SetParamsForInterruptLiveCall(IRestRequest request, string url, HttpMethod method, CallStatus? status)
         {
             if (url.HasValue()) request.AddParameter("Url", url);
             request.AddParameter("Method", method.ToString().ToUpper());
@@ -564,7 +564,7 @@ namespace ZangAPI.Connectors
         /// <param name="request">The request.</param>
         /// <param name="playDtmf">The play DTMF.</param>
         /// <param name="playDtmfDirection">The play DTMF direction.</param>
-        private void SetParamsForSendDigitsToLiveCall(RestRequest request, string playDtmf, AudioDirection? playDtmfDirection)
+        private void SetParamsForSendDigitsToLiveCall(IRestRequest request, string playDtmf, AudioDirection? playDtmfDirection)
         {
             if (playDtmf.HasValue()) request.AddParameter("PlayDtmf", playDtmf);
             if (playDtmfDirection != null) request.AddParameter("PlayDtmfDirection", EnumHelper.GetEnumValue(playDtmfDirection));
@@ -583,7 +583,7 @@ namespace ZangAPI.Connectors
         /// <param name="transcribe">if set to <c>true</c> [transcribe].</param>
         /// <param name="transcribeQuality">The transcribe quality.</param>
         /// <param name="transcribeCallback">The transcribe callback.</param>
-        private void SetParamsForRecordLiveCall(RestRequest request, bool record, RecordingAudioDirection direction, int? timeLimit,
+        private void SetParamsForRecordLiveCall(IRestRequest request, bool record, RecordingAudioDirection direction, int? timeLimit,
             string callbackUrl, RecordingFileFormat fileFormat, bool trimSilence, bool transcribe,
             TranscribeQuality transcribeQuality, string transcribeCallback)
         {
@@ -605,7 +605,7 @@ namespace ZangAPI.Connectors
         /// <param name="audioUrl">The audio URL.</param>
         /// <param name="direction">The direction.</param>
         /// <param name="loop">if set to <c>true</c> [loop].</param>
-        private void SetParamsForPlayAudioToLiveCall(RestRequest request, string audioUrl, RecordingAudioDirection direction, bool loop)
+        private void SetParamsForPlayAudioToLiveCall(IRestRequest request, string audioUrl, RecordingAudioDirection direction, bool loop)
         {
             request.AddParameter("AudioUrl", audioUrl);
             request.AddParameter("Direction", EnumHelper.GetEnumValue(direction));
@@ -622,7 +622,7 @@ namespace ZangAPI.Connectors
         /// <param name="pitchOctaves">The pitch octaves.</param>
         /// <param name="rate">The rate.</param>
         /// <param name="tempo">The tempo.</param>
-        private void SetParamsForApplyVoiceEffect(RestRequest request, AudioDirection direction = AudioDirection.OUT, int pitch = 1, int pitchSemiTones = 1,
+        private void SetParamsForApplyVoiceEffect(IRestRequest request, AudioDirection direction = AudioDirection.OUT, int pitch = 1, int pitchSemiTones = 1,
             int pitchOctaves = 1, int rate = 1, int tempo = 1)
         {
             request.AddParameter("AudioDirection", EnumHelper.GetEnumValue(direction));
