@@ -55,7 +55,7 @@ namespace ZangAPI.Tests.ConnectorsTests
 
                 // List available phone numbers using available phone numbers connector
                 var availablePhoneNumbersList = service.AvailablePhoneNumbersConnector.ListAvailableNumbers("TestAccountSid",
-                    "HR", PhoneNumberType.TOLLFREE, 
+                    "HR", AvailablePhoneNumberType.TOLLFREE, 
                     jsonRequest.QueryParameter("Contains"), jsonRequest.QueryParameter("AreaCode"), jsonRequest.QueryParameter("InRegion"),
                     jsonRequest.QueryParameter("InPostalCode"), Convert.ToInt32(jsonRequest.QueryParameter("Page")), Convert.ToInt32(jsonRequest.QueryParameter("PageSize")));
 

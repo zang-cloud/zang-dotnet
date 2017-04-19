@@ -26,7 +26,6 @@ namespace ZangAPI.Model
         [JsonProperty(PropertyName = "network")]
         public string Network { get; set; }
 
-        //todo ovoga nema u dokumentaciji
         /// <summary>
         /// Gets or sets the sponsor network.
         /// </summary>
@@ -45,7 +44,6 @@ namespace ZangAPI.Model
         [JsonProperty(PropertyName = "mobile")]
         public bool Mobile { get; set; }
 
-        //todo ovoga nema u dokumentaciji
         /// <summary>
         /// Gets or sets a value indicating whether [sponsor mobile].
         /// </summary>
@@ -64,7 +62,6 @@ namespace ZangAPI.Model
         [JsonProperty(PropertyName = "carrier_id")]
         public int CarrierId { get; set; }
 
-        //todo ovoga nema u dokumentaciji
         /// <summary>
         /// Gets or sets the sponsor carrier identifier.
         /// </summary>
@@ -83,7 +80,6 @@ namespace ZangAPI.Model
         [JsonProperty(PropertyName = "country_code")]
         public string CountryCode { get; set; }
 
-        //todo ovoga nema u dokumentaciji
         /// <summary>
         /// Gets or sets the sponsor country code.
         /// </summary>

@@ -131,6 +131,13 @@ namespace ZangAPI.ConnectionManager
                                                    | SecurityProtocolType.Tls11
                                                    | SecurityProtocolType.Tls12
                                                    | SecurityProtocolType.Ssl3;
+
+            // If useProxy flag is set to true set proxy
+            if (ZangConfiguration.UseProxy)
+            {
+                client.Proxy = new WebProxy(ZangConfiguration.ProxyHost + ":" + ZangConfiguration.ProxyPort);
+                client.Proxy.Credentials = new NetworkCredential(ZangConfiguration.AccountSid, ZangConfiguration.AuthToken);
+            }
         }
     }
 }

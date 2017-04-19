@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using ZangAPI.Model.Enums;
 
 namespace ZangAPI.Helpers
 {
@@ -25,8 +28,23 @@ namespace ZangAPI.Helpers
         /// <returns>Returns enum string value</returns>
         public static string GetEnumValue(Enum e)
         {
+            //todo kad je drugacije ili ovo ili enum members
+            if (e is AvailablePhoneNumberType)
+            {
+                var eString = e.ToString().ToLower();
+                return eString.First().ToString().ToUpper() + eString.Substring(1);
+            }
+
             var lowercase = e.ToString().ToLower();
             return lowercase.Replace("_", "-");
+        }
+
+        public static string GetEnumMemberValue(Enum enumVal)
+        {
+            var type = enumVal.GetType();
+            var memInfo = type.GetMember(enumVal.ToString());
+            var enumMembers = memInfo[0].GetCustomAttributes(typeof(EnumMemberAttribute), false);
+            return ((EnumMemberAttribute)enumMembers[0]).Value;
         }
     }
 }

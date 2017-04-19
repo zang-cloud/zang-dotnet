@@ -18,7 +18,7 @@ namespace ZangAPI.Model.Enums
         RINGING,
 
         /// <summary>
-        /// 
+        /// The in progress
         /// </summary>
         [EnumMember(Value = "in-progress")]
         IN_PROGRESS,

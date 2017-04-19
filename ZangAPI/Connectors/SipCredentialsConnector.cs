@@ -323,7 +323,7 @@ namespace ZangAPI.Connectors
         /// <param name="clSid">The cl sid.</param>
         /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns></returns>
-        public CredentialList UpdateCredentialList(string accountSid, string clSid, string friendlyName = null)
+        public CredentialList UpdateCredentialsList(string accountSid, string clSid, string friendlyName = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -345,12 +345,12 @@ namespace ZangAPI.Connectors
         /// <param name="clSid">The cl sid.</param>
         /// <param name="friendlyName">Name of the friendly.</param>
         /// <returns></returns>
-        public CredentialList UpdateCredentialList(string clSid, string friendlyName = null)
+        public CredentialList UpdateCredentialsList(string clSid, string friendlyName = null)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.UpdateCredentialList(accountSid, clSid, friendlyName);
+            return this.UpdateCredentialsList(accountSid, clSid, friendlyName);
         }
 
         /// <summary>

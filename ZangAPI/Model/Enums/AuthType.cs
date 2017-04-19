@@ -1,23 +1,23 @@
 ﻿namespace ZangAPI.Model.Enums
 {
     /// <summary>
-    /// Phone number type
+    /// Auth type
     /// </summary>
-    public enum PhoneNumberType
+    public enum AuthType
     {
         /// <summary>
-        /// The local
+        /// The ip acl
         /// </summary>
-        LOCAL,
+        IP_ACL,
 
         /// <summary>
-        /// The international
+        /// The credential list
         /// </summary>
-        INTERNATIONAL,
+        CREDENTIAL_LIST,
 
         /// <summary>
-        /// The tollfree
+        /// The no traffic
         /// </summary>
-        TOLLFREE
+        NO_TRAFFIC
     }
 }
