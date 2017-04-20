@@ -140,9 +140,9 @@ namespace ZangAPI.InboundXml
         /// <param name="statusCallback">The status callback.</param>
         public static INode<ResponseNode> Sms(
             this INode<ResponseNode> responseNode,
+            string to ,
+            string from,
             string value = null,
-            string to = null,
-            string from = null,
             string action = null,
             string method = null,
             string statusCallback = null

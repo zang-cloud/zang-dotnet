@@ -15,7 +15,7 @@ namespace ZangAPI.InboundXml
         /// <summary>
         /// The node name.
         /// </summary>
-        const string NODE_NAME = "PingNode";
+        const string NODE_NAME = "Ping";
 
         /// <summary>
         /// Method used to request ping url. Default Value: POST. Allowed Value: POST or GET.

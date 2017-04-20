@@ -28,7 +28,7 @@ namespace ZangAPI.InboundXml
         {
             get
             {
-                VoiceEnum value = VoiceEnum.woman;
+                VoiceEnum value = VoiceEnum.female;
                 Enum.TryParse(this.GetAttributeValue("voice"), out value);
                 return value;
             }

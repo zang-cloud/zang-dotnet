@@ -11,7 +11,7 @@ namespace ZangAPI.InboundXml.Enums
     /// </summary>
     public enum VoiceEnum
     {
-        man,
-        woman
+        male,
+        female
     }
 }
