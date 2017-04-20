@@ -28,7 +28,6 @@ namespace ZangAPI.Helpers
         /// <returns>Returns enum string value</returns>
         public static string GetEnumValue(Enum e)
         {
-            //todo kad je drugacije ili ovo ili enum members
             if (e is AvailablePhoneNumberType)
             {
                 var eString = e.ToString().ToLower();
@@ -39,6 +38,11 @@ namespace ZangAPI.Helpers
             return lowercase.Replace("_", "-");
         }
 
+        /// <summary>
+        /// Gets the enum member value.
+        /// </summary>
+        /// <param name="enumVal">The enum value.</param>
+        /// <returns>Returns enum member value from EnumMemberAttribute</returns>
         public static string GetEnumMemberValue(Enum enumVal)
         {
             var type = enumVal.GetType();
