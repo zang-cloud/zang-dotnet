@@ -1,4 +1,9 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace ZangAPI.InboundXml
 {
@@ -38,10 +43,37 @@ namespace ZangAPI.InboundXml
         /// <summary>
         /// Returns the indented XML for this node. 
         /// </summary>
-        public override string ToString()
+        public string Build()
         {
-            // retruns the xml
-            return this.requestNode.Document.ToString();
+            var documentString = this.requestNode.Document.ToString();
+
+            if (this.IsXmlValid(documentString))
+            {
+                return documentString;
+            }
+
+            throw new Exception("Xml not valid.");
+        }
+
+        /// <summary>
+        /// Determines whether [is XML valid] [the specified XML].
+        /// </summary>
+        /// <param name="xml">The XML.</param>
+        /// <returns>Returns true if xml is valid, false otherwise</returns>
+        private bool IsXmlValid(string xml)
+        {
+            var document = XDocument.Parse(xml);
+
+            Assembly a = Assembly.GetExecutingAssembly();
+
+            var schemas = new XmlSchemaSet();
+            schemas.Add("", XmlReader.Create(a.GetManifestResourceStream("ZangAPI.inboundxml.xsd")));
+
+            var valid = true;
+            document.Validate(schemas, (o, e) => 
+                { valid = false; });
+
+            return valid;
         }
     }
 }

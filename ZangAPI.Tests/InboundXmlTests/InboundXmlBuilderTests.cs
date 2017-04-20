@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ZangAPI.InboundXml;
 using System.Text.RegularExpressions;
+using ZangAPI.InboundXml.Enums;
 
 namespace ZangAPI.Tests.InboundXmlTests
 {
@@ -11,7 +11,7 @@ namespace ZangAPI.Tests.InboundXmlTests
         /// <summary>
         /// The exptected XML string for testing,
         /// </summary>
-        protected static readonly string EXPTECTED_XML_STRING = "<Response><Dial><Conference /><Number /><Sip /></Dial><Gather><Say /><Play /><Pause /></Gather><Hangup /><PingNode /><Pause /><Play /><PlayLastRecording /><Record /><Redirect /><Reject /><Say /><Sms /></Response>";
+        protected static readonly string EXPTECTED_XML_STRING = "<Response><Dial><Conference /><Number /><Sip /></Dial><Gather><Say /><Play /><Pause /></Gather><Hangup /><Ping /><Pause /><Play /><PlayLastRecording /><Record /><Redirect /><Reject /><Say /><Sms to=\"+12345\" from=\"+34567\" /></Response>";
 
         /// <summary>
         /// Removes the XML whitespace.
@@ -53,13 +53,49 @@ namespace ZangAPI.Tests.InboundXmlTests
                 .Redirect()
                 .Reject()
                 .Say()
-                .Sms();
+                .Sms("+12345", "+34567");
 
             // exports the node
-            var stringData = RemoveXmlWhitespace(builder.ToString());
+            var stringData = RemoveXmlWhitespace(builder.Build());
 
             // does the test
             Assert.AreEqual(EXPTECTED_XML_STRING, stringData);
+        }
+
+        [TestMethod]
+        public void InboundXmlWithAttributesTest()
+        {
+            // creates the new builder
+            var builder = new InboundXmlBuilder();
+
+            // creates the node
+            builder.GetRequestNode()
+                .Dial("(555)555-5555", "dial action", "POST", 15, "caller id", false, "dial music", "dial callback url", "POST", "dial confirm sound", "ww12w3221", false, 
+                "dial heartbeat url", "POST", "dial forwarded from", IfMachineEnum.@continue, "dial if machine url", "POST", false, RecordDirectionEnum.@out, "dial record callback url")
+                    .StartInner()
+                    .Conference("ZangExampleChat", false, true, true, true, 15, "conference wait sound", false, "conference callback url", "POST", "ww12w3221", false, false, "conference record callback url", RecordFileFormatEnum.wav)
+                    .Number("(555)555-5555", "ww12w3221")
+                    .Sip("username@domain.com", "username", "password")
+                    .EndInner()
+                .Gather()
+                    .StartInner()
+                    .Say("Ready for pause?", loop:6)
+                    .Play("play tone stream", loop: 4)
+                    .Pause(length:2)
+                    .EndInner()
+                .Hangup(schedule:4, reason:HangupReasonEnum.rejected)
+                .Ping("http://webhookr.com/ping-test", "POST")
+                .Pause(length:5)
+                .Play("play tone stream", loop:2)
+                .PlayLastRecording()
+                .Record("record action", "POST", 8, "5", 3000, true, TranscribeQualityEnum.auto, "record transcribe callback", true, RecordDirectionEnum.@in, RecordFileFormatEnum.mp3, 
+                        true, false)
+                .Redirect("redirect", "POST")
+                .Reject(HangupReasonEnum.busy)
+                .Say(value:"I want to say sth!", voice:VoiceEnum.female, language:LanguageEnum.en, loop:3)
+                .Sms("+12345", "+34567", "Test message from Zang", "sms action", "POST", "sms status callback");
+
+            var data = builder.Build();
         }
     }
 }
