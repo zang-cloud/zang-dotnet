@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZangAPI", "ZangAPI\ZangAPI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZangAPI.Tests", "ZangAPI.Tests\ZangAPI.Tests.csproj", "{CEC170D4-C380-4920-B660-5B7F6A7E02CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZangAPI.Examples", "ZangAPI.Examples\ZangAPI.Examples.csproj", "{3F529E0D-6945-4B0A-8EE5-7DEED8046586}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CEC170D4-C380-4920-B660-5B7F6A7E02CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEC170D4-C380-4920-B660-5B7F6A7E02CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEC170D4-C380-4920-B660-5B7F6A7E02CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F529E0D-6945-4B0A-8EE5-7DEED8046586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F529E0D-6945-4B0A-8EE5-7DEED8046586}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F529E0D-6945-4B0A-8EE5-7DEED8046586}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F529E0D-6945-4B0A-8EE5-7DEED8046586}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

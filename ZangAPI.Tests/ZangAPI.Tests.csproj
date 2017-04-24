@@ -150,9 +150,7 @@
     <EmbeddedResource Include="Responses\cnamLookup.json" />
     <EmbeddedResource Include="Responses\cnamLookupList.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Examples\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ZangAPI\ZangAPI.csproj">
       <Project>{9bb43527-2974-4d68-bc00-ccabf5157d17}</Project>
