@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9bb43527-2974-4d68-bc00-ccabf5157d17</ProjectGuid>
+    <ProjectGuid>{9BB43527-2974-4D68-BC00-CCABF5157D17}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ZangAPI</RootNamespace>
@@ -30,25 +30,176 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net451\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Connectors\AccountsConnector.cs" />
+    <Compile Include="Connectors\AConnector.cs" />
+    <Compile Include="Connectors\ApplicationClientsConnector.cs" />
+    <Compile Include="Connectors\ApplicationsConnector.cs" />
+    <Compile Include="Connectors\AvailablePhoneNumbersConnector.cs" />
+    <Compile Include="Connectors\CallsConnector.cs" />
+    <Compile Include="Configuration\IZangConfiguration.cs" />
+    <Compile Include="ConnectionManager\HttpManager.cs" />
+    <Compile Include="ConnectionManager\IHttpManager.cs" />
+    <Compile Include="ConnectionManager\IHttpProvider.cs" />
+    <Compile Include="Connectors\CarrierServicesConnector.cs" />
+    <Compile Include="Connectors\ConferencesConnector.cs" />
+    <Compile Include="Connectors\FraudControlConnector.cs" />
+    <Compile Include="Connectors\IncomingPhoneNumbersConnector.cs" />
+    <Compile Include="Connectors\NotificationsConnector.cs" />
+    <Compile Include="Connectors\RecordingsConnector.cs" />
+    <Compile Include="Connectors\SipCredentialsConnector.cs" />
+    <Compile Include="Connectors\SipDomainsConnector.cs" />
+    <Compile Include="Connectors\SipIpAccessControlListsConnector.cs" />
+    <Compile Include="Connectors\TranscriptionsConnector.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\ProductConverter.cs" />
+    <Compile Include="Helpers\RestRequestHelper.cs" />
+    <Compile Include="Connectors\SmsConnector.cs" />
+    <Compile Include="Connectors\UsagesConnector.cs" />
+    <Compile Include="Exceptions\ZangException.cs" />
+    <Compile Include="InboundXml\Enums\HangupReasonEnum.cs" />
+    <Compile Include="InboundXml\Enums\IfMachineEnum.cs" />
+    <Compile Include="InboundXml\Enums\LanguageEnum.cs" />
+    <Compile Include="InboundXml\Enums\RecordDirectionEnum.cs" />
+    <Compile Include="InboundXml\Enums\RecordFileFormatEnum.cs" />
+    <Compile Include="InboundXml\Enums\TranscribeQualityEnum.cs" />
+    <Compile Include="InboundXml\Enums\VoiceEnum.cs" />
+    <Compile Include="InboundXml\InboundNodes\ANode.cs" />
+    <Compile Include="InboundXml\InboundNodes\ConferenceNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\DialNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\GatherNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\HangupNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\NumberNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\PauseNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\PingNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\PlayLastRecordingNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\PlayNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\RecordNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\RedirectNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\RejectNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\ResponseNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\SayNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\SipNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\SmsNode.cs" />
+    <Compile Include="InboundXml\InboundXmlBuilder.cs" />
+    <Compile Include="InboundXml\InboundXmlInterfaces.cs" />
+    <Compile Include="InboundXml\Nodes.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\Application.cs" />
+    <Compile Include="Model\ApplicationClient.cs" />
+    <Compile Include="Model\BaseZangObject.cs" />
+    <Compile Include="Model\BnaLookup.cs" />
+    <Compile Include="Model\Call.cs" />
+    <Compile Include="Model\CallSubresourceUris.cs" />
+    <Compile Include="Model\CarrierLookup.cs" />
+    <Compile Include="Model\CnamLookup.cs" />
+    <Compile Include="Model\Conference.cs" />
+    <Compile Include="Model\ConferenceSubresourceUris.cs" />
+    <Compile Include="Model\AvailablePhoneNumber.cs" />
+    <Compile Include="Model\Capabilities.cs" />
+    <Compile Include="Model\Credential.cs" />
+    <Compile Include="Model\CredentialList.cs" />
+    <Compile Include="Model\CredentialSubresourceUris.cs" />
+    <Compile Include="Model\Domain.cs" />
+    <Compile Include="Model\DomainSubresourceUris.cs" />
+    <Compile Include="Model\EmptySubresourceUris.cs" />
+    <Compile Include="Model\Enums\AccountStatus.cs" />
+    <Compile Include="Model\Enums\AccountType.cs" />
+    <Compile Include="Model\Enums\AnsweredBy.cs" />
+    <Compile Include="Model\Enums\AudioDirection.cs" />
+    <Compile Include="Model\Enums\AuthType.cs" />
+    <Compile Include="Model\Enums\AvailablePhoneNumberType.cs" />
+    <Compile Include="Model\Enums\CallDirection.cs" />
+    <Compile Include="Model\Enums\CallStatus.cs" />
+    <Compile Include="Model\Enums\ConferenceStatus.cs" />
+    <Compile Include="Model\Enums\FraudControlType.cs" />
+    <Compile Include="Model\Enums\HttpMethod.cs" />
+    <Compile Include="Model\Enums\IfMachine.cs" />
+    <Compile Include="Model\Enums\Log.cs" />
+    <Compile Include="Model\Enums\Product.cs" />
+    <Compile Include="Model\Enums\RecordingAudioDirection.cs" />
+    <Compile Include="Model\Enums\RecordingFileFormat.cs" />
+    <Compile Include="Model\Enums\SmsDirection.cs" />
+    <Compile Include="Model\Enums\SmsStatus.cs" />
+    <Compile Include="Model\Enums\TranscribeQuality.cs" />
+    <Compile Include="Model\FraudControlRule.cs" />
+    <Compile Include="Model\FraudControlRuleElement.cs" />
+    <Compile Include="Model\IpAddress.cs" />
+    <Compile Include="Model\Lists\ApplicationClientsList.cs" />
+    <Compile Include="Model\Lists\ApplicationsList.cs" />
+    <Compile Include="Model\Lists\AvailablePhoneNumbersList.cs" />
+    <Compile Include="Model\Lists\BnaLookupsList.cs" />
+    <Compile Include="Model\Lists\CallsList.cs" />
+    <Compile Include="Model\Lists\CarrierLookupsList.cs" />
+    <Compile Include="Model\Lists\CnamLookupsList.cs" />
+    <Compile Include="Model\Lists\ConferencesList.cs" />
+    <Compile Include="Model\Lists\CredentialsList.cs" />
+    <Compile Include="Model\Lists\CredentialListsList.cs" />
+    <Compile Include="Model\Lists\DomainsList.cs" />
+    <Compile Include="Model\Lists\FraudControlRulesList.cs" />
+    <Compile Include="Model\Lists\IncomingPhoneNumbersList.cs" />
+    <Compile Include="Model\Lists\IpAccessControlListsList.cs" />
+    <Compile Include="Model\Lists\IpAddressesList.cs" />
+    <Compile Include="Model\Lists\NotificationsList.cs" />
+    <Compile Include="Model\Lists\ParticipantsList.cs" />
+    <Compile Include="Model\Lists\RecordingsList.cs" />
+    <Compile Include="Model\Lists\SmsMessagesList.cs" />
+    <Compile Include="Model\Lists\TranscriptionsList.cs" />
+    <Compile Include="Model\Lists\UsagesList.cs" />
+    <Compile Include="Model\Lists\ZangObjectsList.cs" />
+    <Compile Include="Model\SmsMessage.cs" />
+    <Compile Include="Model\Usage.cs" />
+    <Compile Include="Model\Enums\IncomingPhoneNumberType.cs" />
+    <Compile Include="Model\Enums\PresenceStatus.cs" />
+    <Compile Include="Model\Enums\TranscriptionStatus.cs" />
+    <Compile Include="Model\Enums\TranscriptionType.cs" />
+    <Compile Include="Model\IncomingPhoneNumber.cs" />
+    <Compile Include="Model\IpAccessControlList.cs" />
+    <Compile Include="Model\Notification.cs" />
+    <Compile Include="Model\Participant.cs" />
+    <Compile Include="Model\Recording.cs" />
+    <Compile Include="Model\AccountSubresourceUris.cs" />
+    <Compile Include="Model\Transcription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Configuration\ZangConfiguration.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ZangService.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EmbeddedResource Include="inboundxml.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -57,5 +208,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>
