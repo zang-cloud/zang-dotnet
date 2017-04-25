@@ -2,6 +2,7 @@
 using ZangAPI.InboundXml;
 using System.Text.RegularExpressions;
 using ZangAPI.InboundXml.Enums;
+using ZangAPI.InboundXml.InboundNodes;
 
 namespace ZangAPI.Tests.InboundXmlTests
 {

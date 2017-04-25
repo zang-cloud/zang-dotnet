@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
-using ZangAPI.Configuration;
 using ZangAPI.ConnectionManager;
 using ZangAPI.Exceptions;
 

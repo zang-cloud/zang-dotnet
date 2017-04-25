@@ -8,7 +8,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Usage connector
+    /// Usage connector - used for all forms of communication with the Usages endpoint of the Zang REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class UsagesConnector : AConnector
@@ -17,16 +17,16 @@ namespace ZangAPI.Connectors
         /// Initializes a new instance of the <see cref="UsagesConnector"/> class.
         /// </summary>
         /// <param name="httpProvider">The HTTP provider.</param>
-        public UsagesConnector(IHttpProvider httpProvider) 
+        public UsagesConnector(IHttpProvider httpProvider)
             : base(httpProvider)
         {
         }
 
         /// <summary>
-        /// Views the usage.
+        /// View the usage of an item returned by List Usages
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="usageSid">The usage sid.</param>
+        /// <param name="usageSid">Usage SID.</param>
         /// <returns>Returns usage</returns>
         public Usage ViewUsage(string accountSid, string usageSid)
         {
@@ -34,7 +34,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Usages/{usageSid}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.GET,
+                $"Accounts/{accountSid}/Usages/{usageSid}.json");
 
             // Send request
             var response = client.Execute(request);
@@ -43,9 +44,9 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Views the usage. Uses {accountSid} from configuration in HttpProvider
+        /// View the usage of an item returned by List Usages. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="usageSid">The usage sid.</param>
+        /// <param name="usageSid">Usage SID.</param>
         /// <returns>Returns usage</returns>
         public Usage ViewUsage(string usageSid)
         {
@@ -56,17 +57,18 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the usages.
+        /// Complete list of all usages of your account
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="day">The day.</param>
-        /// <param name="month">The month.</param>
-        /// <param name="year">The year.</param>
-        /// <param name="product">The product.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="day">Filters usage by day of month. If no month is specified then defaults to current month. Allowed values are integers between 1 and 31 depending on the month. Leading 0s will be ignored.</param>
+        /// <param name="month">Filters usage by month. Allowed values are integers between 1 and 12. Leading 0s will be ignored.</param>
+        /// <param name="year">Filters usage by year. Allowed values are valid years in integer form such as "2014".</param>
+        /// <param name="product">Filters usage by a specific “product” of Zang. Each product is uniquely identified by an integer. For example: Product=1, would return all outbound call usage. The integer assigned to each product is listed below.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns usage list</returns>
-        public UsagesList ListUsages(string accountSid, int? day = null, int? month = null, int? year = null, Product? product = null, int? page = null, int? pageSize = null)
+        public UsagesList ListUsages(string accountSid, int? day = null, int? month = null, int? year = null,
+            Product? product = null, int? page = null, int? pageSize = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
@@ -84,15 +86,15 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the usages. Uses {accountSid} from configuration in HttpProvider
+        /// Complete list of all usages of your account. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="day">The day.</param>
-        /// <param name="month">The month.</param>
-        /// <param name="year">The year.</param>
-        /// <param name="product">The product.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
-        /// <returns>REturns usage list</returns>
+        /// <param name="day">Filters usage by day of month. If no month is specified then defaults to current month. Allowed values are integers between 1 and 31 depending on the month. Leading 0s will be ignored.</param>
+        /// <param name="month">Filters usage by month. Allowed values are integers between 1 and 12. Leading 0s will be ignored.</param>
+        /// <param name="year">Filters usage by year. Allowed values are valid years in integer form such as "2014".</param>
+        /// <param name="product">Filters usage by a specific “product” of Zang. Each product is uniquely identified by an integer. For example: Product=1, would return all outbound call usage. The integer assigned to each product is listed below.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
+        /// <returns>Returns usage list</returns>
         public UsagesList ListUsages(int? day = null, int? month = null, int? year = null,
             Product? product = null, int? page = null, int? pageSize = null)
         {
@@ -112,7 +114,8 @@ namespace ZangAPI.Connectors
         /// <param name="product">The product.</param>
         /// <param name="page">The page.</param>
         /// <param name="pageSize">Size of the page.</param>
-        private void SetParamsForListUsages(IRestRequest request, int? day, int? month, int? year, Product? product, int? page, int? pageSize)
+        private void SetParamsForListUsages(IRestRequest request, int? day, int? month, int? year, Product? product,
+            int? page, int? pageSize)
         {
             if (day != null) request.AddQueryParameter("Day", day.ToString());
             if (month != null) request.AddQueryParameter("Month", month.ToString());

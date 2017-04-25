@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZangAPI.InboundXml.Enums;
 
-namespace ZangAPI.InboundXml
+namespace ZangAPI.InboundXml.InboundNodes
 {
     /// <summary>
     /// The Dial node for the Inbound XML.
     /// </summary>
-    /// <seealso cref="ZangAPI.InboundXml.ANode" />
+    /// <seealso cref="ANode" />
     public class DialNode : ANode
     {
         /// <summary>
@@ -413,7 +409,27 @@ namespace ZangAPI.InboundXml
         /// Adds the Dial node to the Request node.
         /// </summary>
         /// <param name="responseNode">The response node.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="action">The action.</param>
         /// <param name="method">The method.</param>
+        /// <param name="timeLimit">The time limit.</param>
+        /// <param name="callerId">The caller identifier.</param>
+        /// <param name="hideCallerId">The hide caller identifier.</param>
+        /// <param name="dialMusic">The dial music.</param>
+        /// <param name="callbackUrl">The callback URL.</param>
+        /// <param name="callbackMethod">The callback method.</param>
+        /// <param name="confirmSound">The confirm sound.</param>
+        /// <param name="digitsMatch">The digits match.</param>
+        /// <param name="straightToVm">The straight to vm.</param>
+        /// <param name="heartbeatUrl">The heartbeat URL.</param>
+        /// <param name="heartbeatMethod">The heartbeat method.</param>
+        /// <param name="forwardedFrom">The forwarded from.</param>
+        /// <param name="ifMachine">If machine.</param>
+        /// <param name="ifMachineUrl">If machine URL.</param>
+        /// <param name="ifMachineMethod">If machine method.</param>
+        /// <param name="record">The record.</param>
+        /// <param name="recordDirection">The record direction.</param>
+        /// <param name="recordCallbackUrl">The record callback URL.</param>
         /// <returns></returns>
         public static INodeCanInner<ResponseNode, DialNode> Dial(
             this INode<ResponseNode> responseNode,

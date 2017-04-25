@@ -1,18 +1,18 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using ZangAPI.InboundXml.InboundNodes;
 
 namespace ZangAPI.InboundXml
 {
     public class InboundXmlBuilder
     {
         /// <summary>
-        /// The requrest node.
+        /// The request node.
         /// </summary>
-        private ResponseNode requestNode;
+        private readonly ResponseNode requestNode;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InboundXmlBuilder"/> class.

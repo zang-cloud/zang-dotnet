@@ -8,7 +8,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Application clients connector
+    /// Application clients connector - used for all forms of communication with the Application Clients endpoint of the Zang REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class ApplicationClientsConnector : AConnector
@@ -17,17 +17,17 @@ namespace ZangAPI.Connectors
         /// Initializes a new instance of the <see cref="ApplicationClientsConnector"/> class.
         /// </summary>
         /// <param name="httpProvider">The HTTP provider.</param>
-        public ApplicationClientsConnector(IHttpProvider httpProvider) 
+        public ApplicationClientsConnector(IHttpProvider httpProvider)
             : base(httpProvider)
         {
         }
 
         /// <summary>
-        /// Views the application client.
+        /// View all information about an application client
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="applicationSid">The application sid.</param>
-        /// <param name="clientSid">The client sid.</param>
+        /// <param name="applicationSid">Application SID.</param>
+        /// <param name="clientSid">Application Client SID.</param>
         /// <returns>Returns application client</returns>
         public ApplicationClient ViewApplicationClient(string accountSid, string applicationSid, string clientSid)
         {
@@ -35,7 +35,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Applications/{applicationSid}/Clients/{clientSid}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.GET,
+                $"Accounts/{accountSid}/Applications/{applicationSid}/Clients/{clientSid}.json");
 
             // Send request
             var response = client.Execute(request);
@@ -44,10 +45,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Views the application client. Uses {accountSid} from configuration in HttpProvider
+        /// View all information about an application client. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="applicationSid">The application sid.</param>
-        /// <param name="clientSid">The client sid.</param>
+        /// <param name="applicationSid">Application SID.</param>
+        /// <param name="clientSid">Application Client SID.</param>
         /// <returns>Returns application client</returns>
         public ApplicationClient ViewApplicationClient(string applicationSid, string clientSid)
         {
@@ -58,10 +59,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the application clients.
+        /// Lists available application clients
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="applicationSid">The application sid.</param>
+        /// <param name="applicationSid">Application SID.</param>
         /// <returns>Returns application client list</returns>
         public ApplicationClientsList ListApplicationClients(string accountSid, string applicationSid)
         {
@@ -69,7 +70,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Applications/{applicationSid}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.GET,
+                $"Accounts/{accountSid}/Applications/{applicationSid}.json");
 
             // Send request
             var response = client.Execute(request);
@@ -78,9 +80,9 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the application clients. Uses {accountSid} from configuration in HttpProvider
+        /// Lists available application clients. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="applicationSid">The application sid.</param>
+        /// <param name="applicationSid">Application SID.</param>
         /// <returns>Returns application client list</returns>
         public ApplicationClientsList ListApplicationClients(string applicationSid)
         {
@@ -91,11 +93,11 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Creates the application client.
+        /// Creates a new application client for your application
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="applicationSid">The application sid.</param>
-        /// <param name="nickname">The nickname.</param>
+        /// <param name="applicationSid">Application SID.</param>
+        /// <param name="nickname">The name used to identify this application client.</param>
         /// <returns>Returns created application client</returns>
         public ApplicationClient CreateApplicationClient(string accountSid, string applicationSid, string nickname)
         {
@@ -103,7 +105,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
-            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Applications/{applicationSid}/Tokens.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.POST,
+                $"Accounts/{accountSid}/Applications/{applicationSid}/Tokens.json");
 
             // Mark obligatory parameters
             Require.Argument("Nickname", nickname);
@@ -118,10 +121,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Creates the application client. Uses {accountSid} from configuration in HttpProvider
+        /// Creates a new application client for your application. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="applicationSid">The application sid.</param>
-        /// <param name="nickname">The nickname.</param>
+        /// <param name="applicationSid">Application SID.</param>
+        /// <param name="nickname">The name used to identify this application client.</param>
         /// <returns>Returns created application client</returns>
         public ApplicationClient CreateApplicationClient(string applicationSid, string nickname)
         {
@@ -130,7 +133,5 @@ namespace ZangAPI.Connectors
 
             return this.CreateApplicationClient(accountSid, applicationSid, nickname);
         }
-
-        
     }
 }

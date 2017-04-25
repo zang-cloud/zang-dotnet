@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZangAPI.InboundXml.Enums;
 
-namespace ZangAPI.InboundXml
+namespace ZangAPI.InboundXml.InboundNodes
 {
     /// <summary>
     /// Say node for the Inbound XML builder.
     /// </summary>
-    /// <seealso cref="ZangAPI.InboundXml.ANode" />
+    /// <seealso cref="ANode" />
     public class SayNode : ANode
     {
         /// <summary>
@@ -97,6 +93,8 @@ namespace ZangAPI.InboundXml
         /// <summary>
         /// Adds the Say node to the response node.
         /// </summary>
+        /// <param name="responseNode">The response node</param>
+        /// <param name="value">The value</param>
         /// <param name="voice">The voice.</param>
         /// <param name="language">The language.</param>
         /// <param name="loop">The loop.</param>
@@ -129,6 +127,8 @@ namespace ZangAPI.InboundXml
         /// <summary>
         /// Adds the Say node to the Response.
         /// </summary>
+        /// <param name="gatherNode">The gather node</param>
+        /// <param name="value">The value</param>
         /// <param name="voice">The voice.</param>
         /// <param name="language">The language.</param>
         /// <param name="loop">The loop.</param>

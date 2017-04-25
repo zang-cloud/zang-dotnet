@@ -2,6 +2,7 @@
 using ZangAPI.Exceptions;
 using ZangAPI.InboundXml;
 using ZangAPI.InboundXml.Enums;
+using ZangAPI.InboundXml.InboundNodes;
 
 namespace ZangAPI.Examples.Examples
 {

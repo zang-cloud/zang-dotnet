@@ -8,7 +8,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Carrier services connector
+    /// Carrier services connector - used for all forms of communication with the Carrier Services endpoint of the Zang REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class CarrierServicesConnector : AConnector
@@ -17,16 +17,16 @@ namespace ZangAPI.Connectors
         /// Initializes a new instance of the <see cref="CarrierServicesConnector"/> class.
         /// </summary>
         /// <param name="httpProvider">The HTTP provider.</param>
-        public CarrierServicesConnector(IHttpProvider httpProvider) 
+        public CarrierServicesConnector(IHttpProvider httpProvider)
             : base(httpProvider)
         {
         }
 
         /// <summary>
-        /// Carriers the lookup.
+        /// The Carrier Lookup API allows you to retrieve additional information about a phone number.
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="phoneNumber">The phone number.</param>
+        /// <param name="phoneNumber">Phone number to do a lookup for.</param>
         /// <returns>Returns carrier lookup</returns>
         public CarrierLookup CarrierLookup(string accountSid, string phoneNumber)
         {
@@ -46,9 +46,9 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Carriers the lookup. Uses {accountSid} from configuration in HttpProvider
+        /// The Carrier Lookup API allows you to retrieve additional information about a phone number. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="phoneNumber">The phone number.</param>
+        /// <param name="phoneNumber">Phone number to do a lookup for.</param>
         /// <returns>Returns carrier lookup</returns>
         public CarrierLookup CarrierLookup(string phoneNumber)
         {
@@ -59,11 +59,11 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Carriers the lookup list.
+        /// Shows info on all carrier lookups associated with some account
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns carrier lookup list</returns>
         public CarrierLookupsList CarrierLookupList(string accountSid, int? page = null, int? pageSize = null)
         {
@@ -83,10 +83,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Carriers the lookup list. Uses {accountSid} from configuration in HttpProvider
+        /// Shows info on all carrier lookups associated with some account. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns carrier lookup list</returns>
         public CarrierLookupsList CarrierLookupList(int? page = null, int? pageSize = null)
         {
@@ -97,10 +97,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Cnams the lookup.
+        /// Shows a CNAM information on some phone number
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="phoneNumber">The phone number.</param>
+        /// <param name="phoneNumber">Phone number to do a lookup for.</param>
         /// <returns>Returns cnam lookup</returns>
         public CnamLookup CnamLookup(string accountSid, string phoneNumber)
         {
@@ -121,9 +121,9 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Cnams the lookup. Uses {accountSid} from configuration in HttpProvider
+        /// Shows a CNAM information on some phone number. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="phoneNumber">The phone number.</param>
+        /// <param name="phoneNumber">Phone number to do a lookup for.</param>
         /// <returns>Returns cnam lookup</returns>
         public CnamLookup CnamLookup(string phoneNumber)
         {
@@ -134,11 +134,11 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Cnams the lookup list.
+        /// Shows info on all CNAM lookups associated with some account
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns cnam lookup list</returns>
         public CnamLookupsList CnamLookupList(string accountSid, int? page = null, int? pageSize = null)
         {
@@ -158,10 +158,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary> 
-        /// Cnams the lookup list. Uses {accountSid} from configuration in HttpProvider
+        /// Shows info on all CNAM lookups associated with some account. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns cnam lookup</returns>
         public CnamLookupsList CnamLookupList(int? page = null, int? pageSize = null)
         {
@@ -172,10 +172,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Bnas the lookup.
+        /// Shows information on billing name address for some phone number
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="phoneNumber">The phone number.</param>
+        /// <param name="phoneNumber">Phone number to do a lookup for.</param>
         /// <returns>Returns bna lookup</returns>
         public BnaLookup BnaLookup(string accountSid, string phoneNumber)
         {
@@ -196,9 +196,9 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Bnas the lookup. Uses {accountSid} from configuration in HttpProvider
+        /// Shows information on billing name address for some phone number. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="phoneNumber">The phone number.</param>
+        /// <param name="phoneNumber">Phone number to do a lookup for.</param>
         /// <returns>Returns bna lookup</returns>
         public BnaLookup BnaLookup(string phoneNumber)
         {
@@ -209,11 +209,11 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Bnas the lookup list.
+        /// Shows info on all BNA lookups associated with some account
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns bna lookup list</returns>
         public BnaLookupsList BnaLookupList(string accountSid, int? page = null, int? pageSize = null)
         {
@@ -233,10 +233,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Bnas the lookup list. Uses {accountSid} from configuration in HttpProvider
+        /// Shows info on all BNA lookups associated with some account. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns bna lookup list</returns>
         public BnaLookupsList BnaLookupList(int? page = null, int? pageSize = null)
         {
