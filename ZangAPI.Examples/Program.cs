@@ -6,6 +6,8 @@ namespace ZangAPI.Examples
     {
         static void Main(string[] args)
         {
+            InboundXmlExamples.Example();
+
             var callsConnectorExamples = new CallsConnectorExamples();
             callsConnectorExamples.ListCalls();
         }
