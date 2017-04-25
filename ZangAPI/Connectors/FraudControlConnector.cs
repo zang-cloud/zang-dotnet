@@ -9,7 +9,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Fraud control connector
+    /// Fraud control connector - used for all forms of communication with the Fraud Control endpoint of the Zang REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class FraudControlConnector : AConnector
@@ -18,28 +18,29 @@ namespace ZangAPI.Connectors
         /// Initializes a new instance of the <see cref="FraudControlConnector"/> class.
         /// </summary>
         /// <param name="httpProvider">The HTTP provider.</param>
-        public FraudControlConnector(IHttpProvider httpProvider) 
+        public FraudControlConnector(IHttpProvider httpProvider)
             : base(httpProvider)
         {
         }
 
         /// <summary>
-        /// Blocks the destination.
+        /// Restricts outbound calls and sms messages to some destination
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="countryCode">The country code.</param>
-        /// <param name="mobileEnabled">if set to <c>true</c> [mobile enabled].</param>
-        /// <param name="landlineEnabled">if set to <c>true</c> [landline enabled].</param>
-        /// <param name="smsEnabled">if set to <c>true</c> [SMS enabled].</param>
+        /// <param name="countryCode">Country code.</param>
+        /// <param name="mobileEnabled">Mobile status for the destination. If false, all mobile call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="landlineEnabled">Landline status for the destination. If false, all landline call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="smsEnabled">SMS status for the destination. If false, all SMS activity will be rejected or disabled. Allowed values are "true" and "false".</param>
         /// <returns>Returns fraud control rule</returns>
-        public FraudControlRule BlockDestination(string accountSid, string countryCode, 
+        public FraudControlRule BlockDestination(string accountSid, string countryCode,
             bool mobileEnabled = true, bool landlineEnabled = true, bool smsEnabled = true)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
-            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Fraud/Block/{countryCode}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.POST,
+                $"Accounts/{accountSid}/Fraud/Block/{countryCode}.json");
 
             // Add BlockDestination query and body parameters
             this.SetParamsForBlockOrAuthorizeDestination(request, mobileEnabled, landlineEnabled, smsEnabled);
@@ -63,14 +64,15 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Blocks the destination. Uses {accountSid} from configuration in HttpProvider
+        /// Restricts outbound calls and sms messages to some destination. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="countryCode">The country code.</param>
-        /// <param name="mobileEnabled">if set to <c>true</c> [mobile enabled].</param>
-        /// <param name="landlineEnabled">if set to <c>true</c> [landline enabled].</param>
-        /// <param name="smsEnabled">if set to <c>true</c> [SMS enabled].</param>
+        /// <param name="countryCode">Country code.</param>
+        /// <param name="mobileEnabled">Mobile status for the destination. If false, all mobile call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="landlineEnabled">Landline status for the destination. If false, all landline call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="smsEnabled">SMS status for the destination. If false, all SMS activity will be rejected or disabled. Allowed values are "true" and "false".</param>
         /// <returns>Returns fraud control rule</returns>
-        public FraudControlRule BlockDestination(string countryCode, bool mobileEnabled = true, bool landlineEnabled = true, bool smsEnabled = true)
+        public FraudControlRule BlockDestination(string countryCode, bool mobileEnabled = true,
+            bool landlineEnabled = true, bool smsEnabled = true)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -79,13 +81,13 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Authorizes the destination.
+        /// Authorizes previously blocked destination for outbound calls and sms messages
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="countryCode">The country code.</param>
-        /// <param name="mobileEnabled">if set to <c>true</c> [mobile enabled].</param>
-        /// <param name="landlineEnabled">if set to <c>true</c> [landline enabled].</param>
-        /// <param name="smsEnabled">if set to <c>true</c> [SMS enabled].</param>
+        /// <param name="countryCode">Country code.</param>
+        /// <param name="mobileEnabled">Mobile status for the destination. If false, all mobile call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="landlineEnabled">Landline status for the destination. If false, all landline call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="smsEnabled">SMS status for the destination. If false, all SMS activity will be rejected or disabled. Allowed values are "true" and "false".</param>
         /// <returns>Returns fraud control rule</returns>
         public FraudControlRule AuthorizeDestination(string accountSid, string countryCode,
             bool mobileEnabled = true, bool landlineEnabled = true, bool smsEnabled = true)
@@ -94,7 +96,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
-            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Fraud/Authorize/{countryCode}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.POST,
+                $"Accounts/{accountSid}/Fraud/Authorize/{countryCode}.json");
 
             // Add AuthorizeDestination query and body parameters
             this.SetParamsForBlockOrAuthorizeDestination(request, mobileEnabled, landlineEnabled, smsEnabled);
@@ -118,14 +121,15 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Authorizes the destination. Uses {accountSid} from configuration in HttpProvider
+        /// Authorizes previously blocked destination for outbound calls and sms messages. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="countryCode">The country code.</param>
-        /// <param name="mobileEnabled">if set to <c>true</c> [mobile enabled].</param>
-        /// <param name="landlineEnabled">if set to <c>true</c> [landline enabled].</param>
-        /// <param name="smsEnabled">if set to <c>true</c> [SMS enabled].</param>
+        /// <param name="countryCode">Country code.</param>
+        /// <param name="mobileEnabled">Mobile status for the destination. If false, all mobile call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="landlineEnabled">Landline status for the destination. If false, all landline call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="smsEnabled">SMS status for the destination. If false, all SMS activity will be rejected or disabled. Allowed values are "true" and "false".</param>
         /// <returns>Returns fraud control rule</returns>
-        public FraudControlRule AuthorizeDestination(string countryCode, bool mobileEnabled = true, bool landlineEnabled = true, bool smsEnabled = true)
+        public FraudControlRule AuthorizeDestination(string countryCode, bool mobileEnabled = true,
+            bool landlineEnabled = true, bool smsEnabled = true)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -134,10 +138,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Extends the destination authorization.
+        /// Extends a destinations authorization expiration by 30 days
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="countryCode">The country code.</param>
+        /// <param name="countryCode">Country code.</param>
         /// <returns>Returns fraud contorl rule</returns>
         public FraudControlRule ExtendDestinationAuthorization(string accountSid, string countryCode)
         {
@@ -145,7 +149,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
-            var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Fraud/Extend/{countryCode}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.POST,
+                $"Accounts/{accountSid}/Fraud/Extend/{countryCode}.json");
 
             // Send request
             var response = client.Execute(request);
@@ -166,9 +171,9 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Extends the destination authorization. Uses {accountSid} from configuration in HttpProvider
+        /// Extends a destinations authorization expiration by 30 days. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="countryCode">The country code.</param>
+        /// <param name="countryCode">Country code.</param>
         /// <returns>Returns fraud control rule</returns>
         public FraudControlRule ExtendDestinationAuthorization(string countryCode)
         {
@@ -177,15 +182,15 @@ namespace ZangAPI.Connectors
 
             return this.ExtendDestinationAuthorization(accountSid, countryCode);
         }
-      
+
         /// <summary>
-        /// Whitelists the destination.
+        /// Permanently authorizes destination that may have been blocked by our automated fraud detection system
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="countryCode">The country code.</param>
-        /// <param name="mobileEnabled">if set to <c>true</c> [mobile enabled].</param>
-        /// <param name="landlineEnabled">if set to <c>true</c> [landline enabled].</param>
-        /// <param name="smsEnabled">if set to <c>true</c> [SMS enabled].</param>
+        /// <param name="countryCode">Country code.</param>
+        /// <param name="mobileEnabled">Mobile status for the destination. If false, all mobile call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="landlineEnabled">Landline status for the destination. If false, all landline call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="smsEnabled">SMS status for the destination. If false, all SMS activity will be rejected or disabled. Allowed values are "true" and "false".</param>
         /// <returns>Returns fraud control rule</returns>
         public FraudControlRule WhitelistDestination(string accountSid, string countryCode,
             bool mobileEnabled = true, bool landlineEnabled = true, bool smsEnabled = true)
@@ -194,7 +199,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Fraud/Whitelist/{countryCode}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.GET,
+                $"Accounts/{accountSid}/Fraud/Whitelist/{countryCode}.json");
 
             // Add WhitelistDestination query and body parameters
             this.SetParamsForWhitelistDestination(request, mobileEnabled, landlineEnabled, smsEnabled);
@@ -218,14 +224,16 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Whitelists the destination. Uses {accountSid} from configuration in HttpProvider
+        /// Permanently authorizes destination that may have been blocked by our automated fraud detection system.
+        ///  Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="countryCode">The country code.</param>
-        /// <param name="mobileEnabled">if set to <c>true</c> [mobile enabled].</param>
-        /// <param name="landlineEnabled">if set to <c>true</c> [landline enabled].</param>
-        /// <param name="smsEnabled">if set to <c>true</c> [SMS enabled].</param>
+        /// <param name="countryCode">Country code.</param>
+        /// <param name="mobileEnabled">Mobile status for the destination. If false, all mobile call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="landlineEnabled">Landline status for the destination. If false, all landline call activity will be rejected or disabled. Allowed values are "true" and "false".</param>
+        /// <param name="smsEnabled">SMS status for the destination. If false, all SMS activity will be rejected or disabled. Allowed values are "true" and "false".</param>
         /// <returns>Returns fraud control rule</returns>
-        public FraudControlRule WhitelistDestination(string countryCode, bool mobileEnabled = true, bool landlineEnabled = true, bool smsEnabled = true)
+        public FraudControlRule WhitelistDestination(string countryCode, bool mobileEnabled = true,
+            bool landlineEnabled = true, bool smsEnabled = true)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -234,11 +242,11 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the fraud control resources.
+        /// Shows information on all fraud control resources associated with some account
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns fraud control rules list</returns>
         public FraudControlRulesList ListFraudControlResources(string accountSid, int? page = null, int? pageSize = null)
         {
@@ -294,10 +302,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the fraud control resources. Uses {accountSid} from configuration in HttpProvider
+        /// Shows information on all fraud control resources associated with some account. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns fraud control rules list</returns>
         public FraudControlRulesList ListFraudControlResources(int? page = null, int? pageSize = null)
         {
@@ -314,7 +322,8 @@ namespace ZangAPI.Connectors
         /// <param name="mobileEnabled">if set to <c>true</c> [mobile enabled].</param>
         /// <param name="landlineEnabled">if set to <c>true</c> [landline enabled].</param>
         /// <param name="smsEnabled">if set to <c>true</c> [SMS enabled].</param>
-        private void SetParamsForBlockOrAuthorizeDestination(IRestRequest request, bool mobileEnabled, bool landlineEnabled,
+        private void SetParamsForBlockOrAuthorizeDestination(IRestRequest request, bool mobileEnabled,
+            bool landlineEnabled,
             bool smsEnabled)
         {
             request.AddParameter("MobileEnabled", mobileEnabled.ToString());

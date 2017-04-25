@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZangAPI.InboundXml
+﻿namespace ZangAPI.InboundXml.InboundNodes
 {
     /// <summary>
     /// Ping node for the Inbound XML builder.
     /// </summary>
-    /// <seealso cref="ZangAPI.InboundXml.ANode" />
+    /// <seealso cref="ANode" />
     public class PingNode : ANode
     {
         /// <summary>

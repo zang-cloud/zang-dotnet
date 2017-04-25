@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZangAPI.InboundXml
+﻿namespace ZangAPI.InboundXml.InboundNodes
 {
     /// <summary>
     /// Sip node for the Inbound XML builder.
     /// </summary>
-    /// <seealso cref="ZangAPI.InboundXml.ANode" />
+    /// <seealso cref="ANode" />
     public class SipNode : ANode
     {
         /// <summary>
@@ -71,6 +65,7 @@ namespace ZangAPI.InboundXml
         /// <summary>
         /// Adds the Sip node to the Dial node.
         /// </summary>
+        /// <param name="dialNode">The dial node</param>
         /// <param name="value">The value.</param>
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>

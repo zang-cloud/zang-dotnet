@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZangAPI.InboundXml.Enums
+﻿namespace ZangAPI.InboundXml.Enums
 {
+    /// <summary>
+    /// The enumerator for the Hangup Reason values.
+    /// </summary>
     public enum HangupReasonEnum
     {
         none,
