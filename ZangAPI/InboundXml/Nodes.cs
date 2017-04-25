@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace ZangAPI.InboundXml
 {
@@ -78,6 +73,13 @@ namespace ZangAPI.InboundXml
         }
     }
 
+    /// <summary>
+    /// The inner node for the Inbound XML builder.
+    /// </summary>
+    /// <typeparam name="TCurrentNode">The type of the current node.</typeparam>
+    /// <typeparam name="TParentNode">The type of the parent node.</typeparam>
+    /// <seealso cref="ZangAPI.InboundXml.InboundXmlNode{TCurrentNode}" />
+    /// <seealso cref="ZangAPI.InboundXml.INodeInner{TCurrentNode, TParentNode}" />
     public class InboundXmlNodeInner<TCurrentNode, TParentNode>
         : InboundXmlNode<TCurrentNode>, INodeInner<TCurrentNode, TParentNode>
         where TParentNode : XElement

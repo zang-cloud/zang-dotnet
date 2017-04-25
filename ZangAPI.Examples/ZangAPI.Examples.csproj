@@ -51,6 +51,7 @@
     <Compile Include="Examples\CarrierServicesConnectorExamples.cs" />
     <Compile Include="Examples\ConferencesConnectorExamples.cs" />
     <Compile Include="Examples\FraudControlConnectorExamples.cs" />
+    <Compile Include="Examples\InboundXmlExample.cs" />
     <Compile Include="Examples\IncomingPhoneNumbersConnectorExamples.cs" />
     <Compile Include="Examples\NotificationsConnectorExamples.cs" />
     <Compile Include="Examples\RecordingsConnectorExamples.cs" />

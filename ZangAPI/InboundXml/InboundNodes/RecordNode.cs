@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZangAPI.InboundXml.Enums;
 
-namespace ZangAPI.InboundXml
+namespace ZangAPI.InboundXml.InboundNodes
 {
     /// <summary>
     /// The Record node for the Inbound XML builder.
     /// </summary>
-    /// <seealso cref="ZangAPI.InboundXml.ANode" />
+    /// <seealso cref="ANode" />
     public class RecordNode : ANode
     {
         /// <summary>
@@ -286,6 +282,24 @@ namespace ZangAPI.InboundXml
     /// </summary>
     public static class RecordNodeExtensions
     {
+        /// <summary>
+        /// Adds the Record node
+        /// </summary>
+        /// <param name="responseNode">The response node.</param>
+        /// <param name="action">The action.</param>
+        /// <param name="method">The method.</param>
+        /// <param name="timeout">The timeout.</param>
+        /// <param name="finishOnKey">The finish on key.</param>
+        /// <param name="maxLength">The maximum length.</param>
+        /// <param name="transcribe">The transcribe.</param>
+        /// <param name="transcribeQuality">The transcribe quality.</param>
+        /// <param name="transcribeCallback">The transcribe callback.</param>
+        /// <param name="playBeep">The play beep.</param>
+        /// <param name="direction">The direction.</param>
+        /// <param name="fileFormat">The file format.</param>
+        /// <param name="background">The background.</param>
+        /// <param name="trimSilence">The trim silence.</param>
+        /// <returns></returns>
         public static INode<ResponseNode> Record(
             this INode<ResponseNode> responseNode,
             string action = null,

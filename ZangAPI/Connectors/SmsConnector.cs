@@ -11,7 +11,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// SMS connector
+    /// SMS connector - used for all forms of communication with the Sms endpoint of the Zang REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class SmsConnector : AConnector
@@ -26,10 +26,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Views the SMS message.
+        /// Shows info on SMS message
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="smsMessageSid">The SMS message sid.</param>
+        /// <param name="smsMessageSid">SMS message SID.</param>
         /// <returns>Returns sms message</returns>
         public SmsMessage ViewSmsMessage(string accountSid, string smsMessageSid)
         {
@@ -37,7 +37,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/SMS/Messages/{smsMessageSid}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.GET,
+                $"Accounts/{accountSid}/SMS/Messages/{smsMessageSid}.json");
 
             // Send request
             var response = client.Execute(request);
@@ -46,9 +47,9 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Views the SMS message. Uses {accountSid} from configuration in HttpProvider
+        /// Shows info on SMS message. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="smsMessageSid">The SMS message sid.</param>
+        /// <param name="smsMessageSid">SMS message SID.</param>
         /// <returns>Returns sms message</returns>
         public SmsMessage ViewSmsMessage(string smsMessageSid)
         {
@@ -59,15 +60,15 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the SMS messages.
+        /// Shows info on all SMS messages associated with some account
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="to">To.</param>
-        /// <param name="from">From.</param>
-        /// <param name="dateSentGte">The date sent gte.</param>
-        /// <param name="dateSentLt">The date sent lt.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="to">List all SMS sent to this number.The value does not have to be in any specific format.</param>
+        /// <param name="from">List all SMS sent from this number. The value does not have to be in any specific format.</param>
+        /// <param name="dateSentGte">Filter by date sent greater or equal than.</param>
+        /// <param name="dateSentLt">Filter by date sent less than.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns sms list</returns>
         public SmsMessagesList ListSmsMessages(string accountSid, string to = null, string from = null,
             DateTime dateSentGte = default(DateTime), DateTime dateSentLt = default(DateTime), int? page = null,
@@ -89,14 +90,14 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the SMS messages. Uses {accountSid} from configuration in HttpProvider
+        /// Shows info on all SMS messages associated with some account. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="to">To.</param>
-        /// <param name="from">From.</param>
-        /// <param name="dateSentGte">The date sent gte.</param>
-        /// <param name="dateSentLt">The date sent lt.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="to">List all SMS sent to this number.The value does not have to be in any specific format.</param>
+        /// <param name="from">List all SMS sent from this number. The value does not have to be in any specific format.</param>
+        /// <param name="dateSentGte">Filter by date sent greater or equal than.</param>
+        /// <param name="dateSentLt">Filter by date sent less than.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns sms list</returns>
         public SmsMessagesList ListSmsMessages(string to = null, string from = null,
             DateTime dateSentGte = default(DateTime), DateTime dateSentLt = default(DateTime), int? page = null,
@@ -109,19 +110,19 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Sends the SMS.
+        /// Sends SMS message
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="to">To.</param>
-        /// <param name="body">The body.</param>
-        /// <param name="from">From.</param>
-        /// <param name="statusCallback">The status callback.</param>
-        /// <param name="statusCallbackMethod">The status callback method.</param>
-        /// <param name="allowMultiple">if set to <c>true</c> [allow multiple].</param>
-        /// <returns>Returns response in SmsMessage</returns>
+        /// <param name="to">Must be an SMS capable number. The value does not have to be in any specific format.</param>
+        /// <param name="body">Text of the SMS to be sent.</param>
+        /// <param name="from">Must be a Zang number associated with your account. The value does not have to be in any specific format.</param>
+        /// <param name="statusCallback">The URL that will be sent information about the SMS.Url length is limited to 200 characters.</param>
+        /// <param name="statusCallbackMethod">The HTTP method used to request the StatusCallback. Valid parameters are GET and POST.</param>
+        /// <param name="allowMultiple">If the Body length is greater than 160 characters, the SMS will be sent as a multi-part SMS. Allowed values are True or False.</param>
+        /// <returns>Returns created sms message</returns>
         public SmsMessage SendSms(string accountSid, string to, string body, string from = null,
             string statusCallback = null, HttpMethod statusCallbackMethod = HttpMethod.POST, bool allowMultiple = false)
-        { 
+        {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
 
@@ -142,15 +143,15 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Sends the SMS. Uses {accountSid} from configuration in HttpProvider
+        /// Sends SMS message. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="to">To.</param>
-        /// <param name="body">The body.</param>
-        /// <param name="from">From.</param>
-        /// <param name="statusCallback">The status callback.</param>
-        /// <param name="statusCallbackMethod">The status callback method.</param>
-        /// <param name="allowMultiple">if set to <c>true</c> [allow multiple].</param>
-        /// <returns>Returns sms message</returns>
+        /// <param name="to">Must be an SMS capable number. The value does not have to be in any specific format.</param>
+        /// <param name="body">Text of the SMS to be sent.</param>
+        /// <param name="from">Must be a Zang number associated with your account. The value does not have to be in any specific format.</param>
+        /// <param name="statusCallback">The URL that will be sent information about the SMS.Url length is limited to 200 characters.</param>
+        /// <param name="statusCallbackMethod">The HTTP method used to request the StatusCallback. Valid parameters are GET and POST.</param>
+        /// <param name="allowMultiple">If the Body length is greater than 160 characters, the SMS will be sent as a multi-part SMS. Allowed values are True or False.</param>
+        /// <returns>Returns created sms message</returns>
         public SmsMessage SendSms(string to, string body, string from = null,
             string statusCallback = null, HttpMethod statusCallbackMethod = HttpMethod.POST, bool allowMultiple = false)
         {
@@ -158,7 +159,7 @@ namespace ZangAPI.Connectors
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
             return this.SendSms(accountSid, to, body, from, statusCallback, statusCallbackMethod, allowMultiple);
-        }    
+        }
 
         /// <summary>
         /// Sets the parameters for send SMS.
@@ -203,6 +204,6 @@ namespace ZangAPI.Connectors
                 request.AddQueryParameter("DateSent<", dateSentLt.ToString("yyyy-MM-dd"));
             if (page != null) request.AddQueryParameter("Page", page.ToString());
             if (pageSize != null) request.AddQueryParameter("PageSize", pageSize.ToString());
-        }      
+        }
     }
 }

@@ -7,7 +7,7 @@ using ZangAPI.Model;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Accounts connector
+    /// Accounts connector - used for all forms of communication with the Accounts endpoint of the Zang REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class AccountsConnector : AConnector
@@ -22,7 +22,7 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Views the account.
+        /// See all the information associated with an account
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
         /// <returns>Returns account</returns>
@@ -41,7 +41,7 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Views the account. Uses {accountSid} from configuration in HttpProvider
+        /// See all the information associated with an account. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
         /// <returns>Returns account</returns>
         public Account ViewAccount()
@@ -53,11 +53,11 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Updates the account.
+        /// Updates account information.
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="friendlyName">Name of the friendly.</param>
-        /// <returns>Returns account</returns>
+        /// <param name="friendlyName">The custom alias for your account.</param>
+        /// <returns>Returns updated account</returns>
         public Account UpdateAccount(string accountSid, string friendlyName = null)
         {
             // Get client to make request
@@ -76,10 +76,10 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Updates the account. Uses {accountSid} from configuration in HttpProvider
+        /// Updates account information. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="friendlyName">Name of the friendly.</param>
-        /// <returns>Returns account</returns>
+        /// <param name="friendlyName">The custom alias for your account.</param>
+        /// <returns>Returns updated account</returns>
         public Account UpdateAccount(string friendlyName = null)
         {
             // Get account sid from configuration

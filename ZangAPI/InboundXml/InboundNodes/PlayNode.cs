@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ZangAPI.InboundXml
+namespace ZangAPI.InboundXml.InboundNodes
 {
     /// <summary>
     ///  The Play node for the Inbound XML.
     /// </summary>
-    /// <seealso cref="ZangAPI.InboundXml.ANode" />
+    /// <seealso cref="ANode" />
     public class PlayNode : ANode
     {
         /// <summary>

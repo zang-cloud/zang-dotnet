@@ -1,7 +1,7 @@
 ﻿namespace ZangAPI.InboundXml.Enums
 {
     /// <summary>
-    /// Enum for the language values.
+    /// The enumerator for the language values.
     /// </summary>
     public enum LanguageEnum
     {

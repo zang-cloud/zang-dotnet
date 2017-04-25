@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using ZangAPI.InboundXml.Enums;
 
-namespace ZangAPI.InboundXml
+namespace ZangAPI.InboundXml.InboundNodes
 {
     public class ConferenceNode : ANode
     {
@@ -305,7 +300,7 @@ namespace ZangAPI.InboundXml
         /// <summary>
         /// Adds the Conference node to the Dial node.
         /// </summary>
-        /// <param name="responseNode">The response node.</param>
+        /// <param name="dialNode">The dial node</param>
         /// <param name="value">The value.</param>
         /// <param name="muted">if set to <c>true</c> [muted].</param>
         /// <param name="beep">if set to <c>true</c> [beep].</param>

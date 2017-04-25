@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZangAPI.InboundXml
+﻿namespace ZangAPI.InboundXml.InboundNodes
 {
     /// <summary>
     /// Sms node for the Inbound XML builder.
     /// </summary>
-    /// <seealso cref="ZangAPI.InboundXml.ANode" />
+    /// <seealso cref="ANode" />
     public class SmsNode : ANode
     {
         /// <summary>
@@ -133,6 +127,7 @@ namespace ZangAPI.InboundXml
         /// Adds the Sms node to the Response node.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="responseNode">The response node</param>
         /// <param name="to">To.</param>
         /// <param name="from">From.</param>
         /// <param name="action">The action.</param>

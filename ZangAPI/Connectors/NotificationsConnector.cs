@@ -8,7 +8,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Notifications connector
+    /// Notifications connector - used for all forms of communication with the Notifications endpoint of the Zang REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class NotificationsConnector : AConnector
@@ -17,16 +17,16 @@ namespace ZangAPI.Connectors
         /// Initializes a new instance of the <see cref="NotificationsConnector"/> class.
         /// </summary>
         /// <param name="httpProvider">The HTTP provider.</param>
-        public NotificationsConnector(IHttpProvider httpProvider) 
+        public NotificationsConnector(IHttpProvider httpProvider)
             : base(httpProvider)
         {
         }
 
         /// <summary>
-        /// Views the notification.
+        /// Shows information on some notification
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="notificationSid">The notification sid.</param>
+        /// <param name="notificationSid">Notification SID</param>
         /// <returns>Returns notification</returns>
         public Notification ViewNotification(string accountSid, string notificationSid)
         {
@@ -34,7 +34,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Notifications/{notificationSid}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.GET,
+                $"Accounts/{accountSid}/Notifications/{notificationSid}.json");
 
             // Send request
             var response = client.Execute(request);
@@ -43,9 +44,9 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Views the notification. Uses {accountSid} from configuration in HttpProvider
+        /// Shows information on some notification. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="notificationSid">The notification sid.</param>
+        /// <param name="notificationSid">Notification SID</param>
         /// <returns>Returns notification</returns>
         public Notification ViewNotification(string notificationSid)
         {
@@ -56,12 +57,12 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the notifications.
+        /// Shows info on all notifications associated with some account
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="log">The log.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="log">Specifies that only notifications with the given log level value should be listed. Allowed values are 1,2 or 3, where 2=INFO, 1=WARNING, 0=ERROR.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns notification list</returns>
         public NotificationsList ListNotifications(string accountSid, Log? log = null, int? page = null,
             int? pageSize = null)
@@ -82,11 +83,11 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the notifications. Uses {accountSid} from configuration in HttpProvider
+        /// Shows info on all notifications associated with some account. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="log">The log.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="log">Specifies that only notifications with the given log level value should be listed. Allowed values are 1,2 or 3, where 2=INFO, 1=WARNING, 0=ERROR.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns notification list</returns>
         public NotificationsList ListNotifications(Log? log = null, int? page = null, int? pageSize = null)
         {
@@ -105,7 +106,7 @@ namespace ZangAPI.Connectors
         /// <param name="pageSize">Size of the page.</param>
         private void SetParamsForListNotifications(IRestRequest request, Log? log, int? page, int? pageSize)
         {
-            if (log != null) request.AddQueryParameter("Log", ((int)log.Value).ToString());
+            if (log != null) request.AddQueryParameter("Log", ((int) log.Value).ToString());
             if (page != null) request.AddQueryParameter("Page", page.ToString());
             if (pageSize != null) request.AddQueryParameter("PageSize", pageSize.ToString());
         }

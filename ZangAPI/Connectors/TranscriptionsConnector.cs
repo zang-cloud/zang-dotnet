@@ -10,7 +10,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Transcriptions connector
+    /// Transcriptions connector - Used for all forms of communication with the Transcriptions endpoint of the Zang REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class TranscriptionsConnector : AConnector
@@ -19,16 +19,16 @@ namespace ZangAPI.Connectors
         /// Initializes a new instance of the <see cref="TranscriptionsConnector"/> class.
         /// </summary>
         /// <param name="httpProvider">The HTTP provider.</param>
-        public TranscriptionsConnector(IHttpProvider httpProvider) 
+        public TranscriptionsConnector(IHttpProvider httpProvider)
             : base(httpProvider)
         {
         }
 
         /// <summary>
-        /// Views the transcription.
+        /// Shows info on some transcription
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="transcriptionSid">The transcription sid.</param>
+        /// <param name="transcriptionSid">Transcription SID.</param>
         /// <returns>Returns transcription</returns>
         public Transcription ViewTranscription(string accountSid, string transcriptionSid)
         {
@@ -36,7 +36,8 @@ namespace ZangAPI.Connectors
             var client = HttpProvider.GetHttpClient();
 
             // Create GET request
-            var request = RestRequestHelper.CreateRestRequest(Method.GET, $"Accounts/{accountSid}/Transcriptions/{transcriptionSid}.json");
+            var request = RestRequestHelper.CreateRestRequest(Method.GET,
+                $"Accounts/{accountSid}/Transcriptions/{transcriptionSid}.json");
 
             // Send request
             var response = client.Execute(request);
@@ -45,9 +46,9 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Views the transcription. Uses {accountSid} from configuration in HttpProvider
+        /// Shows info on some transcription. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="transcriptionSid">The transcription sid.</param>
+        /// <param name="transcriptionSid">Transcription SID.</param>
         /// <returns>Returns transcription</returns>
         public Transcription ViewTranscription(string transcriptionSid)
         {
@@ -58,17 +59,17 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the transcriptions.
+        /// Shows info on all transcriptions associated with some account
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="status">The status.</param>
-        /// <param name="dateTranscribedGte">The date transcribed gte.</param>
-        /// <param name="dateTranscribedLt">The date transcribed lt.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="status">Filter by transcriptions with a given status.Allowed values are "completed", "in-progress", and "failed".</param>
+        /// <param name="dateTranscribedGte">Filter by date transcribed greater or equal than.</param>
+        /// <param name="dateTranscribedLt">Filter by date transcribed less than.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns transcription list</returns>
-        public TranscriptionsList ListTranscriptions(string accountSid, TranscriptionStatus? status = null, 
-            DateTime dateTranscribedGte = default(DateTime), DateTime dateTranscribedLt = default(DateTime), 
+        public TranscriptionsList ListTranscriptions(string accountSid, TranscriptionStatus? status = null,
+            DateTime dateTranscribedGte = default(DateTime), DateTime dateTranscribedLt = default(DateTime),
             int? page = null, int? pageSize = null)
         {
             // Get client to make request
@@ -87,13 +88,13 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Lists the transcriptions. Uses {accountSid} from configuration in HttpProvider
+        /// Shows info on all transcriptions associated with some account. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="status">The status.</param>
-        /// <param name="dateTranscribedGte">The date transcribed gte.</param>
-        /// <param name="dateTranscribedLt">The date transcribed lt.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">Size of the page.</param>
+        /// <param name="status">Filter by transcriptions with a given status.Allowed values are "completed", "in-progress", and "failed".</param>
+        /// <param name="dateTranscribedGte">Filter by date transcribed greater or equal than.</param>
+        /// <param name="dateTranscribedLt">Filter by date transcribed less than.</param>
+        /// <param name="page">Used to return a particular page within the list.</param>
+        /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns transcription list</returns>
         public TranscriptionsList ListTranscriptions(TranscriptionStatus? status = null,
             DateTime dateTranscribedGte = default(DateTime), DateTime dateTranscribedLt = default(DateTime),
@@ -106,17 +107,18 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Transcribes the recording.
+        /// Transcribes some recording
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="recordingSid">The recording sid.</param>
-        /// <param name="transcribeCallback">The transcribe callback.</param>
-        /// <param name="callbackMethod">The callback method.</param>
-        /// <param name="sliceStart">The slice start.</param>
-        /// <param name="sliceDuration">Duration of the slice.</param>
-        /// <param name="quality">The quality.</param>
-        /// <returns>Returns transcription</returns>
-        public Transcription TranscribeRecording(string accountSid, string recordingSid, string transcribeCallback = null, HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
+        /// <param name="recordingSid">Recording SID.</param>
+        /// <param name="transcribeCallback">The URL some parameters regarding the transcription will be passed to once it is completed. The longer the recording time, the longer the process delay in returning the transcription information. If no TranscribeCallback is given, the recording will still be saved to the system and available either in your Transcriptions Logs or via a REST List Transcriptions (ADD URL LINK) request. URL length is limited to 200 characters.</param>
+        /// <param name="callbackMethod">The HTTP method used to request the TranscribeCallback. Valid parameters are GET and POST - any other value will default to POST.</param>
+        /// <param name="sliceStart">Start point for slice transcription(in seconds).</param>
+        /// <param name="sliceDuration">Duration of slice transcription (in seconds).</param>
+        /// <param name="quality">Specifies the transcription quality.Transcription price differs for each quality tier.See pricing page for details.Allowed values are "auto", "hybrid" and "keywords", where "auto" is a machine-generated transcription, "hybrid" is reviewed by a human for accuracy and "keywords" returns topics and keywords for given audio file.</param>
+        /// <returns>Returns created transcription</returns>
+        public Transcription TranscribeRecording(string accountSid, string recordingSid,
+            string transcribeCallback = null, HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
             int? sliceDuration = null, TranscribeQuality quality = TranscribeQuality.AUTO)
         {
             // Get client to make request
@@ -126,7 +128,8 @@ namespace ZangAPI.Connectors
             var request = RestRequestHelper.CreateRestRequest(Method.POST, $"Accounts/{accountSid}/Transcriptions.json");
 
             // Add TranscribeRecording query and body parameters
-            this.SetParamsForTranscribeRecordingOrAudioUrl(request, transcribeCallback, callbackMethod, sliceStart, sliceDuration, quality);
+            this.SetParamsForTranscribeRecordingOrAudioUrl(request, transcribeCallback, callbackMethod, sliceStart,
+                sliceDuration, quality);
 
             // Send request
             var response = client.Execute(request);
@@ -135,36 +138,39 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Transcribes the recording. Uses {accountSid} from configuration in HttpProvider
+        /// Transcribes some recording. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="recordingSid">The recording sid.</param>
-        /// <param name="transcribeCallback">The transcribe callback.</param>
-        /// <param name="callbackMethod">The callback method.</param>
-        /// <param name="sliceStart">The slice start.</param>
-        /// <param name="sliceDuration">Duration of the slice.</param>
-        /// <param name="quality">The quality.</param>
-        /// <returns>Returns transcription</returns>
-        public Transcription TranscribeRecording(string recordingSid, string transcribeCallback = null, HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
+        /// <param name="recordingSid">Recording SID.</param>
+        /// <param name="transcribeCallback">The URL some parameters regarding the transcription will be passed to once it is completed. The longer the recording time, the longer the process delay in returning the transcription information. If no TranscribeCallback is given, the recording will still be saved to the system and available either in your Transcriptions Logs or via a REST List Transcriptions (ADD URL LINK) request. URL length is limited to 200 characters.</param>
+        /// <param name="callbackMethod">The HTTP method used to request the TranscribeCallback. Valid parameters are GET and POST - any other value will default to POST.</param>
+        /// <param name="sliceStart">Start point for slice transcription(in seconds).</param>
+        /// <param name="sliceDuration">Duration of slice transcription (in seconds).</param>
+        /// <param name="quality">Specifies the transcription quality.Transcription price differs for each quality tier.See pricing page for details.Allowed values are "auto", "hybrid" and "keywords", where "auto" is a machine-generated transcription, "hybrid" is reviewed by a human for accuracy and "keywords" returns topics and keywords for given audio file.</param>
+        /// <returns>Returns created transcription</returns>
+        public Transcription TranscribeRecording(string recordingSid, string transcribeCallback = null,
+            HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
             int? sliceDuration = null, TranscribeQuality quality = TranscribeQuality.AUTO)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.TranscribeRecording(accountSid, recordingSid, transcribeCallback, callbackMethod, sliceStart, sliceDuration, quality);
+            return this.TranscribeRecording(accountSid, recordingSid, transcribeCallback, callbackMethod, sliceStart,
+                sliceDuration, quality);
         }
 
         /// <summary>
-        /// Transcribes the audio URL.
+        /// Transcribes an audio file on some URL
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="audioUrl">The audio URL.</param>
-        /// <param name="transcribeCallback">The transcribe callback.</param>
-        /// <param name="callbackMethod">The callback method.</param>
-        /// <param name="sliceStart">The slice start.</param>
-        /// <param name="sliceDuration">Duration of the slice.</param>
-        /// <param name="quality">The quality.</param>
-        /// <returns>Returns transcription</returns>
-        public Transcription TranscribeAudioUrl(string accountSid, string audioUrl = null, string transcribeCallback = null, HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
+        /// <param name="audioUrl">URL where the audio to be transcribed is located.</param>
+        /// <param name="transcribeCallback">URL that will be requested when the transcription has finished processing.</param>
+        /// <param name="callbackMethod">Specifies the HTTP method to use when requesting the TranscribeCallback URL. Allowed values are "POST" and "GET".</param>
+        /// <param name="sliceStart">Start point for slice transcription (in seconds).</param>
+        /// <param name="sliceDuration">Duration of slice transcription (in seconds).</param>
+        /// <param name="quality">Specifies the transcription quality. Transcription price differs for each quality tier. See pricing page for details. Allowed values are "auto", "hybrid" and "keywords", where "auto" is a machine-generated transcription, "hybrid" is reviewed by a human for accuracy and "keywords" returns topics and keywords for given audio file.</param>
+        /// <returns>Returns created transcription</returns>
+        public Transcription TranscribeAudioUrl(string accountSid, string audioUrl = null,
+            string transcribeCallback = null, HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
             int? sliceDuration = null, TranscribeQuality quality = TranscribeQuality.AUTO)
         {
             // Get client to make request
@@ -176,7 +182,8 @@ namespace ZangAPI.Connectors
             if (audioUrl.HasValue()) request.AddParameter("AudioUrl", audioUrl);
 
             // Add TranscribeAudioUrl query and body parameters
-            this.SetParamsForTranscribeRecordingOrAudioUrl(request, transcribeCallback, callbackMethod, sliceStart, sliceDuration, quality);
+            this.SetParamsForTranscribeRecordingOrAudioUrl(request, transcribeCallback, callbackMethod, sliceStart,
+                sliceDuration, quality);
 
             // Send request
             var response = client.Execute(request);
@@ -185,22 +192,24 @@ namespace ZangAPI.Connectors
         }
 
         /// <summary>
-        /// Transcribes the audio URL.
+        /// Transcribes an audio file on some URL
         /// </summary>
-        /// <param name="audioUrl">The audio URL.</param>
-        /// <param name="transcribeCallback">The transcribe callback.</param>
-        /// <param name="callbackMethod">The callback method.</param>
-        /// <param name="sliceStart">The slice start.</param>
-        /// <param name="sliceDuration">Duration of the slice.</param>
-        /// <param name="quality">The quality.</param>
-        /// <returns>Returns transcription</returns>
-        public Transcription TranscribeAudioUrl(string audioUrl, string transcribeCallback = null, HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
+        /// <param name="audioUrl">URL where the audio to be transcribed is located.</param>
+        /// <param name="transcribeCallback">URL that will be requested when the transcription has finished processing.</param>
+        /// <param name="callbackMethod">Specifies the HTTP method to use when requesting the TranscribeCallback URL. Allowed values are "POST" and "GET".</param>
+        /// <param name="sliceStart">Start point for slice transcription (in seconds).</param>
+        /// <param name="sliceDuration">Duration of slice transcription (in seconds).</param>
+        /// <param name="quality">Specifies the transcription quality. Transcription price differs for each quality tier. See pricing page for details. Allowed values are "auto", "hybrid" and "keywords", where "auto" is a machine-generated transcription, "hybrid" is reviewed by a human for accuracy and "keywords" returns topics and keywords for given audio file.</param>
+        /// <returns>Returns created transcription</returns>
+        public Transcription TranscribeAudioUrl(string audioUrl, string transcribeCallback = null,
+            HttpMethod callbackMethod = HttpMethod.POST, int? sliceStart = null,
             int? sliceDuration = null, TranscribeQuality quality = TranscribeQuality.AUTO)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.TranscribeAudioUrl(accountSid, audioUrl, transcribeCallback, callbackMethod, sliceStart, sliceDuration, quality);
+            return this.TranscribeAudioUrl(accountSid, audioUrl, transcribeCallback, callbackMethod, sliceStart,
+                sliceDuration, quality);
         }
 
         /// <summary>
@@ -234,7 +243,8 @@ namespace ZangAPI.Connectors
         /// <param name="sliceStart">The slice start.</param>
         /// <param name="sliceDuration">Duration of the slice.</param>
         /// <param name="quality">The quality.</param>
-        private void SetParamsForTranscribeRecordingOrAudioUrl(IRestRequest request, string transcribeCallback, HttpMethod callbackMethod, int? sliceStart,
+        private void SetParamsForTranscribeRecordingOrAudioUrl(IRestRequest request, string transcribeCallback,
+            HttpMethod callbackMethod, int? sliceStart,
             int? sliceDuration, TranscribeQuality quality)
         {
             if (transcribeCallback.HasValue()) request.AddParameter("TranscribeCallback", transcribeCallback);
