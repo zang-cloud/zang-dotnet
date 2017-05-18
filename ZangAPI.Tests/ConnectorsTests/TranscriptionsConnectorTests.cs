@@ -14,7 +14,7 @@ namespace ZangAPI.Tests.ConnectorsTests
     [TestClass]
     public class TranscriptionsConnectorTests
     {
-        private const int Port = 21513;
+        private const int Port = 3337;
         private const string AccountSid = "TestAccountSid";
         private const string AuthToken = "TestAuthToken";
         private const string ResponseJsonFileName = "Responses.transcription.json";

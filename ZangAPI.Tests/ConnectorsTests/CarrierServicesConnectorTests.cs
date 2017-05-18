@@ -16,7 +16,7 @@ namespace ZangAPI.Tests.ConnectorsTests
     [TestClass]
     public class CarrierServicesConnectorTests
     {
-        private const int Port = 21513;
+        private const int Port = 3337;
         private const string AccountSid = "TestAccountSid";
         private const string AuthToken = "TestAuthToken";
         private const string ResponseJsonFileNameCarrier = "Responses.carrierLookup.json";

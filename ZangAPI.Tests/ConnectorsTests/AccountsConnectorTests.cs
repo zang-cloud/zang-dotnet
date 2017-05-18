@@ -11,7 +11,7 @@ namespace ZangAPI.Tests.ConnectorsTests
     [TestClass]
     public class AccountsConnectorTests
     {
-        private const int Port = 21513;
+        private const int Port = 3337;
         private const string AccountSid = "TestAccountSid";
         private const string AuthToken = "TestAuthToken";
         private const string ResponseJsonFileName = "Responses.account.json";
@@ -38,6 +38,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
+                
                 rsp.Content(buffer);
             }))
             {
@@ -53,9 +54,9 @@ namespace ZangAPI.Tests.ConnectorsTests
 
                 // View account using accounts connector
                 var account = service.AccountsConnector.ViewAccount();
+
             }
         }
-
         [TestMethod]
         public void AccountsConnectorUpdateAccountTest()
         {
@@ -96,5 +97,6 @@ namespace ZangAPI.Tests.ConnectorsTests
                 Assert.AreEqual(jsonRequest.BodyParameter("FriendlyName"), account.FriendlyName);
             }
         }
+
     }
 }
