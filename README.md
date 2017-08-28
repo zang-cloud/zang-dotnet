@@ -5,7 +5,7 @@ This .net library is an open source tool built to simplify interaction with the 
 
 For more information about Zang, please visit: [Zang Cloud](https://www.zang.io/products/cloud)
 
-To read the official documentation visit [Zang Docs](http://docs.zang.io)
+To read the official documentation, please visit: [Zang Docs](http://docs.zang.io/aspx/docs)
 
 ---
 
@@ -29,7 +29,7 @@ Usage
 
 ### REST
 
-See the [Zang REST API documentation](http://docs.zang.io/docs/overview) for more information.
+See the [Zang REST API documentation](http://docs.zang.io/aspx/rest) for more information.
 
 #### Make call Example
 
@@ -145,7 +145,7 @@ foreach (var usage in usages.Elements)
 
 ### InboundXML
 
-InboundXML is an XML dialect which enables you to control phone call flow. For more information please visit the [Zang InboundXML documentation](http://docs.zang.io/docs/inboundxml-overview).
+InboundXML is an XML dialect which enables you to control phone call flow. For more information please visit the [Zang InboundXML documentation](http://docs.zang.io/aspx/inboundxml).
 
 Example of using InboundXML builder:
 
