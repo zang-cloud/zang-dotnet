@@ -78,6 +78,8 @@
     <Compile Include="Exceptions\ZangException.cs" />
     <Compile Include="InboundXml\Enums\HangupReasonEnum.cs" />
     <Compile Include="InboundXml\Enums\IfMachineEnum.cs" />
+    <Compile Include="InboundXml\Enums\GatherInputEnum.cs" />
+    <Compile Include="InboundXml\Enums\BCPLanguageEnum.cs" />
     <Compile Include="InboundXml\Enums\LanguageEnum.cs" />
     <Compile Include="InboundXml\Enums\RecordDirectionEnum.cs" />
     <Compile Include="InboundXml\Enums\RecordFileFormatEnum.cs" />
