@@ -30,6 +30,7 @@ namespace ZangAPI.Examples.Examples
                     .Say(language: LanguageEnum.en, loop: 3, value: "Welcome to Zang!", voice: VoiceEnum.female)
                     .Pause(length: 2)
                     .EndInner()
+                .Mms(to: "+123456", from: "+654321", mediaUrl: "https://media.giphy.com/media/zZJzLrxmx5ZFS/giphy.gif")
                 .Hangup(schedule: 4, reason: HangupReasonEnum.rejected);
 
                 var result = builder.Build();

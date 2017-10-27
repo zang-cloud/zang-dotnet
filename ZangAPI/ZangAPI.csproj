@@ -101,6 +101,7 @@
     <Compile Include="InboundXml\InboundNodes\ResponseNode.cs" />
     <Compile Include="InboundXml\InboundNodes\SayNode.cs" />
     <Compile Include="InboundXml\InboundNodes\SipNode.cs" />
+    <Compile Include="InboundXml\InboundNodes\MmsNode.cs" />
     <Compile Include="InboundXml\InboundNodes\SmsNode.cs" />
     <Compile Include="InboundXml\InboundXmlBuilder.cs" />
     <Compile Include="InboundXml\InboundXmlInterfaces.cs" />
