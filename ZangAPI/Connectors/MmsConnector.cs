@@ -44,7 +44,7 @@ namespace ZangAPI.Connectors
 
             // Mark obligatory parameters
             Require.Argument("To", to);
-            Require.Argument("Body", body);
+            Require.Argument("MediaUrl", mediaUrl);
 
             // Add SendMms query and body parameters
             this.SetParamsForSendMms(request, to, body, mediaUrl, from, statusCallback);
