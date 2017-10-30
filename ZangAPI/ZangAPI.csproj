@@ -69,6 +69,7 @@
     <Compile Include="Connectors\SipCredentialsConnector.cs" />
     <Compile Include="Connectors\SipDomainsConnector.cs" />
     <Compile Include="Connectors\SipIpAccessControlListsConnector.cs" />
+    <Compile Include="Connectors\MmsConnector.cs" />
     <Compile Include="Connectors\TranscriptionsConnector.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\ProductConverter.cs" />
@@ -141,7 +142,9 @@
     <Compile Include="Model\Enums\Product.cs" />
     <Compile Include="Model\Enums\RecordingAudioDirection.cs" />
     <Compile Include="Model\Enums\RecordingFileFormat.cs" />
+    <Compile Include="Model\Enums\MmsDirection.cs" />
     <Compile Include="Model\Enums\SmsDirection.cs" />
+    <Compile Include="Model\Enums\MmsStatus.cs" />
     <Compile Include="Model\Enums\SmsStatus.cs" />
     <Compile Include="Model\Enums\TranscribeQuality.cs" />
     <Compile Include="Model\FraudControlRule.cs" />
@@ -169,6 +172,7 @@
     <Compile Include="Model\Lists\TranscriptionsList.cs" />
     <Compile Include="Model\Lists\UsagesList.cs" />
     <Compile Include="Model\Lists\ZangObjectsList.cs" />
+    <Compile Include="Model\MmsMessage.cs" />
     <Compile Include="Model\SmsMessage.cs" />
     <Compile Include="Model\Usage.cs" />
     <Compile Include="Model\Enums\IncomingPhoneNumberType.cs" />

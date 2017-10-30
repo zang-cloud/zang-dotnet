@@ -91,6 +91,7 @@
     <Compile Include="ConnectorsTests\SipCredentialsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\SipDomainsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\SipIpAccessControlListsConnectorTests.cs" />
+    <Compile Include="ConnectorsTests\MmsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\TranscriptionsConnectorTests.cs" />
     <Compile Include="ConnectorsTests\UsagesConnectorTests.cs" />
     <Compile Include="ExtensionMethods.cs" />
@@ -149,6 +150,7 @@
     <EmbeddedResource Include="Responses\carrierLookupList.json" />
     <EmbeddedResource Include="Responses\cnamLookup.json" />
     <EmbeddedResource Include="Responses\cnamLookupList.json" />
+    <EmbeddedResource Include="Responses\mms.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
