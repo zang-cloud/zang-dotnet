@@ -10,6 +10,9 @@ namespace ZangAPI.Examples
 
             var callsConnectorExamples = new CallsConnectorExamples();
             callsConnectorExamples.ListCalls();
+
+            var mmsConnectorExample = new MmsConnectorExamples();
+            mmsConnectorExample.SendMms();
         }
     }
 }

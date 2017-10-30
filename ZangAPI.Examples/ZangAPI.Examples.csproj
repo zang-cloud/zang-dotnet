@@ -58,6 +58,7 @@
     <Compile Include="Examples\SipCredentialsConnectorExamples.cs" />
     <Compile Include="Examples\SipDomainsConnectorExamples.cs" />
     <Compile Include="Examples\SipIpAccessControlListsConnectorExamples.cs" />
+    <Compile Include="Examples\MmsConnectorExamples.cs" />
     <Compile Include="Examples\SmsConnectorExamples.cs" />
     <Compile Include="Examples\TranscriptionsConnectorExamples.cs" />
     <Compile Include="Examples\UsagesConnectorExamples.cs" />

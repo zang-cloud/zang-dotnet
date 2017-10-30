@@ -1584,6 +1584,36 @@
       "response": "/sms/sms.json"
     }
   },
+  "MmsTest": {
+    "sendMms": {
+      "method": "POST",
+      "path": "MMS/Messages.json",
+      "bodyParams": [
+        {
+          "name": "To",
+          "value": "+123456"
+        },
+        {
+          "name": "From",
+          "value": "+654321"
+        },
+        {
+          "name": "MediaUrl",
+          "value": "https://media.giphy.com/media/zZJzLrxmx5ZFS/giphy.gif"
+        },
+        {
+          "name": "Body",
+          "value": "test from c#"
+        },
+        {
+          "name": "StatusCallback",
+          "value": "callback.url"
+        }
+      ],
+      "queryParams": null,
+      "response": "/sms/sms.json"
+    }
+  },
   "TranscriptionsTest": {
     "viewTranscription": {
       "method": "GET",
