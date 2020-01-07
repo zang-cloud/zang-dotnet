@@ -6,7 +6,7 @@ using ZangAPI.Exceptions;
 namespace ZangAPI.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with mms messages
+    /// Examples of using Avaya CPaaS service to work with mms messages
     /// </summary>
     public class MmsConnectorExamples
     {

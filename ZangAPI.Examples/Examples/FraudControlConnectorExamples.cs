@@ -5,7 +5,7 @@ using ZangAPI.Exceptions;
 namespace ZangAPI.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with fraud control
+    /// Examples of using Avaya CPaaS service to work with fraud control
     /// </summary>
     public class FraudControlConnectorExamples
     {

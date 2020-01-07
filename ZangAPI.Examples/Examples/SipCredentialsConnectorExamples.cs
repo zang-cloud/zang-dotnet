@@ -5,7 +5,7 @@ using ZangAPI.Exceptions;
 namespace ZangAPI.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with sip credentials and credential lists
+    /// Examples of using Avaya CPaaS service to work with sip credentials and credential lists
     /// </summary>
     public class SipCredentialsConnectorExamples
     {

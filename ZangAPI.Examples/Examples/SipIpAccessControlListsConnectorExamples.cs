@@ -5,7 +5,7 @@ using ZangAPI.Exceptions;
 namespace ZangAPI.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with sip ip access control lists and access control list ips
+    /// Examples of using Avaya CPaaS service to work with sip ip access control lists and access control list ips
     /// </summary>
     public class SipIpAccessControlListsConnectorExamples
     {

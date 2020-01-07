@@ -5,7 +5,7 @@ using ZangAPI.Exceptions;
 namespace ZangAPI.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with sip domains, mapped credentials lists and mapped ip access control lists
+    /// Examples of using Avaya CPaaS service to work with sip domains, mapped credentials lists and mapped ip access control lists
     /// </summary>
     public class SipDomainsConnectorExamples
     {
