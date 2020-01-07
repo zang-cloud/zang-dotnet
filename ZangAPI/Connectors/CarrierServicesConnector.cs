@@ -8,7 +8,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Carrier services connector - used for all forms of communication with the Carrier Services endpoint of the Zang REST API
+    /// Carrier services connector - used for all forms of communication with the Carrier Services endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class CarrierServicesConnector : AConnector

@@ -8,7 +8,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Usage connector - used for all forms of communication with the Usages endpoint of the Zang REST API
+    /// Usage connector - used for all forms of communication with the Usages endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class UsagesConnector : AConnector

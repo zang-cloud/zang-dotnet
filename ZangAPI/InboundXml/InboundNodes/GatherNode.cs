@@ -110,7 +110,7 @@ namespace ZangAPI.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// A list of inputs that Zang should accept. Default value is "dtmf". Accepted values are "dtmf", "speech", or "speech dtmf"
+        /// A list of inputs that Avaya CPaaS should accept. Default value is "dtmf". Accepted values are "dtmf", "speech", or "speech dtmf"
         /// </summary>
         /// <value>
         /// The input.
@@ -130,7 +130,7 @@ namespace ZangAPI.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// A list of inputs that Zang should accept. Default value is "dtmf". Accepted values are "dtmf", "speech", or "speech dtmf"
+        /// A list of inputs that Avaya CPaaS should accept. Default value is "dtmf". Accepted values are "dtmf", "speech", or "speech dtmf"
         /// </summary>
         /// <value>
         /// The input.
@@ -151,7 +151,7 @@ namespace ZangAPI.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// A set of words or phrases that Zang should listen for. Commas should seperate words.
+        /// A set of words or phrases that Avaya CPaaS should listen for. Commas should seperate words.
         /// </summary>
         /// <value>
         /// The hints string.

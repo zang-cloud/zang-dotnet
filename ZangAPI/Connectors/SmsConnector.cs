@@ -11,7 +11,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// SMS connector - used for all forms of communication with the Sms endpoint of the Zang REST API
+    /// SMS connector - used for all forms of communication with the Sms endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class SmsConnector : AConnector
@@ -115,7 +115,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="to">Must be an SMS capable number. The value does not have to be in any specific format.</param>
         /// <param name="body">Text of the SMS to be sent.</param>
-        /// <param name="from">Must be a Zang number associated with your account. The value does not have to be in any specific format.</param>
+        /// <param name="from">Must be a Avaya CPaaS number associated with your account. The value does not have to be in any specific format.</param>
         /// <param name="statusCallback">The URL that will be sent information about the SMS.Url length is limited to 200 characters.</param>
         /// <param name="statusCallbackMethod">The HTTP method used to request the StatusCallback. Valid parameters are GET and POST.</param>
         /// <param name="allowMultiple">If the Body length is greater than 160 characters, the SMS will be sent as a multi-part SMS. Allowed values are True or False.</param>
@@ -147,7 +147,7 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="to">Must be an SMS capable number. The value does not have to be in any specific format.</param>
         /// <param name="body">Text of the SMS to be sent.</param>
-        /// <param name="from">Must be a Zang number associated with your account. The value does not have to be in any specific format.</param>
+        /// <param name="from">Must be a Avaya CPaaS number associated with your account. The value does not have to be in any specific format.</param>
         /// <param name="statusCallback">The URL that will be sent information about the SMS.Url length is limited to 200 characters.</param>
         /// <param name="statusCallbackMethod">The HTTP method used to request the StatusCallback. Valid parameters are GET and POST.</param>
         /// <param name="allowMultiple">If the Body length is greater than 160 characters, the SMS will be sent as a multi-part SMS. Allowed values are True or False.</param>

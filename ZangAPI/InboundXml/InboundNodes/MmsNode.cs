@@ -12,7 +12,7 @@
         const string NODE_NAME = "Mms";
 
         /// <summary>
-        /// The phone number that will receive the MMS message. If this parameter is not specified, the MMS will be sent back to the number that made the request to the Zang number’s MMS request URL.
+        /// The phone number that will receive the MMS message. If this parameter is not specified, the MMS will be sent back to the number that made the request to the Avaya CPaaS number’s MMS request URL.
         /// </summary>
         /// <value>
         /// To.
@@ -32,7 +32,7 @@
         }
 
         /// <summary>
-        /// The number that will display as sending the MMS message. This should be one of your Zang numbers. If this parameter is not specified, the default from number is the Zang number hosting the MMS request URL.
+        /// The number that will display as sending the MMS message. This should be one of your Avaya CPaaS numbers. If this parameter is not specified, the default from number is the Avaya CPaaS number hosting the MMS request URL.
         /// </summary>
         /// <value>
         /// From.
@@ -52,7 +52,7 @@
         }
 
         /// <summary>
-        /// URL to direct Zang to once the <Mms> element is executed. Parameters specific to <Mms> are sent here along with the request.
+        /// URL to direct Avaya CPaaS to once the <Mms> element is executed. Parameters specific to <Mms> are sent here along with the request.
         /// </summary>
         /// <value>
         /// The action.

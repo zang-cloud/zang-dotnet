@@ -9,7 +9,7 @@ using ZangAPI.Model;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// MMS connector - used for all forms of communication with the Mms endpoint of the Zang REST API
+    /// MMS connector - used for all forms of communication with the Mms endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class MmsConnector : AConnector
@@ -29,7 +29,7 @@ namespace ZangAPI.Connectors
         /// <param name="accountSid">The account sid.</param>
         /// <param name="to">Must be an MMS capable number. The value does not have to be in any specific format.</param>
         /// <param name="body">Text of the MMS to be sent.</param>
-        /// <param name="from">Must be a Zang number associated with your account. The value does not have to be in any specific format.</param>
+        /// <param name="from">Must be a Avaya CPaaS number associated with your account. The value does not have to be in any specific format.</param>
         /// <param name="statusCallback">The URL that will be sent information about the MMS.Url length is limited to 200 characters.</param>
         /// <param name="mediaUrl">URL of an image to be sent in the message.</param>
         /// <returns>Returns created mms message</returns>
@@ -60,7 +60,7 @@ namespace ZangAPI.Connectors
         /// </summary>
         /// <param name="to">Must be an MMS capable number. The value does not have to be in any specific format.</param>
         /// <param name="body">Text of the MMS to be sent.</param>
-        /// <param name="from">Must be a Zang number associated with your account. The value does not have to be in any specific format.</param>
+        /// <param name="from">Must be a Avaya CPaaS number associated with your account. The value does not have to be in any specific format.</param>
         /// <param name="statusCallback">The URL that will be sent information about the MMS.Url length is limited to 200 characters.</param>
         /// <param name="mediaUrl">URL of an image to be sent in the message.</param>
         /// <returns>Returns created mms message</returns>

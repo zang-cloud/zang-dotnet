@@ -11,7 +11,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Recordings connector - used for all forms of communication with the Recordings endpoint of the Zang REST API
+    /// Recordings connector - used for all forms of communication with the Recordings endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class RecordingsConnector : AConnector

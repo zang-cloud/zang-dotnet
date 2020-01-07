@@ -8,7 +8,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Notifications connector - used for all forms of communication with the Notifications endpoint of the Zang REST API
+    /// Notifications connector - used for all forms of communication with the Notifications endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class NotificationsConnector : AConnector
