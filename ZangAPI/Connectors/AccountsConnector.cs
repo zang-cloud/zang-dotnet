@@ -7,7 +7,7 @@ using ZangAPI.Model;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Accounts connector - used for all forms of communication with the Accounts endpoint of the Zang REST API
+    /// Accounts connector - used for all forms of communication with the Accounts endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class AccountsConnector : AConnector

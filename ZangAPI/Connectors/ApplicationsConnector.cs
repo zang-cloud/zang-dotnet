@@ -9,7 +9,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Applications connector - used for all forms of communication with the Applications endpoint of the Zang REST API
+    /// Applications connector - used for all forms of communication with the Applications endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class ApplicationsConnector : AConnector
