@@ -5,7 +5,7 @@ using ZangAPI.Exceptions;
 namespace ZangAPI.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with accounts
+    /// Examples of using Avaya CPaaS service to work with accounts
     /// </summary>
     public class AccountsConnectorExamples
     {

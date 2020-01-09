@@ -10,7 +10,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Conferences connector - used for all forms of communication with the Conferences endpoint of the Zang REST API
+    /// Conferences connector - used for all forms of communication with the Conferences endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class ConferencesConnector : AConnector

@@ -186,7 +186,7 @@ namespace ZangAPI.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// Specifies digits that Zang should listen for and send to the callbackUrl if a caller inputs them.
+        /// Specifies digits that Avaya CPaaS should listen for and send to the callbackUrl if a caller inputs them.
         /// Separate additional digits or digit patterns with a comma.
         /// Allowed Value: Pattern made up of the digits 0-9, #, or *.
         /// </summary>

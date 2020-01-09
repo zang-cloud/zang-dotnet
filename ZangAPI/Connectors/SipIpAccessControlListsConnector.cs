@@ -9,7 +9,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Sip IP access control lists connector - used for all forms of communication with the Sip IP Access Control Lists endpoint of the Zang REST API
+    /// Sip IP access control lists connector - used for all forms of communication with the Sip IP Access Control Lists endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class SipIpAccessControlListsConnector : AConnector

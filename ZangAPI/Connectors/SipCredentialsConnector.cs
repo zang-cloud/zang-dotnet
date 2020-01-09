@@ -9,7 +9,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Sip credentials connector - used for all forms of communication with the Sip Credentials endpoint of the Zang REST API
+    /// Sip credentials connector - used for all forms of communication with the Sip Credentials endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class SipCredentialsConnector : AConnector

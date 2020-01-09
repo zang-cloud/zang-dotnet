@@ -166,7 +166,7 @@ namespace ZangAPI.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// The URL that Zang should reach out to when the called party answers. The URL should return InboundXML containing <Play>, <Pause>, and/or <Say> elements only. Any other elements will be ignored.
+        /// The URL that Avaya CPaaS should reach out to when the called party answers. The URL should return InboundXML containing <Play>, <Pause>, and/or <Say> elements only. Any other elements will be ignored.
         /// </summary>
         /// <value>
         /// The confirm sound.
@@ -184,7 +184,7 @@ namespace ZangAPI.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// Specifies digits that Zang should listen for and send to the callbackUrl if a caller inputs them.
+        /// Specifies digits that Avaya CPaaS should listen for and send to the callbackUrl if a caller inputs them.
         /// Separate additional digits or digit patterns with a comma.
         /// Allowed Value: Pattern made up of the digits 0-9, #, or *.
         /// </summary>
@@ -224,7 +224,7 @@ namespace ZangAPI.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// A URL Zang can request every 60 seconds during the call to notify of elapsed time and pass other general information.
+        /// A URL Avaya CPaaS can request every 60 seconds during the call to notify of elapsed time and pass other general information.
         /// </summary>
         /// <value>
         /// The heartbeat URL.
@@ -278,7 +278,7 @@ namespace ZangAPI.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// Specifies how Zang should handle this dial if the receiving phone number is unanswered and goes to voicemail. “continue” to proceed as normal, “redirect” to redirect the call to the ifMachineUrl, or “hangup” to hangup the call. Please note: ifMachine could detect an answering machine via the tone stream. Therefore, the accuracy is around 90% and may not work in all countries. Default Value: continue. Allowed Value: continue, redirect, hangup.
+        /// Specifies how Avaya CPaaS should handle this dial if the receiving phone number is unanswered and goes to voicemail. “continue” to proceed as normal, “redirect” to redirect the call to the ifMachineUrl, or “hangup” to hangup the call. Please note: ifMachine could detect an answering machine via the tone stream. Therefore, the accuracy is around 90% and may not work in all countries. Default Value: continue. Allowed Value: continue, redirect, hangup.
         /// </summary>
         /// <value>
         /// If machine.
@@ -298,7 +298,7 @@ namespace ZangAPI.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// The URL Zang will redirect to if a voicemail machine is detected while the ifMachine =“redirect” attribute is set.
+        /// The URL Avaya CPaaS will redirect to if a voicemail machine is detected while the ifMachine =“redirect” attribute is set.
         /// </summary>
         /// <value>
         /// If machine URL.

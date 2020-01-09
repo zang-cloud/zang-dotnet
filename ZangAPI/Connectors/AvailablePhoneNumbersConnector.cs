@@ -8,7 +8,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Available phone numbers connector - used for all forms of communication with the Available Phone Numbers endpoint of the Zang REST API
+    /// Available phone numbers connector - used for all forms of communication with the Available Phone Numbers endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class AvailablePhoneNumbersConnector : AConnector

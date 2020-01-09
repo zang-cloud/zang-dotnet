@@ -9,7 +9,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Incoming numbers connector - used for all forms of communication with the Incoming Phone Numbers endpoint of the Zang REST API
+    /// Incoming numbers connector - used for all forms of communication with the Incoming Phone Numbers endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class IncomingPhoneNumbersConnector : AConnector
@@ -120,9 +120,9 @@ namespace ZangAPI.Connectors
         /// <param name="smsFallbackUrl">URL used if any errors occur during execution of InboundXML from an SMS or at initial request of the SmsUrl.</param>
         /// <param name="smsFallbackMethod">Specifies the HTTP method used to request the SmsFallbackUrl.</param>
         /// <param name="heartbeatUrl">URL that can be used to monitor the phone number.</param>
-        /// <param name="heartbeatMethod">The HTTP method Zang will use when requesting the HeartbeatURL.</param>
+        /// <param name="heartbeatMethod">The HTTP method Avaya CPaaS will use when requesting the HeartbeatURL.</param>
         /// <param name="statusCallback">URL that can be requested to receive notification when and how incoming call has ended.</param>
-        /// <param name="statusCallbackMethod">The HTTP method Zang will use when requesting the HangupCallback URL.</param>
+        /// <param name="statusCallbackMethod">The HTTP method Avaya CPaaS will use when requesting the HangupCallback URL.</param>
         /// <param name="hangupCallback">This is a StatusCallback clone that will be phased out in future versions.</param>
         /// <param name="hangupCallbackMethod">This is a StatusCallbackMethod clone that will be phased out in future versions.</param>
         /// <param name="voiceApplicationSid">The SID of the Voice Application you wish to associate with this incoming number.</param>
@@ -174,9 +174,9 @@ namespace ZangAPI.Connectors
         /// <param name="smsFallbackUrl">URL used if any errors occur during execution of InboundXML from an SMS or at initial request of the SmsUrl.</param>
         /// <param name="smsFallbackMethod">Specifies the HTTP method used to request the SmsFallbackUrl.</param>
         /// <param name="heartbeatUrl">URL that can be used to monitor the phone number.</param>
-        /// <param name="heartbeatMethod">The HTTP method Zang will use when requesting the HeartbeatURL.</param>
+        /// <param name="heartbeatMethod">The HTTP method Avaya CPaaS will use when requesting the HeartbeatURL.</param>
         /// <param name="statusCallback">URL that can be requested to receive notification when and how incoming call has ended.</param>
-        /// <param name="statusCallbackMethod">The HTTP method Zang will use when requesting the HangupCallback URL.</param>
+        /// <param name="statusCallbackMethod">The HTTP method Avaya CPaaS will use when requesting the HangupCallback URL.</param>
         /// <param name="hangupCallback">This is a StatusCallback clone that will be phased out in future versions.</param>
         /// <param name="hangupCallbackMethod">This is a StatusCallbackMethod clone that will be phased out in future versions.</param>
         /// <param name="voiceApplicationSid">The SID of the Voice Application you wish to associate with this incoming number.</param>
@@ -218,9 +218,9 @@ namespace ZangAPI.Connectors
         /// <param name="smsFallbackUrl">URL used if any errors occur during execution of InboundXML from an SMS or at initial request of the SmsUrl.</param>
         /// <param name="smsFallbackMethod">Specifies the HTTP method used to request the SmsFallbackUrl.</param>
         /// <param name="heartbeatUrl">URL that can be used to monitor the phone number.</param>
-        /// <param name="heartbeatMethod">The HTTP method Zang will use when requesting the HeartbeatURL.</param>
+        /// <param name="heartbeatMethod">The HTTP method Avaya CPaaS will use when requesting the HeartbeatURL.</param>
         /// <param name="statusCallback">URL that can be requested to receive notification when and how incoming call has ended.</param>
-        /// <param name="statusCallbackMethod">The HTTP method Zang will use when requesting the HangupCallback URL.</param>
+        /// <param name="statusCallbackMethod">The HTTP method Avaya CPaaS will use when requesting the HangupCallback URL.</param>
         /// <param name="hangupCallback">This is a StatusCallback clone that will be phased out in future versions.</param>
         /// <param name="hangupCallbackMethod">This is a StatusCallbackMethod clone that will be phased out in future versions.</param>
         /// <returns>Returns updated incoming number</returns>
@@ -268,9 +268,9 @@ namespace ZangAPI.Connectors
         /// <param name="smsFallbackUrl">URL used if any errors occur during execution of InboundXML from an SMS or at initial request of the SmsUrl.</param>
         /// <param name="smsFallbackMethod">Specifies the HTTP method used to request the SmsFallbackUrl.</param>
         /// <param name="heartbeatUrl">URL that can be used to monitor the phone number.</param>
-        /// <param name="heartbeatMethod">The HTTP method Zang will use when requesting the HeartbeatURL.</param>
+        /// <param name="heartbeatMethod">The HTTP method Avaya CPaaS will use when requesting the HeartbeatURL.</param>
         /// <param name="statusCallback">URL that can be requested to receive notification when and how incoming call has ended.</param>
-        /// <param name="statusCallbackMethod">The HTTP method Zang will use when requesting the HangupCallback URL.</param>
+        /// <param name="statusCallbackMethod">The HTTP method Avaya CPaaS will use when requesting the HangupCallback URL.</param>
         /// <param name="hangupCallback">This is a StatusCallback clone that will be phased out in future versions.</param>
         /// <param name="hangupCallbackMethod">This is a StatusCallbackMethod clone that will be phased out in future versions.</param>
         /// <returns>Returns updated incoming number</returns>

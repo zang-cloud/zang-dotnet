@@ -9,7 +9,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Fraud control connector - used for all forms of communication with the Fraud Control endpoint of the Zang REST API
+    /// Fraud control connector - used for all forms of communication with the Fraud Control endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class FraudControlConnector : AConnector

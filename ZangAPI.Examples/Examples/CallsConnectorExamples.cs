@@ -6,7 +6,7 @@ using ZangAPI.Model.Enums;
 namespace ZangAPI.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with calls
+    /// Examples of using Avaya CPaaS service to work with calls
     /// </summary>
     public class CallsConnectorExamples
     {

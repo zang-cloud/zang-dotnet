@@ -11,7 +11,7 @@ using ZangAPI.Model.Enums;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Calls connector - used for all forms of communication with the Calls endpoint of the Zang REST API
+    /// Calls connector - used for all forms of communication with the Calls endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class CallsConnector : AConnector
@@ -134,8 +134,8 @@ namespace ZangAPI.Connectors
         /// <param name="transcribe">Specifies whether this call should be transcribed. Allowed positive values are "true", "True", and "1".</param>
         /// <param name="transcribeCallback">The URL some parameters regarding the transcription will be passed to once it is completed. The longer the recording time, the longer the process delay in returning the transcription information. If no TranscribeCallback is given, the recording will still be saved to the system and available either in your Transcriptions Logs or via a REST List Transcriptions (ADD URL LINK) request. Url length is limited to 200 characters.</param>
         /// <param name="straightToVoicemail">Specifies whether this call should be sent straight to the user's voicemail. Allowed positive values are "true" and "True" - any other value will default to "false".</param>
-        /// <param name="ifMachine">Specifies how Zang should handle this call if it goes to voicemail. Allowed values are "continue" to proceed as normal, "redirect" to redirect the call to the ifMachineUrl, or "hangup" to hang up the call. Hangup occurs when the tone is played. IfMachine accuracy is around 90% and may not work in all countries.</param>
-        /// <param name="ifMachineUrl">The URL Zang will redirect to for instructions if a voicemail machine is detected while the IfMachine parameter is set to "redirect". Url length is limited to 200 characters.</param>
+        /// <param name="ifMachine">Specifies how Avaya CPaaS should handle this call if it goes to voicemail. Allowed values are "continue" to proceed as normal, "redirect" to redirect the call to the ifMachineUrl, or "hangup" to hang up the call. Hangup occurs when the tone is played. IfMachine accuracy is around 90% and may not work in all countries.</param>
+        /// <param name="ifMachineUrl">The URL Avaya CPaaS will redirect to for instructions if a voicemail machine is detected while the IfMachine parameter is set to "redirect". Url length is limited to 200 characters.</param>
         /// <param name="ifMachineMethod">The HTTP method used to request the IfMachineUrl. Valid parameters are GET and POST - any other value will default to POST.</param>
         /// <param name="sipAuthUsername">Your authenticated SIP username, used only for SIP calls.</param>
         /// <param name="sipAuthPassword">Your authenticated SIP password, used only for SIP calls.</param>
@@ -198,8 +198,8 @@ namespace ZangAPI.Connectors
         /// <param name="transcribe">Specifies whether this call should be transcribed. Allowed positive values are "true", "True", and "1".</param>
         /// <param name="transcribeCallback">The URL some parameters regarding the transcription will be passed to once it is completed. The longer the recording time, the longer the process delay in returning the transcription information. If no TranscribeCallback is given, the recording will still be saved to the system and available either in your Transcriptions Logs or via a REST List Transcriptions (ADD URL LINK) request. Url length is limited to 200 characters.</param>
         /// <param name="straightToVoicemail">Specifies whether this call should be sent straight to the user's voicemail. Allowed positive values are "true" and "True" - any other value will default to "false".</param>
-        /// <param name="ifMachine">Specifies how Zang should handle this call if it goes to voicemail. Allowed values are "continue" to proceed as normal, "redirect" to redirect the call to the ifMachineUrl, or "hangup" to hang up the call. Hangup occurs when the tone is played. IfMachine accuracy is around 90% and may not work in all countries.</param>
-        /// <param name="ifMachineUrl">The URL Zang will redirect to for instructions if a voicemail machine is detected while the IfMachine parameter is set to "redirect". Url length is limited to 200 characters.</param>
+        /// <param name="ifMachine">Specifies how Avaya CPaaS should handle this call if it goes to voicemail. Allowed values are "continue" to proceed as normal, "redirect" to redirect the call to the ifMachineUrl, or "hangup" to hang up the call. Hangup occurs when the tone is played. IfMachine accuracy is around 90% and may not work in all countries.</param>
+        /// <param name="ifMachineUrl">The URL Avaya CPaaS will redirect to for instructions if a voicemail machine is detected while the IfMachine parameter is set to "redirect". Url length is limited to 200 characters.</param>
         /// <param name="ifMachineMethod">The HTTP method used to request the IfMachineUrl. Valid parameters are GET and POST - any other value will default to POST.</param>
         /// <param name="sipAuthUsername">Your authenticated SIP username, used only for SIP calls.</param>
         /// <param name="sipAuthPassword">Your authenticated SIP password, used only for SIP calls.</param>

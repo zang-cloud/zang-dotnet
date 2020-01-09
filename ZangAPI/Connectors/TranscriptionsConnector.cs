@@ -10,7 +10,7 @@ using ZangAPI.Model.Lists;
 namespace ZangAPI.Connectors
 {
     /// <summary>
-    /// Transcriptions connector - Used for all forms of communication with the Transcriptions endpoint of the Zang REST API
+    /// Transcriptions connector - Used for all forms of communication with the Transcriptions endpoint of the Avaya CPaaS REST API
     /// </summary>
     /// <seealso cref="ZangAPI.Connectors.AConnector" />
     public class TranscriptionsConnector : AConnector

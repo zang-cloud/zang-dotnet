@@ -1,11 +1,11 @@
 zang-dotnet
 ===========
 
-This .net library is an open source tool built to simplify interaction with the [Zang](http://www.zang.io) telephony platform. Zang makes adding voice and SMS to applications fun and easy.
+This .net library is an open source tool built to simplify interaction with the [Avaya CPaaS](http://www.zang.io) telephony platform. Avaya CPaaS makes adding voice and SMS to applications fun and easy.
 
-For more information about Zang, please visit: [Zang Cloud](https://www.zang.io/products/cloud)
+For more information about Avaya CPaaS, please visit: [Avaya OneCloud™️ CPaaS ](https://www.zang.io/products/cloud)
 
-To read the official documentation, please visit: [Zang Docs](http://docs.zang.io/aspx/docs)
+To read the official documentation, please visit: [Avaya CPaaS Docs](http://docs.zang.io/aspx/docs)
 
 ---
 
@@ -29,7 +29,7 @@ Usage
 
 ### REST
 
-See the [Zang REST API documentation](http://docs.zang.io/aspx/rest) for more information.
+See the [Avaya CPaaS REST API documentation](http://docs.zang.io/aspx/rest) for more information.
 
 #### Make call Example
 
@@ -69,7 +69,7 @@ First, a configuration must be created by using provided configuration class `Za
 
 ##### 1. Create ZangConfiguration with parameters AccountSid and AuthToken
 
-Normally you'll want to just enter your Zang Platform *AccountSid* and *AuthToken*, but you can also define a proxy server or change the base API URL.
+Normally you'll want to just enter your Avaya CPaaS Platform *AccountSid* and *AuthToken*, but you can also define a proxy server or change the base API URL.
 Basic configuration:
 
 ```cs
@@ -145,7 +145,7 @@ foreach (var usage in usages.Elements)
 
 ### InboundXML
 
-InboundXML is an XML dialect which enables you to control phone call flow. For more information please visit the [Zang InboundXML documentation](http://docs.zang.io/aspx/inboundxml).
+InboundXML is an XML dialect which enables you to control phone call flow. For more information please visit the [Avaya CPaaS InboundXML documentation](http://docs.zang.io/aspx/inboundxml).
 
 Example of using InboundXML builder:
 
@@ -169,7 +169,7 @@ public class Program
 		            .EndInner()
 		        .Gather()
 		            .StartInner()
-		            .Say(language: LanguageEnum.en, loop: 3, value: "Welcome to Zang!", voice: VoiceEnum.female)
+		            .Say(language: LanguageEnum.en, loop: 3, value: "Welcome to Avaya CPaaS!", voice: VoiceEnum.female)
 		            .Pause(length: 2)
 		            .EndInner()
 		        .Hangup(schedule: 4, reason: HangupReasonEnum.rejected);
@@ -194,7 +194,7 @@ will render
     <Sip username="username" password="password">username@domain.com</Sip>
   </Dial>
   <Gather>
-    <Say loop="3" voice="female" language="en">Welcome to Zang!</Say>
+    <Say loop="3" voice="female" language="en">Welcome to Avaya CPaaS!</Say>
     <Pause length="2" />
   </Gather>
   <Hangup schedule="4" reason="rejected" />
