@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model.Lists
+namespace AvayaCPaaS.Model.Lists
 {
     /// <summary>
     /// Bna lookups list
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{BnaLookup}" />
-    public class BnaLookupsList : ZangObjectsList<BnaLookup>
+    /// <seealso cref="AvayaCPaaS.Model.Lists.ObjectsList{BnaLookup}" />
+    public class BnaLookupsList : ObjectsList<BnaLookup>
     {
         /// <summary>
         /// Gets the elements.

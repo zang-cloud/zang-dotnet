@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace ZangAPI.Model.Enums
+namespace AvayaCPaaS.Model.Enums
 {
     /// <summary>
     /// Conference status

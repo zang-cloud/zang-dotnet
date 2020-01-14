@@ -1,8 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Helpers
+namespace AvayaCPaaS.Helpers
 {
     /// <summary>
     /// Enum products converter

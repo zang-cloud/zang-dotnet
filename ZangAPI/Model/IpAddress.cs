@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Ip address
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class IpAddress : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class IpAddress : BaseObject
     {
         /// <summary>
         /// Gets or sets the ip address.

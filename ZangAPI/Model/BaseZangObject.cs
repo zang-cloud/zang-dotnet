@@ -1,12 +1,12 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
-    /// Base Zang model object
+    /// Base model object
     /// </summary>
-    public class BaseZangObject
+    public class BaseObject
     {
     
         /// <summary>

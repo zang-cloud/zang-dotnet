@@ -2,18 +2,18 @@
 using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Helpers;
-using ZangAPI.Model;
-using ZangAPI.Model.Enums;
-using ZangAPI.Model.Lists;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model;
+using AvayaCPaaS.Model.Enums;
+using AvayaCPaaS.Model.Lists;
 
-namespace ZangAPI.Connectors
+namespace AvayaCPaaS.Connectors
 {
     /// <summary>
     /// Recordings connector - used for all forms of communication with the Recordings endpoint of the Avaya CPaaS REST API
     /// </summary>
-    /// <seealso cref="ZangAPI.Connectors.AConnector" />
+    /// <seealso cref="AvayaCPaaS.Connectors.AConnector" />
     public class RecordingsConnector : AConnector
     {
         /// <summary>

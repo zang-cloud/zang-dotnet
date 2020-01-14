@@ -2,16 +2,16 @@
 using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Helpers;
-using ZangAPI.Model;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model;
 
-namespace ZangAPI.Connectors
+namespace AvayaCPaaS.Connectors
 {
     /// <summary>
     /// MMS connector - used for all forms of communication with the Mms endpoint of the Avaya CPaaS REST API
     /// </summary>
-    /// <seealso cref="ZangAPI.Connectors.AConnector" />
+    /// <seealso cref="AvayaCPaaS.Connectors.AConnector" />
     public class MmsConnector : AConnector
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace ZangAPI.Connectors
         /// <param name="statusCallback">The URL that will be sent information about the MMS.Url length is limited to 200 characters.</param>
         /// <param name="mediaUrl">URL of an image to be sent in the message.</param>
         /// <returns>Returns created mms message</returns>
-        public MmsMessage SendMms(string accountSid, string to, string body, String mediaUrl, string from = null,
+        public MmsMessage SendMms(string accountSid, string to, String mediaUrl, string body, string from = null,
             string statusCallback = null)
         {
             // Get client to make request
@@ -47,7 +47,7 @@ namespace ZangAPI.Connectors
             Require.Argument("MediaUrl", mediaUrl);
 
             // Add SendMms query and body parameters
-            this.SetParamsForSendMms(request, to, body, mediaUrl, from, statusCallback);
+            this.SetParamsForSendMms(request, to, mediaUrl, body, from, statusCallback);
 
             // Send request
             var response = client.Execute(request);

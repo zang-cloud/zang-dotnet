@@ -1,15 +1,15 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// SMS message
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class SmsMessage : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class SmsMessage : BaseObject
     {
         /// <summary>
         /// Gets or sets the date sent.

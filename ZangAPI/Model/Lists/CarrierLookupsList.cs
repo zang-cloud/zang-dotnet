@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model.Lists
+namespace AvayaCPaaS.Model.Lists
 {
     /// <summary>
     /// Carrier lookups list
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{CarrierLookup}" />
-    public class CarrierLookupsList : ZangObjectsList<CarrierLookup>
+    /// <seealso cref="AvayaCPaaS.Model.Lists.ObjectsList{CarrierLookup}" />
+    public class CarrierLookupsList : ObjectsList<CarrierLookup>
     {
         /// <summary>
         /// Gets or sets the elements.

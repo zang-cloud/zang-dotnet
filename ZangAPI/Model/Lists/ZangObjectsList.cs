@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model.Lists
+namespace AvayaCPaaS.Model.Lists
 {
     /// <summary>
-    /// List of zang objects
+    /// List of API objects
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ZangObjectsList<T>
+    public class ObjectsList<T>
     {
         /// <summary>
         /// Gets the page.

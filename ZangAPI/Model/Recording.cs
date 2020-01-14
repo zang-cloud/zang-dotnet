@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Recording
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class Recording : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class Recording : BaseObject
     {
         /// <summary>
         /// Gets or sets the call sid.

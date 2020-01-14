@@ -1,7 +1,7 @@
 ﻿using RestSharp;
-using ZangAPI.Configuration;
+using AvayaCPaaS.Configuration;
 
-namespace ZangAPI.ConnectionManager
+namespace AvayaCPaaS.ConnectionManager
 {
     /// <summary>
     /// Http manager interface
@@ -13,7 +13,7 @@ namespace ZangAPI.ConnectionManager
         /// Sets the configuration.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        void SetConfiguration(IZangConfiguration configuration);
+        void SetConfiguration(IAPIConfiguration configuration);
 
         /// <summary>
         /// Resets the rest client.

@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Application
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class Application : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class Application : BaseObject
     {
         /// <summary>
         /// Gets or sets the name of the friendly.

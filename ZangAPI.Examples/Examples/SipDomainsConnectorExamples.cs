@@ -1,8 +1,8 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Avaya CPaaS service to work with sip domains, mapped credentials lists and mapped ip access control lists
@@ -12,7 +12,7 @@ namespace ZangAPI.Examples.Examples
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing domain
@@ -25,7 +25,7 @@ namespace ZangAPI.Examples.Examples
                 var domain = service.SipDomainsConnector.ViewDomain("TestDomainSid");
                 Console.WriteLine(domain.DomainName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -42,7 +42,7 @@ namespace ZangAPI.Examples.Examples
                 var domains = service.SipDomainsConnector.ListDomains();
                 Console.WriteLine(domains.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -59,7 +59,7 @@ namespace ZangAPI.Examples.Examples
                 var domain = service.SipDomainsConnector.CreateDomain(AccountSid, "testdomain.com", friendlyName:"TestDomain", hearbeatUrl:"hearbeatUrl");
                 Console.WriteLine(domain.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -76,7 +76,7 @@ namespace ZangAPI.Examples.Examples
                 var domain = service.SipDomainsConnector.UpdateDomain(AccountSid, "testdomain.com", friendlyName: "TestDomainNewName", hearbeatUrl: "hearbeatUrl");
                 Console.WriteLine(domain.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -93,7 +93,7 @@ namespace ZangAPI.Examples.Examples
                 var domain = service.SipDomainsConnector.DeleteDomain("TestDomainSid");
                 Console.WriteLine(domain.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -110,7 +110,7 @@ namespace ZangAPI.Examples.Examples
                 var mappedCredentialList = service.SipDomainsConnector.MapCredentialsList("TestDomainSid", "TestCredentialsListSid");
                 Console.WriteLine(mappedCredentialList.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -127,7 +127,7 @@ namespace ZangAPI.Examples.Examples
                 var mappedCredentialsLists = service.SipDomainsConnector.ListMappedCredentialsLists("TestDomainSid");
                 Console.WriteLine(mappedCredentialsLists.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -145,7 +145,7 @@ namespace ZangAPI.Examples.Examples
                     "TestCredentialsListSid");
                 Console.WriteLine(mappedCredentialsList.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -162,7 +162,7 @@ namespace ZangAPI.Examples.Examples
                 var mappedIpAccessControlList = service.SipDomainsConnector.MapIpAccessControlList("TestDomainSid", "TestIpAccessControlListSid");
                 Console.WriteLine(mappedIpAccessControlList.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -179,7 +179,7 @@ namespace ZangAPI.Examples.Examples
                 var mappedIpAccessControlLists = service.SipDomainsConnector.ListMappedIpAccessControlLists("TestDomainSid");
                 Console.WriteLine(mappedIpAccessControlLists.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -197,7 +197,7 @@ namespace ZangAPI.Examples.Examples
                     "TestIpAccessControlListSid");
                 Console.WriteLine(mappedCredentialsList.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

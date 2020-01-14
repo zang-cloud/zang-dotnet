@@ -1,9 +1,9 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Avaya CPaaS service to work with usages
@@ -13,7 +13,7 @@ namespace ZangAPI.Examples.Examples
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing usage
@@ -26,7 +26,7 @@ namespace ZangAPI.Examples.Examples
                 var usage = service.UsagesConnector.ViewUsage("TestUsageSid");
                 Console.WriteLine(usage.AverageCost);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -43,7 +43,7 @@ namespace ZangAPI.Examples.Examples
                 var usages = service.UsagesConnector.ListUsages(year:2017, month:5, product:Product.INBOUND_CALL, page: 3, pageSize: 40);
                 Console.WriteLine(usages.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

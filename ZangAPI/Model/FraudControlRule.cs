@@ -1,14 +1,14 @@
 ﻿using System;
 using Newtonsoft.Json;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Fraud control rule
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class FraudControlRule : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class FraudControlRule : BaseObject
     {
         /// <summary>
         /// Gets or sets the type.

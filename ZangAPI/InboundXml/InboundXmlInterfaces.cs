@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace ZangAPI.InboundXml
+namespace AvayaCPaaS.InboundXml
 {
     /// <summary>
     /// Interface for the Inbound XML builder node.
@@ -45,7 +45,7 @@ namespace ZangAPI.InboundXml
     /// </summary>
     /// <typeparam name="TCurrentNode">The current node.</typeparam>
     /// <typeparam name="TLastChild">The last child of the current node.</typeparam>
-    /// <seealso cref="ZangAPI.InboundXml.INode{TCurrentNode}" />
+    /// <seealso cref="AvayaCPaaS.InboundXml.INode{TCurrentNode}" />
     public interface INodeCanInner<TCurrentNode, TLastChild> : INode<TCurrentNode> where TCurrentNode : XElement where TLastChild : XElement
     {
         /// <summary>
@@ -68,7 +68,7 @@ namespace ZangAPI.InboundXml
     /// </summary>
     /// <typeparam name="TParentNode">The type of the parent node.</typeparam>
     /// <typeparam name="TCurrentNode">The type of the current node.</typeparam>
-    /// <seealso cref="ZangAPI.InboundXml.INode{TCurrentNode}" />
+    /// <seealso cref="AvayaCPaaS.InboundXml.INode{TCurrentNode}" />
     public interface INodeInner<TCurrentNode, TParentNode> : INode<TCurrentNode>, INodeHasParent<TParentNode> where TParentNode : XElement where TCurrentNode : XElement
     {
         /// <summary>
