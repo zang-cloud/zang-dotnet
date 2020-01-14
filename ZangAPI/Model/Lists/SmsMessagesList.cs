@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model.Lists
+namespace AvayaCPaaS.Model.Lists
 {
     /// <summary>
     /// List of SMS messages
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{SmsMessage}" />
-    public class SmsMessagesList : ZangObjectsList<SmsMessage>
+    /// <seealso cref="AvayaCPaaS.Model.Lists.ObjectsList{SmsMessage}" />
+    public class SmsMessagesList : ObjectsList<SmsMessage>
     {
         /// <summary>
         /// Gets or sets the elements.

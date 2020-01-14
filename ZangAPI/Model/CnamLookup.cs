@@ -1,12 +1,23 @@
 ﻿using Newtonsoft.Json;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
+    /// <summary>
+    /// Lookup helper
+    /// </summary>
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class CnamLookups : BaseObject
+    {
+        [JsonProperty(PropertyName = "cnam_lookups")]
+        public CnamLookup[] LookupArray { get; set; }
+
+    }
+
     /// <summary>
     /// Cnam lookup
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class CnamLookup : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class CnamLookup : BaseObject
     {
         /// <summary>
         /// Gets or sets the phone number.

@@ -7,8 +7,8 @@
     <ProjectGuid>{9BB43527-2974-4D68-BC00-CCABF5157D17}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZangAPI</RootNamespace>
-    <AssemblyName>ZangAPI</AssemblyName>
+    <RootNamespace>AvayaCPaaS</RootNamespace>
+    <AssemblyName>AvayaCPaaS</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

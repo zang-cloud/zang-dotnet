@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 
-namespace ZangAPI.Helpers
+namespace AvayaCPaaS.Helpers
 {
     /// <summary>
     /// Rest request helper

@@ -7,8 +7,8 @@
     <ProjectGuid>{3F529E0D-6945-4B0A-8EE5-7DEED8046586}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZangAPI.Examples</RootNamespace>
-    <AssemblyName>ZangAPI.Examples</AssemblyName>
+    <RootNamespace>AvayaCPaaS.Examples</RootNamespace>
+    <AssemblyName>AvayaCPaaS.Examples</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,9 +72,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ZangAPI\ZangAPI.csproj">
+    <ProjectReference Include="..\ZangAPI\AvayaCPaaS.csproj">
       <Project>{9bb43527-2974-4d68-bc00-ccabf5157d17}</Project>
-      <Name>ZangAPI</Name>
+      <Name>AvayaCPaaS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

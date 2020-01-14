@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Conference
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class Conference : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class Conference : BaseObject
     {
         /// <summary>
         /// Gets or sets the name of the friendly.

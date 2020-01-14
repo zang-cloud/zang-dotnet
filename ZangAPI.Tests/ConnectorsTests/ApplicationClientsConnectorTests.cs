@@ -5,15 +5,15 @@ using System.Reflection;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MockHttpServer;
-using ZangAPI.Configuration;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Tests.ConnectorsTests
+namespace AvayaCPaaS.Tests.ConnectorsTests
 {
     [TestClass]
     public class ApplicationClientsConnectorTests
     {
-        private const int Port = 3337;
+        private const int Port = Configuration.Port;
         private const string AccountSid = "TestAccountSid";
         private const string AuthToken = "TestAuthToken";
         private const string ResponseJsonFileName = "Responses.applicationClient.json";
@@ -37,7 +37,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileName}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileName}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -45,14 +45,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // View application client using application clients connector
                 var applicationClient = service.ApplicationClientsConnector.ViewApplicationClient("TestApplicationSid", "TestApplicationClientSid");
@@ -83,7 +83,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseListJsonFileName}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseListJsonFileName}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -91,14 +91,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // List application clients using application clients connector
                 var applicationClientsList = service.ApplicationClientsConnector.ListApplicationClients("TestAccountSid", "TestApplicationSid");
@@ -131,7 +131,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileName}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileName}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -139,14 +139,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // Create application client using application clients connector
                 var applicationClient = service.ApplicationClientsConnector.CreateApplicationClient("TestApplicationSid", "MyApplicationClient");

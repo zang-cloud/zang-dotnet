@@ -1,9 +1,9 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Avaya CPaaS service to work with applications
@@ -13,7 +13,7 @@ namespace ZangAPI.Examples.Examples
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing application
@@ -26,7 +26,7 @@ namespace ZangAPI.Examples.Examples
                 var application = service.ApplicationsConnector.ViewApplication("TestApplicationSid");
                 Console.WriteLine(application.ClientCount);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -43,7 +43,7 @@ namespace ZangAPI.Examples.Examples
                 var applications = service.ApplicationsConnector.ListApplications(AccountSid, "TestApplication", 0, 10);
                 Console.WriteLine(applications.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -61,7 +61,7 @@ namespace ZangAPI.Examples.Examples
                     statusCallbackMethod: HttpMethod.GET);
                 Console.WriteLine(application.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -81,7 +81,7 @@ namespace ZangAPI.Examples.Examples
                     HttpMethod.POST, "hangupCallback", HttpMethod.GET);
                 Console.WriteLine(application.VoiceFallbackUrl);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -98,7 +98,7 @@ namespace ZangAPI.Examples.Examples
                 var application = service.ApplicationsConnector.DeleteApplication("TestApplicationSid");
                 Console.WriteLine(application.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

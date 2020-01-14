@@ -1,4 +1,4 @@
-zang-dotnet
+AvayaCPaaS
 ===========
 
 This .net library is an open source tool built to simplify interaction with the [Avaya CPaaS](http://www.zang.io) telephony platform. Avaya CPaaS makes adding voice and SMS to applications fun and easy.
@@ -21,7 +21,7 @@ Download the zip of this repo and add the desired DLLs to your project.
 ##### 1. Using Visual Studio and NuGet Package Manager
 
 - In Solution Explorer, right click on References and choose Manage NuGet Packages.
-- Choose nuget.org as the Package source, click the Browse tab, search for ZangAPI, select that package in the list, and click Install
+- Choose nuget.org as the Package source, click the Browse tab, search for AvayaCPaaS, select that package in the list, and click Install
 - Right-click the solution in Solution Explorer and click Build Solution
 
 Usage
@@ -35,15 +35,15 @@ See the [Avaya CPaaS REST API documentation](http://docs.zang.io/aspx/rest) for 
 
 ```cs
 using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
 
 public class Program
     {
         static void Main(string[] args)
         {
-            var configuration = new ZangConfiguration({AccountSid}, {AuthToken});
-			var service = new ZangService(configuration);
+            var configuration = new APIConfiguration({AccountSid}, {AuthToken});
+			var service = new CPaaSService(configuration);
 
 		public void MakeCall()
         {
@@ -53,7 +53,7 @@ public class Program
                 var call = service.CallsConnector.MakeCall("+12345", "+12678", "http://zang.io/ivr/welcome/call", playDtmf: "ww12w3221", timeout: 100);
                 Console.WriteLine(call.Status);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -65,39 +65,39 @@ public class Program
 
 #### Configuration (3 ways)
 
-First, a configuration must be created by using provided configuration class `ZangConfiguration` or by creating your own implementation of `IZangConfiguration` interface.
+First, a configuration must be created by using provided configuration class `APIConfiguration` or by creating your own implementation of `IAPIConfiguration` interface.
 
-##### 1. Create ZangConfiguration with parameters AccountSid and AuthToken
+##### 1. Create APIConfiguration with parameters AccountSid and AuthToken
 
 Normally you'll want to just enter your Avaya CPaaS Platform *AccountSid* and *AuthToken*, but you can also define a proxy server or change the base API URL.
 Basic configuration:
 
 ```cs
-var configuration = new ZangConfiguration({AccountSid}, {AuthToken});
+var configuration = new APIConfiguration({AccountSid}, {AuthToken});
 ```
 or if you want to define a proxy server:
 ```cs
-var configuration = new ZangConfiguration({AccountSid}, {AuthToken});
+var configuration = new APIConfiguration({AccountSid}, {AuthToken});
 configuration.UseProxy = true;
 configuration.ProxyHost = {ProxyHost}
 configuration.ProxyPort = {ProxyPort}
 ```
-Next, you'll have to create a ZangService and pass the configuration
+Next, you'll have to create a CPaaSService and pass the configuration
 ```cs
-var service = new ZangService(configuration)
+var service = new CPaaSService(configuration)
 ```
 
 ##### 2. Use a custom HttpManager
-Another way to create ZangService is to pass a custom HttpManager which implements IHttpManager. 
+Another way to create CPaaSService is to pass a custom HttpManager which implements IHttpManager. 
 ```cs
-var service = new ZangService(myHttpManager)
+var service = new CPaaSService(myHttpManager)
 ```
 
 ##### 3. Use configuration parameters from `app.config` file
 
-Create ZangService with empty ZangConfiguration
+Create CPaaSService with empty APIConfiguration
 ```cs
-var service = new ZangService(new ZangConfiguration("", ""));
+var service = new CPaaSService(new APIConfiguration("", ""));
 ```
 
 Configure service 
@@ -151,8 +151,8 @@ Example of using InboundXML builder:
 
 ```cs
 using System;
-using ZangAPI.InboundXml;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.InboundXml;
+using AvayaCPaaS.Exceptions;
 
 public class Program
 {
@@ -178,7 +178,7 @@ public class Program
                            
             Console.WriteLine(result);
         }
-        catch (ZangException e)
+        catch (CPaaSException e)
         {
             Console.WriteLine(e.Message);
         }

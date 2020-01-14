@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// IP access control list
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class IpAccessControlList : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class IpAccessControlList : BaseObject
     {
         /// <summary>
         /// Gets or sets the ip addresses count.

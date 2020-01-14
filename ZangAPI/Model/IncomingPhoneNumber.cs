@@ -1,14 +1,14 @@
 ﻿using System;
 using Newtonsoft.Json;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// The incoming phone number
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class IncomingPhoneNumber : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class IncomingPhoneNumber : BaseObject
     {
         /// <summary>
         /// Gets or sets the voice URL.
@@ -178,7 +178,7 @@ namespace ZangAPI.Model
         /// <value>
         /// The next renewal date.
         /// </value>
-        [JsonProperty(PropertyName = "next_renewal_date")]
+        [JsonProperty(PropertyName = "next_renewal_date", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime NextRenewalDate { get; set; }
 
         /// <summary>

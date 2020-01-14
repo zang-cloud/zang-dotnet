@@ -1,9 +1,9 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Avaya CPaaS service to work with conferences
@@ -13,7 +13,7 @@ namespace ZangAPI.Examples.Examples
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing conference
@@ -26,7 +26,7 @@ namespace ZangAPI.Examples.Examples
                 var conference = service.ConferencesConnector.ViewConference("TestConferenceSid");
                 Console.WriteLine(conference.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -45,7 +45,7 @@ namespace ZangAPI.Examples.Examples
                     dateUpdatedLt: new DateTime(2017, 3, 16));
                 Console.WriteLine(conferences.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -62,7 +62,7 @@ namespace ZangAPI.Examples.Examples
                 var participant = service.ConferencesConnector.ViewParticipant("TestConferenceSid", "TestParticipantSid");
                 Console.WriteLine(participant.Muted);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -79,7 +79,7 @@ namespace ZangAPI.Examples.Examples
                 var participants = service.ConferencesConnector.ListParticipants("TestConferenceSid", true);
                 Console.WriteLine(participants.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -96,7 +96,7 @@ namespace ZangAPI.Examples.Examples
                 var participant = service.ConferencesConnector.MuteOrDeafParticipant("TestConferenceSid", "TestParticipantSid", deaf: true);
                 Console.WriteLine(participant.Deaf);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -113,7 +113,7 @@ namespace ZangAPI.Examples.Examples
                 var participant = service.ConferencesConnector.PlayAudioToParticipant("TestConferenceSid", "TestParticipantSid", "http://mydomain.com/audio.mp3");
                 Console.WriteLine(participant.CallerName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -130,7 +130,7 @@ namespace ZangAPI.Examples.Examples
                 var participant = service.ConferencesConnector.HangupParticipant("TestConferenceSid", "TestParticipantSid");
                 Console.WriteLine(participant.CallerName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

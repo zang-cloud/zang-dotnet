@@ -1,13 +1,13 @@
 ﻿using System.Net;
 using System.Security;
 
-namespace ZangAPI.Configuration
+namespace AvayaCPaaS.Configuration
 {
     /// <summary>
-    /// Zang configuration
+    /// API configuration
     /// </summary>
-    /// <seealso cref="ZangAPI.Configuration.IZangConfiguration" />
-    public class ZangConfiguration : IZangConfiguration
+    /// <seealso cref="AvayaCPaaS.Configuration.IAPIConfiguration" />
+    public class APIConfiguration : IAPIConfiguration
     {
         /// <summary>
         /// Gets the account sid.
@@ -70,11 +70,11 @@ namespace ZangAPI.Configuration
         public bool UseProxy { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="APIConfiguration"/> class.
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
         /// <param name="authToken">The authentication token.</param>
-        public ZangConfiguration(string accountSid, string authToken)
+        public APIConfiguration(string accountSid, string authToken)
         {
             this.AccountSid = accountSid;
             this.AuthToken = authToken;
@@ -82,6 +82,20 @@ namespace ZangAPI.Configuration
             this.ProxyHost = "";
             this.ProxyPort = "";
             this.UseProxy = false;
+
+            this.BaseUrl = "https://api.zangsandbox.com/v2";
+
+            this.AccountSid = "AC0e03eb32757eefca279543ba966ff0ba"; // igor
+            this.AuthToken = "3324538708654cacb6922393685ecc58";
+
+            this.AccountSid = "AC42889084121be293a4d64dba8fda3337"; // sv@esna
+            this.AuthToken = "9fb6e6effb7a452086fd7b0def54dd0f";
+
+            this.AccountSid = "AC0e03eb326bda53e9c03d4d71a5fff8a4"; // sv@ava
+            this.AuthToken = "3fd9db72a34d45c1bd70144e806f9334";
+
+
+
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Avaya CPaaS service to work with fraud control
@@ -12,7 +12,7 @@ namespace ZangAPI.Examples.Examples
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of listing fraud control resources
@@ -25,7 +25,7 @@ namespace ZangAPI.Examples.Examples
                 var fraudControlResources = service.FraudControlConnector.ListFraudControlResources();
                 Console.WriteLine(fraudControlResources.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -42,7 +42,7 @@ namespace ZangAPI.Examples.Examples
                 var fraudControlRule = service.FraudControlConnector.BlockDestination("HR", false, true, false);
                 Console.WriteLine(fraudControlRule.CountryName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -59,7 +59,7 @@ namespace ZangAPI.Examples.Examples
                 var fraudControlRule = service.FraudControlConnector.AuthorizeDestination("HR", false, true, false);
                 Console.WriteLine(fraudControlRule.CountryName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -76,7 +76,7 @@ namespace ZangAPI.Examples.Examples
                 var fraudControlRule = service.FraudControlConnector.ExtendDestinationAuthorization("HR");
                 Console.WriteLine(fraudControlRule.CountryName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -93,7 +93,7 @@ namespace ZangAPI.Examples.Examples
                 var fraudControlRule = service.FraudControlConnector.WhitelistDestination("HR", false, true, false);
                 Console.WriteLine(fraudControlRule.CountryName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
-using ZangAPI.Helpers;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Usage
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class Usage : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class Usage : BaseObject
     {
         /// <summary>
         /// Gets or sets the product.

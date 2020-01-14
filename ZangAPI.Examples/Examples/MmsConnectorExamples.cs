@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Avaya CPaaS service to work with mms messages
@@ -13,7 +13,7 @@ namespace ZangAPI.Examples.Examples
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of sending sms message
@@ -24,11 +24,11 @@ namespace ZangAPI.Examples.Examples
             {
                 // Send sms message using sms connector
                 var mmsMessage = service.MmsConnector.SendMms("+123456",
-                    "https://media.giphy.com/media/zZJzLrxmx5ZFS/giphy.gif", body: "This is MMS sent from Zang",
+                    "https://media.giphy.com/media/zZJzLrxmx5ZFS/giphy.gif", body: "This is MMS sent from CPaaS",
                     from: "+654321");
                 Console.WriteLine(mmsMessage.MediaUrl);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

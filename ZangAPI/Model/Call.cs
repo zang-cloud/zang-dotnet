@@ -1,15 +1,15 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Call class
     /// </summary>
-    /// <seealso cref="BaseZangObject" />
-    public class Call : BaseZangObject
+    /// <seealso cref="BaseObject" />
+    public class Call : BaseObject
     {
         /// <summary>
         /// Gets the parent call sid.
