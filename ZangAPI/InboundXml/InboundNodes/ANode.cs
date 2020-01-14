@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace ZangAPI.InboundXml.InboundNodes
+namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     public class ANode : XElement
     {

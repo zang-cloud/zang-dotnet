@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Transcription
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class Transcription : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class Transcription : BaseObject
     {
         /// <summary>
         /// Gets or sets the status.

@@ -1,14 +1,14 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Connectors;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Connectors;
 
-namespace ZangAPI
+namespace AvayaCPaaS
 {
     /// <summary>
-    /// Zang service
+    /// CPaaS service
     /// </summary>
-    public class ZangService
+    public class CPaaSService
     {
         /// <summary>
         /// Gets or sets the HTTP manager.
@@ -163,19 +163,19 @@ namespace ZangAPI
         public FraudControlConnector FraudControlConnector { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangService"/> class.
+        /// Initializes a new instance of the <see cref="CPaaSService"/> class.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        public ZangService(IZangConfiguration configuration)
+        public CPaaSService(IAPIConfiguration configuration)
             : this(new HttpManager(configuration))
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangService"/> class.
+        /// Initializes a new instance of the <see cref="CPaaSService"/> class.
         /// </summary>
         /// <param name="httpManager">The HTTP manager.</param>
-        public ZangService(IHttpManager httpManager)
+        public CPaaSService(IHttpManager httpManager)
         {
             this.HttpManager = httpManager;
             this.InitConnectors();
@@ -220,7 +220,7 @@ namespace ZangAPI
             var proxyPort = Properties.Settings.Default.proxyPort;
             var useProxy = Properties.Settings.Default.useProxy;
 
-            var configuration = new ZangConfiguration(accountSid, authToken)
+            var configuration = new APIConfiguration(accountSid, authToken)
             {
                 BaseUrl = baseUrl, ProxyHost = proxyHost, ProxyPort = proxyPort, 
                 UseProxy = Convert.ToBoolean(useProxy)

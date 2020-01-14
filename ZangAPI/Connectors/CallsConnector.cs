@@ -2,18 +2,18 @@
 using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Helpers;
-using ZangAPI.Model;
-using ZangAPI.Model.Lists;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model;
+using AvayaCPaaS.Model.Lists;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Connectors
+namespace AvayaCPaaS.Connectors
 {
     /// <summary>
     /// Calls connector - used for all forms of communication with the Calls endpoint of the Avaya CPaaS REST API
     /// </summary>
-    /// <seealso cref="ZangAPI.Connectors.AConnector" />
+    /// <seealso cref="AvayaCPaaS.Connectors.AConnector" />
     public class CallsConnector : AConnector
     {
         /// <summary>
@@ -114,7 +114,7 @@ namespace ZangAPI.Connectors
         /// Make a call
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="to">The phone number or SIP endpoint to call. Phone number should be in international format and one recipient per request. For e.g, to dial a number in the US, the To should be, +17325551212. SIP endpoints must be prefixed with sip: e.g sip:12345@sip.zang.io.</param>
+        /// <param name="to">The phone number or SIP endpoint to call. Phone number should be in international format and one recipient per request. For e.g, to dial a number in the US, the To should be, +17325551212. SIP endpoints must be prefixed with sip: e.g sip:12345@sip.avaya.com.</param>
         /// <param name="from">The number to display as calling (i.e. Caller ID). The value does not have to be a real phone number or even in a valid format. For example, 8143 could be passed to the From parameter and would be displayed as the caller ID. Spoofed calls carry an additional charge.</param>
         /// <param name="url">The URL requested once the call connects. This URL must be valid and should return InboundXML containing instructions on how to process your call. A badly formatted URL will NOT fallback to the FallbackUrl but return an error without placing the call. URL length is limited to 200 characters.</param>
         /// <param name="method">The HTTP method used to request the URL once the call connects. Valid parameters are GET and POST - any other value will default to POST.</param>
@@ -147,7 +147,7 @@ namespace ZangAPI.Connectors
             string forwardedFrom = null, string playDtmf = null, int timeout = 60, bool hideCallerId = false,
             bool record = false,
             string recordCallback = null, HttpMethod recordCallbackMethod = HttpMethod.POST, bool transcribe = false,
-            string transcribeCallback = null, bool straightToVoicemail = false, IfMachine ifMachine = IfMachine.CONTINUE,
+            string transcribeCallback = null, bool straightToVoicemail = false, IfMachine? ifMachine = null,
             string ifMachineUrl = null, HttpMethod ifMachineMethod = HttpMethod.POST, string sipAuthUsername = null,
             string sipAuthPassword = null)
         {
@@ -178,7 +178,7 @@ namespace ZangAPI.Connectors
         /// <summary>
         /// Make a call. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="to">The phone number or SIP endpoint to call. Phone number should be in international format and one recipient per request. For e.g, to dial a number in the US, the To should be, +17325551212. SIP endpoints must be prefixed with sip: e.g sip:12345@sip.zang.io.</param>
+        /// <param name="to">The phone number or SIP endpoint to call. Phone number should be in international format and one recipient per request. For e.g, to dial a number in the US, the To should be, +17325551212. SIP endpoints must be prefixed with sip: e.g sip:12345@sip.avaya.com.</param>
         /// <param name="from">The number to display as calling (i.e. Caller ID). The value does not have to be a real phone number or even in a valid format. For example, 8143 could be passed to the From parameter and would be displayed as the caller ID. Spoofed calls carry an additional charge.</param>
         /// <param name="url">The URL requested once the call connects. This URL must be valid and should return InboundXML containing instructions on how to process your call. A badly formatted URL will NOT fallback to the FallbackUrl but return an error without placing the call. URL length is limited to 200 characters.</param>
         /// <param name="method">The HTTP method used to request the URL once the call connects. Valid parameters are GET and POST - any other value will default to POST.</param>
@@ -211,7 +211,7 @@ namespace ZangAPI.Connectors
             string forwardedFrom = null, string playDtmf = null, int timeout = 60, bool hideCallerId = false,
             bool record = false, string recordCallback = null, HttpMethod recordCallbackMethod = HttpMethod.POST,
             bool transcribe = false,
-            string transcribeCallback = null, bool straightToVoicemail = false, IfMachine ifMachine = IfMachine.CONTINUE,
+            string transcribeCallback = null, bool straightToVoicemail = false, IfMachine? ifMachine = null,
             string ifMachineUrl = null, HttpMethod ifMachineMethod = HttpMethod.POST, string sipAuthUsername = null,
             string sipAuthPassword = null)
         {
@@ -441,15 +441,15 @@ namespace ZangAPI.Connectors
         /// <param name="rate">Sets the rate. The lower the value, the lower the rate. Allowed values are integers greater than 0.</param>
         /// <param name="tempo">Sets the tempo. The lower the value, the slower the tempo. Allowed values are integers greater than 0.</param>
         /// <returns>Returns call</returns>
-        public Call ApplyVoiceEffect(string accountSid, string callSid, AudioDirection direction = AudioDirection.OUT,
-            int pitch = 1, int pitchSemiTones = 1, int pitchOctaves = 1, int rate = 1, int tempo = 1)
+        public Call ApplyVoiceEffect(string accountSid, string callSid, AudioDirection? direction = null,
+            float? pitch = null, float? pitchSemiTones = null, float? pitchOctaves = null, float? rate = null, float? tempo = null)
         {
             // Get client to make request
             var client = HttpProvider.GetHttpClient();
 
             // Create POST request
             var request = RestRequestHelper.CreateRestRequest(Method.POST,
-                $"Accounts/{accountSid}/Calls/{callSid}/Effects.json");
+                $"Accounts/{accountSid}/Calls/{callSid}/Effect.json");
 
             // Add ApplyVoiceEffect query and body parameters
             this.SetParamsForApplyVoiceEffect(request, direction, pitch, pitchSemiTones, pitchOctaves, rate, tempo);
@@ -471,8 +471,8 @@ namespace ZangAPI.Connectors
         /// <param name="rate">Sets the rate. The lower the value, the lower the rate. Allowed values are integers greater than 0.</param>
         /// <param name="tempo">Sets the tempo. The lower the value, the slower the tempo. Allowed values are integers greater than 0.</param>
         /// <returns>Returns call</returns>
-        public Call ApplyVoiceEffect(string callSid, AudioDirection direction = AudioDirection.OUT,
-            int pitch = 1, int pitchSemiTones = 1, int pitchOctaves = 1, int rate = 1, int tempo = 1)
+        public Call ApplyVoiceEffect(string callSid, AudioDirection? direction = null,
+            float? pitch = null, float? pitchSemiTones = null, float? pitchOctaves = null, float? rate = 1, float? tempo = 1)
         {
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
@@ -516,7 +516,7 @@ namespace ZangAPI.Connectors
             string forwardedFrom, string playDtmf,
             int timeout, bool hideCallerId, bool record, string recordCallback, HttpMethod recordCallbackMethod,
             bool transcribe, string transcribeCallback,
-            bool straightToVoicemail, IfMachine ifMachine, string ifMachineUrl, HttpMethod ifMachineMethod,
+            bool straightToVoicemail, IfMachine? ifMachine, string ifMachineUrl, HttpMethod ifMachineMethod,
             string sipAuthUsername, string sipAuthPassword)
         {
             request.AddParameter("To", to);
@@ -524,25 +524,43 @@ namespace ZangAPI.Connectors
             request.AddParameter("Url", url);
 
             request.AddParameter("Method", method);
-            if (fallbackUrl.HasValue()) request.AddParameter("FallbackUrl", fallbackUrl);
-            request.AddParameter("FallbackMethod", fallbackMethod.ToString().ToUpper());
-            if (statusCallback.HasValue()) request.AddParameter("StatusCallback", statusCallback);
-            request.AddParameter("StatusCallbackMethod", statusCallbackMethod.ToString().ToUpper());
-            if (heartbeatUrl.HasValue()) request.AddParameter("HeartbeatUrl", heartbeatUrl);
-            request.AddParameter("HeartbeatMethod", heartbeatMethod.ToString().ToUpper());
+            if (fallbackUrl.HasValue())
+            {
+                request.AddParameter("FallbackUrl", fallbackUrl);
+                request.AddParameter("FallbackMethod", fallbackMethod.ToString().ToUpper());
+            }
+            if (statusCallback.HasValue())
+            {
+                request.AddParameter("StatusCallback", statusCallback);
+                request.AddParameter("StatusCallbackMethod", statusCallbackMethod.ToString().ToUpper());
+            }
+            if (heartbeatUrl.HasValue())
+            {
+                request.AddParameter("HeartbeatUrl", heartbeatUrl);
+                request.AddParameter("HeartbeatMethod", heartbeatMethod.ToString().ToUpper());
+            }
             if (forwardedFrom.HasValue()) request.AddParameter("ForwardedFrom", forwardedFrom);
             if (playDtmf.HasValue()) request.AddParameter("PlayDtmf", playDtmf);
             request.AddParameter("Timeout", timeout);
             request.AddParameter("HideCallerId", hideCallerId);
             request.AddParameter("Record", record);
-            if (recordCallback.HasValue()) request.AddParameter("RecordCallback", recordCallback);
-            request.AddParameter("RecordCallbackMethod", recordCallbackMethod.ToString().ToUpper());
+            if (recordCallback.HasValue())
+            {
+                request.AddParameter("RecordCallback", recordCallback);
+                request.AddParameter("RecordCallbackMethod", recordCallbackMethod.ToString().ToUpper());
+            }
             request.AddParameter("Transcribe", transcribe);
             if (transcribeCallback.HasValue()) request.AddParameter("TranscribeCallback", transcribeCallback);
             request.AddParameter("StraightToVoicemail", straightToVoicemail);
-            request.AddParameter("IfMachine", EnumHelper.GetEnumValue(ifMachine));
-            if (ifMachineUrl.HasValue()) request.AddParameter("IfMachineUrl", ifMachineUrl);
-            request.AddParameter("IfMachineMethod", ifMachineMethod.ToString().ToUpper());
+            if (ifMachine != null)
+            {
+                request.AddParameter("IfMachine", EnumHelper.GetEnumValue(ifMachine));
+                if (ifMachineUrl.HasValue())
+                {
+                    request.AddParameter("IfMachineUrl", ifMachineUrl);
+                    request.AddParameter("IfMachineMethod", ifMachineMethod.ToString().ToUpper());
+                }
+            }
             if (sipAuthUsername.HasValue()) request.AddParameter("SipAuthUsername", sipAuthUsername);
             if (sipAuthPassword.HasValue()) request.AddParameter("SipAuthPassword", sipAuthPassword);
         }
@@ -656,16 +674,22 @@ namespace ZangAPI.Connectors
         /// <param name="pitchOctaves">The pitch octaves.</param>
         /// <param name="rate">The rate.</param>
         /// <param name="tempo">The tempo.</param>
-        private void SetParamsForApplyVoiceEffect(IRestRequest request, AudioDirection direction = AudioDirection.OUT,
-            int pitch = 1, int pitchSemiTones = 1,
-            int pitchOctaves = 1, int rate = 1, int tempo = 1)
+        private void SetParamsForApplyVoiceEffect(IRestRequest request, AudioDirection? direction = null,
+            float? pitch = null, float? pitchSemiTones = null,
+            float? pitchOctaves = null, float? rate = null, float? tempo = null)
         {
-            request.AddParameter("AudioDirection", EnumHelper.GetEnumValue(direction));
-            request.AddParameter("Pitch", pitch);
-            request.AddParameter("PitchSemiTones", pitchSemiTones);
-            request.AddParameter("PitchOctaves", pitchOctaves);
-            request.AddParameter("Rate", rate);
-            request.AddParameter("Tempo", tempo);
+            if (direction != null)
+              request.AddParameter("AudioDirection", EnumHelper.GetEnumValue(direction));
+            if (pitch != null)
+              request.AddParameter("Pitch", pitch);
+            if (pitchSemiTones != null)
+              request.AddParameter("PitchSemiTones", pitchSemiTones);
+            if (pitchOctaves != null)
+              request.AddParameter("PitchOctaves", pitchOctaves);
+            if (rate != null)
+              request.AddParameter("Rate", rate);
+            if (tempo != null)
+              request.AddParameter("Tempo", tempo);
         }
     }
 }

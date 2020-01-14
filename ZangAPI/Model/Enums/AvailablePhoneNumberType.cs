@@ -1,4 +1,4 @@
-﻿namespace ZangAPI.Model.Enums
+﻿namespace AvayaCPaaS.Model.Enums
 {
     /// <summary>
     /// Available phone number type

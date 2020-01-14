@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace ZangAPI.Tests
+namespace AvayaCPaaS.Tests
 {
     /// <summary>
     /// Extension methods

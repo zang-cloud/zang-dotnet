@@ -2,9 +2,9 @@
 using System.Net;
 using RestSharp;
 using RestSharp.Authenticators;
-using ZangAPI.Configuration;
+using AvayaCPaaS.Configuration;
 
-namespace ZangAPI.ConnectionManager
+namespace AvayaCPaaS.ConnectionManager
 {
     /// <summary>
     /// Http manager
@@ -21,19 +21,19 @@ namespace ZangAPI.ConnectionManager
         private RestClient RestClient { get; set; }
         
         /// <summary>
-        /// Gets or sets the zang configuration.
+        /// Gets or sets the API configuration.
         /// </summary>
         /// <value>
-        /// The zang configuration.
+        /// The API configuration.
         /// </value>
-        private IZangConfiguration ZangConfiguration { get; set; }
+        private IAPIConfiguration APIConfiguration { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpManager"/> class.
         /// </summary>
-        public HttpManager(IZangConfiguration configuration)
+        public HttpManager(IAPIConfiguration configuration)
         {
-            this.ZangConfiguration = configuration;
+            this.APIConfiguration = configuration;
         }
 
         /// <summary>
@@ -93,9 +93,9 @@ namespace ZangAPI.ConnectionManager
         /// Sets the configuration.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        public void SetConfiguration(IZangConfiguration configuration)
+        public void SetConfiguration(IAPIConfiguration configuration)
         {
-            this.ZangConfiguration = configuration;
+            this.APIConfiguration = configuration;
 
             if (this.RestClient == null)
             {
@@ -113,9 +113,9 @@ namespace ZangAPI.ConnectionManager
         /// <returns>
         /// Returns configuration
         /// </returns>
-        public IZangConfiguration GetConfiguration()
+        public IAPIConfiguration GetConfiguration()
         {
-            return this.ZangConfiguration;
+            return this.APIConfiguration;
         }
 
         /// <summary>
@@ -124,8 +124,8 @@ namespace ZangAPI.ConnectionManager
         /// <param name="client">The client.</param>
         private void ConfigureRestClient(IRestClient client)
         {
-            client.BaseUrl = new Uri(ZangConfiguration.BaseUrl);
-            client.Authenticator = new HttpBasicAuthenticator(ZangConfiguration.AccountSid, ZangConfiguration.AuthToken);
+            client.BaseUrl = new Uri(APIConfiguration.BaseUrl);
+            client.Authenticator = new HttpBasicAuthenticator(APIConfiguration.AccountSid, APIConfiguration.AuthToken);
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
                                                    | SecurityProtocolType.Tls11
@@ -133,10 +133,10 @@ namespace ZangAPI.ConnectionManager
                                                    | SecurityProtocolType.Ssl3;
 
             // If useProxy flag is set to true set proxy
-            if (ZangConfiguration.UseProxy)
+            if (APIConfiguration.UseProxy)
             {
-                client.Proxy = new WebProxy(ZangConfiguration.ProxyHost + ":" + ZangConfiguration.ProxyPort);
-                client.Proxy.Credentials = new NetworkCredential(ZangConfiguration.AccountSid, ZangConfiguration.AuthToken);
+                client.Proxy = new WebProxy(APIConfiguration.ProxyHost + ":" + APIConfiguration.ProxyPort);
+                client.Proxy.Credentials = new NetworkCredential(APIConfiguration.AccountSid, APIConfiguration.AuthToken);
             }
         }
     }

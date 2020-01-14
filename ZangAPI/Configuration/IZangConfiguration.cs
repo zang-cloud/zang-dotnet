@@ -1,9 +1,9 @@
-﻿namespace ZangAPI.Configuration
+﻿namespace AvayaCPaaS.Configuration
 {
     /// <summary>
-    /// Zang configuration interface
+    /// CPaaS configuration interface
     /// </summary>
-    public interface IZangConfiguration
+    public interface IAPIConfiguration
     {
         /// <summary>
         /// Gets the account sid.

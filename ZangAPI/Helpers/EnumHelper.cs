@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.Serialization;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Helpers
+namespace AvayaCPaaS.Helpers
 {
     /// <summary>
     /// Helper methods for handling enumerators

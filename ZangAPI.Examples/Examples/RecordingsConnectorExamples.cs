@@ -1,9 +1,9 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Avaya CPaaS service to work with recordings
@@ -13,7 +13,7 @@ namespace ZangAPI.Examples.Examples
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing recording
@@ -26,7 +26,7 @@ namespace ZangAPI.Examples.Examples
                 var recording = service.RecordingsConnector.ViewRecording("TestRecordingSid");
                 Console.WriteLine(recording.Duration);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -43,7 +43,7 @@ namespace ZangAPI.Examples.Examples
                 var recordings = service.RecordingsConnector.ListRecordings("TestCallSid", new DateTime(2017, 1, 15), new DateTime(2017, 2, 15));
                 Console.WriteLine(recordings.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -60,7 +60,7 @@ namespace ZangAPI.Examples.Examples
                 var recording = service.RecordingsConnector.RecordCall("TestCallSid", true, fileFormat:RecordingFileFormat.WAV, trimSilence:true);
                 Console.WriteLine(recording.Duration);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -77,7 +77,7 @@ namespace ZangAPI.Examples.Examples
                 var recording = service.RecordingsConnector.DeleteRecording("TestRecordingSid");
                 Console.WriteLine(recording.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

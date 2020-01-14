@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model.Lists
+namespace AvayaCPaaS.Model.Lists
 {
     /// <summary>
     /// Fraud control rules list
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{FraudControlRuleElement}" />
-    public class FraudControlRulesList : ZangObjectsList<FraudControlRuleElement>
+    /// <seealso cref="AvayaCPaaS.Model.Lists.ObjectsList{FraudControlRuleElement}" />
+    public class FraudControlRulesList : ObjectsList<FraudControlRuleElement>
     {
         /// <summary>
         /// Gets or sets the blocked.

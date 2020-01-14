@@ -1,4 +1,4 @@
-﻿namespace ZangAPI.InboundXml.InboundNodes
+﻿namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     public class ResponseNode : ANode
     {

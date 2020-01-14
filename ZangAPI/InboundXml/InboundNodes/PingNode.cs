@@ -1,4 +1,4 @@
-﻿namespace ZangAPI.InboundXml.InboundNodes
+﻿namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     /// <summary>
     /// Ping node for the Inbound XML builder.

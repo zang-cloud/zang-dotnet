@@ -1,4 +1,6 @@
-﻿namespace ZangAPI.Model.Enums
+﻿using System.Runtime.Serialization;
+
+namespace AvayaCPaaS.Model.Enums
 {
     /// <summary>
     /// Incoming phone number type
@@ -18,6 +20,13 @@
         /// <summary>
         /// The tollfree
         /// </summary>
-        TOLL_FREE
+        [EnumMember(Value = "toll-free")]
+        TOLL_FREE,
+
+        /// <summary>
+        /// Ported
+        /// </summary>
+        PORTED,
+
     }
 }

@@ -1,17 +1,17 @@
 ﻿using RestSharp;
 using RestSharp.Extensions;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Helpers;
-using ZangAPI.Model;
-using ZangAPI.Model.Enums;
-using ZangAPI.Model.Lists;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model;
+using AvayaCPaaS.Model.Enums;
+using AvayaCPaaS.Model.Lists;
 
-namespace ZangAPI.Connectors
+namespace AvayaCPaaS.Connectors
 {
     /// <summary>
     /// Incoming numbers connector - used for all forms of communication with the Incoming Phone Numbers endpoint of the Avaya CPaaS REST API
     /// </summary>
-    /// <seealso cref="ZangAPI.Connectors.AConnector" />
+    /// <seealso cref="AvayaCPaaS.Connectors.AConnector" />
     public class IncomingPhoneNumbersConnector : AConnector
     {
         /// <summary>
@@ -287,7 +287,7 @@ namespace ZangAPI.Connectors
             // Get account sid from configuration
             var accountSid = HttpProvider.GetConfiguration().AccountSid;
 
-            return this.PurchaseIncomingNumber(accountSid, incomingPhoneNumberSid, friendlyName, voiceUrl, voiceMethod,
+            return this.UpdateIncomingNumber(accountSid, incomingPhoneNumberSid, friendlyName, voiceUrl, voiceMethod,
                 voiceFallbackUrl, voiceFallbackMethod, voiceCallerIdLookup, smsUrl, smsMethod,
                 smsFallbackUrl, smsFallbackMethod, heartbeatUrl, heartbeatMethod, statusCallback, statusCallbackMethod,
                 hangupCallback, hangupCallbackMethod);

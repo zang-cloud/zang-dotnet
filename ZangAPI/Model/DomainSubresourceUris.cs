@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Domain subresource uris

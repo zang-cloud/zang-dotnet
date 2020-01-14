@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>AvayaCPaaS</AssemblyName>
+    <RootNamespace>AvayaCPaaS</RootNamespace>
+    <Title>AvayaCPaaS</Title>
+    <Company>Avaya Cloud Inc.</Company>
+    <Copyright>2020, Avaya Cloud Inc.</Copyright>
+    <AssemblyVersion>0.8.1.0</AssemblyVersion>
+    <FileVersion>0.8.1.0</FileVersion>
+    <Version>0.8.1</Version>
+    <Authors>Avaya Cloud Inc.</Authors>
+    <PackageId>AvayaCPaaS</PackageId>
+    <PackageProjectUrl>https://cloud.zang.io/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zang-cloud/zang-dotnet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage />
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>This .net library is an open source tool built to simplify interaction with the Avaya CPaaS telephony platform. Avaya CPaaS makes adding voice and SMS to applications fun and easy.</Description>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <Product>Avaya CPaaS</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="inboundxml.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="RestSharp" Version="106.10.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="inboundxml.xsd" />
+  </ItemGroup>
+
+</Project>

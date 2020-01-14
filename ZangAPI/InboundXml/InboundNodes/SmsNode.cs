@@ -1,4 +1,4 @@
-﻿namespace ZangAPI.InboundXml.InboundNodes
+﻿namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     /// <summary>
     /// Sms node for the Inbound XML builder.

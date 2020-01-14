@@ -3,9 +3,9 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using ZangAPI.InboundXml.InboundNodes;
+using AvayaCPaaS.InboundXml.InboundNodes;
 
-namespace ZangAPI.InboundXml
+namespace AvayaCPaaS.InboundXml
 {
     public class InboundXmlBuilder
     {
@@ -67,11 +67,13 @@ namespace ZangAPI.InboundXml
             Assembly a = Assembly.GetExecutingAssembly();
 
             var schemas = new XmlSchemaSet();
-            schemas.Add("", XmlReader.Create(a.GetManifestResourceStream("ZangAPI.inboundxml.xsd")));
+            schemas.Add("", XmlReader.Create(a.GetManifestResourceStream("AvayaCPaaS.inboundxml.xsd")));
 
             var valid = true;
             document.Validate(schemas, (o, e) => 
-                { valid = false; });
+                { 
+                    valid = false; 
+                });
 
             return valid;
         }

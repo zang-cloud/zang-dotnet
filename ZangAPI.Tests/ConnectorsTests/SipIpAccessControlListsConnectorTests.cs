@@ -5,16 +5,16 @@ using System.Reflection;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MockHttpServer;
-using ZangAPI.Configuration;
-using ZangAPI.Helpers;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Tests.ConnectorsTests
+namespace AvayaCPaaS.Tests.ConnectorsTests
 {
     [TestClass]
     public class SipIpAccessControlListsConnectorTests
     {
-        private const int Port = 3337;
+        private const int Port = Configuration.Port;
         private const string AccountSid = "TestAccountSid";
         private const string AuthToken = "TestAuthToken";
         private const string ResponseJsonFileNameIPAccesControlList = "Responses.ipacl.json";
@@ -40,7 +40,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameIPAccesControlList}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileNameIPAccesControlList}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -48,14 +48,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // View IP access control list using ip acls connector
                 var ipAcl = service.SipIpAccessControlListsConnector.ViewIpAccessControlList("TestIpAccessControlListSid");
@@ -81,7 +81,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseListJsonFileNameIPAccesControlList}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseListJsonFileNameIPAccesControlList}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -89,14 +89,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // List IP access control lists using ip acls connector
                 var ipAclsList = service.SipIpAccessControlListsConnector.ListIpAccessControlLists(
@@ -129,7 +129,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameIPAccesControlList}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileNameIPAccesControlList}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -137,14 +137,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // Create IP access control list using ip acls connector
                 var ipAcl = service.SipIpAccessControlListsConnector.CreateIpAccessControlList(jsonRequest.BodyParameter("FriendlyName"));
@@ -171,7 +171,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameIPAccesControlList}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileNameIPAccesControlList}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -179,14 +179,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // Update IP access control list using ip acls connector
                 var ipAcl = service.SipIpAccessControlListsConnector.UpdateIpAccessControlList("TestIpAccessControlListSid", jsonRequest.BodyParameter("FriendlyName"));
@@ -213,7 +213,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameIPAccesControlList}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileNameIPAccesControlList}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -221,14 +221,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // Delete IP access control list using ip acls connector
                 var ipAcl = service.SipIpAccessControlListsConnector.DeleteIpAccessControlList("TestIpAccessControlListSid");
@@ -252,7 +252,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameAccessControlListIP}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileNameAccessControlListIP}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -260,14 +260,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // View access control list IP using ip acls connector
                 var aclIp = service.SipIpAccessControlListsConnector.ViewAccessControlListIp("TestIpAccessControlListSid", "TestIpAddressSid");
@@ -294,7 +294,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseListJsonFileNameAccessControlListIP}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseListJsonFileNameAccessControlListIP}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -302,14 +302,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // List access control list IPs using ip acls connector
                 var aclIpsList = service.SipIpAccessControlListsConnector.ListAccessControlListIps("TestIpAccessControlListSid");
@@ -338,7 +338,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameAccessControlListIP}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileNameAccessControlListIP}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -346,14 +346,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // Add access control list IP using ip acls connector
                 var aclIp = service.SipIpAccessControlListsConnector.AddAccessControlListIp("TestIpAccessControlListSid", 
@@ -381,7 +381,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameAccessControlListIP}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileNameAccessControlListIP}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -389,14 +389,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // Update access control list IP using ip acls connector
                 var aclIp = service.SipIpAccessControlListsConnector.UpdateAccessControlListIp("TestIpAccessControlListSid", "TestIpAddressSid", jsonRequest.BodyParameter("FriendlyName"), jsonRequest.BodyParameter("IpAddress"));
@@ -423,7 +423,7 @@ namespace ZangAPI.Tests.ConnectorsTests
                 // Define server response
                 var assembly = Assembly.GetExecutingAssembly();
                 var streamReader =
-                    new StreamReader(assembly.GetManifestResourceStream($"ZangAPI.Tests.{ResponseJsonFileNameAccessControlListIP}"));
+                    new StreamReader(assembly.GetManifestResourceStream($"AvayaCPaaS.Tests.{ResponseJsonFileNameAccessControlListIP}"));
                 var json = streamReader.ReadToEnd();
 
                 var buffer = Encoding.ASCII.GetBytes(json);
@@ -431,14 +431,14 @@ namespace ZangAPI.Tests.ConnectorsTests
             }))
             {
                 // Create configuration
-                var configuration = new ZangConfiguration(AccountSid, AuthToken);
+                var configuration = new APIConfiguration(AccountSid, AuthToken);
                 configuration.BaseUrl = $"http://localhost:{Port}/";
 
                 // Get json request from json file
                 var jsonRequest = ParametersHelper.GetJsonRequestByGroupAndMethod(TestGroupName, methodName);
 
                 // Create service
-                var service = new ZangService(configuration);
+                var service = new CPaaSService(configuration);
 
                 // Delete access control list IP using ip acls connector
                 var aclIp = service.SipIpAccessControlListsConnector.DeleteAccessControlListIp("TestIpAccessControlListSid", "TestIpAddressSid");

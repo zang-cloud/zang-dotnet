@@ -1,8 +1,8 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Avaya CPaaS service to work with accounts
@@ -12,7 +12,7 @@ namespace ZangAPI.Examples.Examples
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing account
@@ -25,7 +25,7 @@ namespace ZangAPI.Examples.Examples
                 var account = service.AccountsConnector.ViewAccount(AccountSid);
                 Console.WriteLine(account.AccountBalance);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -42,7 +42,7 @@ namespace ZangAPI.Examples.Examples
                 var account = service.AccountsConnector.UpdateAccount("friendlyName");
                 Console.WriteLine(account.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

@@ -1,32 +1,45 @@
 ﻿using System.Collections.Generic;
 
-namespace ZangAPI.Model.Enums
+namespace AvayaCPaaS.Model.Enums
 {
+    class ProductFix
+    {
+    }
+
     /// <summary>
     /// Product
     /// </summary>
     public enum Product
     {
-        OUTBOUND_CALL,
-        INBOUND_CALL,
-        OUTBOUND_SMS,
-        INBOUND_SMS,
-        OUTBOUND_SIP,
-        INBOUND_SIP,
-        RECORDING,
-        RECURRING_DID,
-        RECURRING_DID_PREMIUM,
-        TRANSCRIPTION_AUTO,
-        TRANSCRIPTION_HYBRID,
-        RECURRING_INBOUND_CHANNEL,
-        INBOUND_CALL_CHANNEL,
-        CNAM_DIP,
-        CARRIER_LOOKUP,
-        OUTBOUND_CALL_SPOOFED,
-        INBOUND_CALL_CHANNEL_OVERAGE,
-        RECURRING_DID_UNBLOCK,
-        INBOUND_CALL_UNBLOCKED,
-        INBOUND_CALL_FORWARDED_FROM,
+        OUTBOUND_CALL = 1,
+        INBOUND_CALL = 2,
+        OUTBOUND_SMS = 3,
+        INBOUND_SMS = 4,
+        OUTBOUND_SIP = 5,
+        INBOUND_SIP = 6,
+        RECORDING = 7,
+        RECURRING_DID = 8,
+        RECURRING_DID_PREMIUM = 9,
+        TRANSCRIPTION_AUTO = 12,
+        UNKNOWN_13 = 13,
+        TRANSCRIPTION_HYBRID = 14,
+        UNKNOWN_15 = 15,
+        RECURRING_INBOUND_CHANNEL = 17,
+        INBOUND_CALL_CHANNEL = 18,
+        CNAM_DIP = 19,
+        CARRIER_LOOKUP = 20,
+        OUTBOUND_CALL_SPOOFED = 21,
+        INBOUND_CALL_CHANNEL_OVERAGE = 22,
+        RECURRING_DID_UNBLOCK = 23,
+        INBOUND_CALL_UNBLOCKED = 24,
+        INBOUND_CALL_FORWARDED_FROM = 25,
+        UNKNOWN_26 = 26,
+        INBOUND_CLIENT = 28,
+        OUTBOUND_CLIENT = 29,
+        UNKNOWN_34 = 34,
+        UNKNOWN_36 = 36,
+        UNKNOWN_39 = 39,
+        UNKNOWN_40 = 40,
         UNKNOWN
     }
 
@@ -55,7 +68,9 @@ namespace ZangAPI.Model.Enums
                 { "Inbound Call (Channel Overage)", Product.INBOUND_CALL_CHANNEL_OVERAGE},
                 { "Recurring DID Unblock", Product.RECURRING_DID_UNBLOCK},
                 { "Inbound Call Unblocked", Product.INBOUND_CALL_UNBLOCKED},
-                { "Inbound Call Forwarded From", Product.INBOUND_CALL_FORWARDED_FROM}
+                { "Inbound Call Forwarded From", Product.INBOUND_CALL_FORWARDED_FROM},
+                { "Inbound Client", Product.INBOUND_CLIENT},
+                { "Outbound Client", Product.OUTBOUND_CLIENT},
             };
 
             return dict[product];
@@ -63,6 +78,8 @@ namespace ZangAPI.Model.Enums
 
         public static string GetProduct(Product product)
         {
+            return ((int)product).ToString();
+            /*
             var dict = new Dictionary<Product, string>()
             {
                 { Product.OUTBOUND_CALL, "1"},
@@ -86,8 +103,8 @@ namespace ZangAPI.Model.Enums
                 { Product.INBOUND_CALL_UNBLOCKED, "24"},
                 { Product.INBOUND_CALL_FORWARDED_FROM, "25"},
             };
-
             return dict[product];
+            */
         }
 
         public static Product? GetProduct(int productId)

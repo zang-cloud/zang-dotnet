@@ -1,4 +1,4 @@
-﻿namespace ZangAPI.InboundXml.InboundNodes
+﻿namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     /// <summary>
     /// The PlayLastRecording node for the Inbound XML builder.

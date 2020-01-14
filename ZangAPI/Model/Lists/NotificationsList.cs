@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model.Lists
+namespace AvayaCPaaS.Model.Lists
 {
     /// <summary>
     /// Notification list
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.Lists.ZangObjectsList{Notification}" />
-    public class NotificationsList : ZangObjectsList<Notification>
+    /// <seealso cref="AvayaCPaaS.Model.Lists.ObjectsList{Notification}" />
+    public class NotificationsList : ObjectsList<Notification>
     {
         /// <summary>
         /// Gets or sets the elements.
