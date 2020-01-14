@@ -13,12 +13,7 @@ To read the official documentation, please visit: [Avaya CPaaS Docs](http://docs
 Installation
 ============
 
-Windows
-##### 1. Using DLL
-
-Download the zip of this repo and add the desired DLLs to your project.
-
-##### 1. Using Visual Studio and NuGet Package Manager
+##### Using Visual Studio and NuGet Package Manager
 
 - In Solution Explorer, right click on References and choose Manage NuGet Packages.
 - Choose nuget.org as the Package source, click the Browse tab, search for AvayaCPaaS, select that package in the list, and click Install

@@ -4,12 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>AvayaCPaaS</AssemblyName>
     <RootNamespace>AvayaCPaaS</RootNamespace>
+    <Title>AvayaCPaaS</Title>
     <Company>Avaya Cloud Inc.</Company>
     <Copyright>2020, Avaya Cloud Inc.</Copyright>
-    <AssemblyVersion>0.8.0.0</AssemblyVersion>
-    <FileVersion>0.8.0.0</FileVersion>
-    <Version>0.8.0</Version>
-    <Authors>Avaya Cloud</Authors>
+    <AssemblyVersion>0.8.1.0</AssemblyVersion>
+    <FileVersion>0.8.1.0</FileVersion>
+    <Version>0.8.1</Version>
+    <Authors>Avaya Cloud Inc.</Authors>
     <PackageId>AvayaCPaaS</PackageId>
     <PackageProjectUrl>https://cloud.zang.io/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/zang-cloud/zang-dotnet</RepositoryUrl>
