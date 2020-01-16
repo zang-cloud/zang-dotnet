@@ -30,28 +30,26 @@ See the [Avaya CPaaS REST API documentation](http://docs.zang.io/aspx/rest) for 
 
 ```cs
 using System;
+using AvayaCPaaS;
 using AvayaCPaaS.Configuration;
 using AvayaCPaaS.Exceptions;
 
 public class Program
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            var configuration = new APIConfiguration({AccountSid}, {AuthToken});
-			var service = new CPaaSService(configuration);
+        var configuration = new APIConfiguration({AccountSid}, {AuthToken});
+	var service = new CPaaSService(configuration);
 
-		public void MakeCall()
+        try
         {
-            try
-            {
-                // Make call using calls connector
-                var call = service.CallsConnector.MakeCall("+12345", "+12678", "http://zang.io/ivr/welcome/call", playDtmf: "ww12w3221", timeout: 100);
-                Console.WriteLine(call.Status);
-            }
-            catch (CPaaSException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            // Make call using calls connector
+            var call = service.CallsConnector.MakeCall("+12345", "+12678", "http://zang.io/ivr/welcome/call", playDtmf: "ww12w3221", timeout: 100);
+            Console.WriteLine(call.Status);
+        }
+        catch (CPaaSException e)
+        {
+            Console.WriteLine(e.Message);
         }
     }
 }
