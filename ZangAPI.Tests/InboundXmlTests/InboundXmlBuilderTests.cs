@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ZangAPI.InboundXml;
+using AvayaCPaaS.InboundXml;
 using System.Text.RegularExpressions;
-using ZangAPI.InboundXml.Enums;
-using ZangAPI.InboundXml.InboundNodes;
+using AvayaCPaaS.InboundXml.Enums;
+using AvayaCPaaS.InboundXml.InboundNodes;
 
-namespace ZangAPI.Tests.InboundXmlTests
+namespace AvayaCPaaS.Tests.InboundXmlTests
 {
     [TestClass]
     public class InboundXmlBuilderTests
@@ -12,7 +12,7 @@ namespace ZangAPI.Tests.InboundXmlTests
         /// <summary>
         /// The exptected XML string for testing,
         /// </summary>
-        protected static readonly string EXPTECTED_XML_STRING = "<Response><Dial><Conference /><Number /><Sip /></Dial><Gather><Say /><Play /><Pause /></Gather><Hangup /><Ping /><Pause /><Play /><PlayLastRecording /><Record /><Redirect /><Reject /><Say /><Sms to=\"+12345\" from=\"+34567\" /></Response>";
+        protected static readonly string EXPTECTED_XML_STRING = "<Response><Dial><Conference /><Number /><Sip /></Dial><Gather language=\"ar-AE\" input=\"speech\"><Say /><Play /><Pause /></Gather><Hangup /><Ping /><Pause /><Play /><PlayLastRecording /><Record /><Redirect /><Reject /><Say /><Sms to=\"+12345\" from=\"+34567\" /></Response>";
 
         /// <summary>
         /// Removes the XML whitespace.
@@ -39,7 +39,7 @@ namespace ZangAPI.Tests.InboundXmlTests
                     .Number()
                     .Sip()
                     .EndInner()
-                .Gather()
+                .Gather(input: GatherInputEnum.speech, language: BCPLanguageEnum.ar_ae)
                     .StartInner()
                     .Say()
                     .Play()
@@ -74,11 +74,11 @@ namespace ZangAPI.Tests.InboundXmlTests
                 .Dial("(555)555-5555", "dial action", "POST", 15, "caller id", false, "dial music", "dial callback url", "POST", "dial confirm sound", "ww12w3221", false, 
                 "dial heartbeat url", "POST", "dial forwarded from", IfMachineEnum.@continue, "dial if machine url", "POST", false, RecordDirectionEnum.@out, "dial record callback url")
                     .StartInner()
-                    .Conference("ZangExampleChat", false, true, true, true, 15, "conference wait sound", false, "conference callback url", "POST", "ww12w3221", false, false, "conference record callback url", RecordFileFormatEnum.wav)
+                    .Conference("CPaaSExampleChat", false, true, true, true, 15, "conference wait sound", false, "conference callback url", "POST", "ww12w3221", false, false, "conference record callback url", RecordFileFormatEnum.wav)
                     .Number("(555)555-5555", "ww12w3221")
                     .Sip("username@domain.com", "username", "password")
                     .EndInner()
-                .Gather()
+                .Gather(input: GatherInputEnum.speech, language: BCPLanguageEnum.ar_ae)
                     .StartInner()
                     .Say("Ready for pause?", loop:6)
                     .Play("play tone stream", loop: 4)
@@ -94,7 +94,7 @@ namespace ZangAPI.Tests.InboundXmlTests
                 .Redirect("redirect", "POST")
                 .Reject(HangupReasonEnum.busy)
                 .Say(value:"I want to say sth!", voice:VoiceEnum.female, language:LanguageEnum.en, loop:3)
-                .Sms("+12345", "+34567", "Test message from Zang", "sms action", "POST", "sms status callback");
+                .Sms("+12345", "+34567", "Test message from CPaaS", "sms action", "POST", "sms status callback");
 
             var data = builder.Build();
         }

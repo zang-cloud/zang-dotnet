@@ -1,10 +1,10 @@
 ﻿using System;
-using ZangAPI.Exceptions;
-using ZangAPI.InboundXml;
-using ZangAPI.InboundXml.Enums;
-using ZangAPI.InboundXml.InboundNodes;
+using AvayaCPaaS.Exceptions;
+using AvayaCPaaS.InboundXml;
+using AvayaCPaaS.InboundXml.Enums;
+using AvayaCPaaS.InboundXml.InboundNodes;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Inbound XML builder
@@ -27,7 +27,7 @@ namespace ZangAPI.Examples.Examples
                     .EndInner()
                 .Gather(input: GatherInputEnum.speech, language: BCPLanguageEnum.ar_ae)
                     .StartInner()
-                    .Say(language: LanguageEnum.en, loop: 3, value: "Welcome to Zang!", voice: VoiceEnum.female)
+                    .Say(language: LanguageEnum.en, loop: 3, value: "Welcome to CPaaS!", voice: VoiceEnum.female)
                     .Pause(length: 2)
                     .EndInner()
                 .Mms(to: "+123456", from: "+654321", mediaUrl: "https://media.giphy.com/media/zZJzLrxmx5ZFS/giphy.gif")
@@ -37,7 +37,7 @@ namespace ZangAPI.Examples.Examples
 
                 Console.WriteLine(result);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

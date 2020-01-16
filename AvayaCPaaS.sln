@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZangAPI", "ZangAPI\ZangAPI.csproj", "{9BB43527-2974-4D68-BC00-CCABF5157D17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvayaCPaaS", "ZangAPI\AvayaCPaaS.csproj", "{9BB43527-2974-4D68-BC00-CCABF5157D17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZangAPI.Tests", "ZangAPI.Tests\ZangAPI.Tests.csproj", "{CEC170D4-C380-4920-B660-5B7F6A7E02CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvayaCPaaS.Tests", "ZangAPI.Tests\AvayaCPaaS.Tests.csproj", "{CEC170D4-C380-4920-B660-5B7F6A7E02CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZangAPI.Examples", "ZangAPI.Examples\ZangAPI.Examples.csproj", "{3F529E0D-6945-4B0A-8EE5-7DEED8046586}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvayaCPaaS.Examples", "ZangAPI.Examples\AvayaCPaaS.Examples.csproj", "{3F529E0D-6945-4B0A-8EE5-7DEED8046586}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C22CC101-041E-4FF8-8307-965800C69C9D}
 	EndGlobalSection
 EndGlobal

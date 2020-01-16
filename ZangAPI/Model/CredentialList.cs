@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Credential list
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class CredentialList : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class CredentialList : BaseObject
     {
         /// <summary>
         /// Gets or sets the credentials count.

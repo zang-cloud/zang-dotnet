@@ -1,4 +1,4 @@
-﻿namespace ZangAPI.InboundXml.Enums
+﻿namespace AvayaCPaaS.InboundXml.Enums
 {
     /// <summary>
     ///The enumerator for the If Machine values.

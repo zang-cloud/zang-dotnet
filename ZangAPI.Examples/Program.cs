@@ -1,6 +1,6 @@
-﻿using ZangAPI.Examples.Examples;
+﻿using AvayaCPaaS.Examples.Examples;
 
-namespace ZangAPI.Examples
+namespace AvayaCPaaS.Examples
 {
     class Program
     {

@@ -7,14 +7,14 @@ using System.Net;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Tests
+namespace AvayaCPaaS.Tests
 {
     /// <summary>
     /// Helper class for handling expected parameters in tests
     /// </summary>
     public static class ParametersHelper
     {
-        private const string TestExpectationsJsonFilePath = "ZangAPI.Tests.testExpectations.json";
+        private const string TestExpectationsJsonFilePath = "AvayaCPaaS.Tests.testExpectations.json";
 
         /// <summary>
         /// Checks the parameters equality.

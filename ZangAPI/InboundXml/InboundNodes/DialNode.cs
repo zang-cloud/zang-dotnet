@@ -1,7 +1,7 @@
 ﻿using System;
-using ZangAPI.InboundXml.Enums;
+using AvayaCPaaS.InboundXml.Enums;
 
-namespace ZangAPI.InboundXml.InboundNodes
+namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     /// <summary>
     /// The Dial node for the Inbound XML.

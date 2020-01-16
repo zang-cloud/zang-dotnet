@@ -1,4 +1,4 @@
-﻿namespace ZangAPI.Tests
+﻿namespace AvayaCPaaS.Tests
 {
     /// <summary>
     /// Parameter

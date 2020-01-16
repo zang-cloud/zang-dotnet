@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZangAPI.InboundXml.InboundNodes
+namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     /// <summary>
     /// Pause node for the Inbound XML builder.

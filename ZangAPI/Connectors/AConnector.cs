@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Exceptions;
 
-namespace ZangAPI.Connectors
+namespace AvayaCPaaS.Connectors
 {
     /// <summary>
     /// Abstract connector
@@ -38,7 +38,7 @@ namespace ZangAPI.Connectors
             var status = (int)response.StatusCode;
 
             if (status >= 400) {
-                throw JsonConvert.DeserializeObject<ZangException>(response.Content);
+                throw JsonConvert.DeserializeObject<CPaaSException>(response.Content);
             }
             return JsonConvert.DeserializeObject<T>(response.Content);
         }

@@ -1,9 +1,9 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
     /// Examples of using Avaya CPaaS service to work with transcriptions
@@ -13,7 +13,7 @@ namespace ZangAPI.Examples.Examples
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing transcription
@@ -26,7 +26,7 @@ namespace ZangAPI.Examples.Examples
                 var transcription = service.TranscriptionsConnector.ViewTranscription("TestTranscriptionSid");
                 Console.WriteLine(transcription.Price);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -43,7 +43,7 @@ namespace ZangAPI.Examples.Examples
                 var transcriptions = service.TranscriptionsConnector.ListTranscriptions(TranscriptionStatus.IN_PROGRESS, page:3, pageSize:40);
                 Console.WriteLine(transcriptions.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -61,7 +61,7 @@ namespace ZangAPI.Examples.Examples
                     "transcribeCallback", HttpMethod.GET, 1, 40);
                 Console.WriteLine(transcription.Price);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -79,7 +79,7 @@ namespace ZangAPI.Examples.Examples
                     "transcribeCallback", HttpMethod.GET, 1, 40);
                 Console.WriteLine(transcription.Price);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

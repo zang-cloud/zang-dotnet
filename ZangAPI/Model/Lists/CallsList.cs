@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model.Lists
+namespace AvayaCPaaS.Model.Lists
 {
     /// <summary>
     /// Call list
     /// </summary>
-    public class CallsList : ZangObjectsList<Call>
+    public class CallsList : ObjectsList<Call>
     {
         /// <summary>
         /// Gets the elements.

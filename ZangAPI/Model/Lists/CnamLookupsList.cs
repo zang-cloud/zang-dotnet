@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model.Lists
+namespace AvayaCPaaS.Model.Lists
 {
-    public class CnamLookupsList : ZangObjectsList<CnamLookup>
+    public class CnamLookupsList : ObjectsList<CnamLookup>
     {
         /// <summary>
         /// Gets or sets the elements.

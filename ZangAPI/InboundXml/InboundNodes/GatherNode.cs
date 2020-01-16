@@ -1,8 +1,8 @@
 ﻿using System;
-using ZangAPI.InboundXml.Enums;
+using AvayaCPaaS.InboundXml.Enums;
 
 
-namespace ZangAPI.InboundXml.InboundNodes
+namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     public class GatherNode : ANode
     {

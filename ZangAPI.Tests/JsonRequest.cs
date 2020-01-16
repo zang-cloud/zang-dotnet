@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ZangAPI.Tests
+namespace AvayaCPaaS.Tests
 {
     /// <summary>
     /// Request defined in json file
