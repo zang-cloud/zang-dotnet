@@ -1,14 +1,14 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Connectors;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Connectors;
 
-namespace ZangAPI
+namespace AvayaCPaaS
 {
     /// <summary>
-    /// Zang service
+    /// CPaaS service
     /// </summary>
-    public class ZangService
+    public class CPaaSService
     {
         /// <summary>
         /// Gets or sets the HTTP manager.
@@ -33,6 +33,14 @@ namespace ZangAPI
         /// The SMS connector.
         /// </value>
         public SmsConnector SmsConnector { get; set; }
+
+        /// <summary>
+        /// Gets or sets the MMS connector.
+        /// </summary>
+        /// <value>
+        /// The SMS connector.
+        /// </value>
+        public MmsConnector MmsConnector { get; set; }
 
         /// <summary>
         /// Gets or sets the usages connector.
@@ -155,19 +163,19 @@ namespace ZangAPI
         public FraudControlConnector FraudControlConnector { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangService"/> class.
+        /// Initializes a new instance of the <see cref="CPaaSService"/> class.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        public ZangService(IZangConfiguration configuration)
+        public CPaaSService(IAPIConfiguration configuration)
             : this(new HttpManager(configuration))
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangService"/> class.
+        /// Initializes a new instance of the <see cref="CPaaSService"/> class.
         /// </summary>
         /// <param name="httpManager">The HTTP manager.</param>
-        public ZangService(IHttpManager httpManager)
+        public CPaaSService(IHttpManager httpManager)
         {
             this.HttpManager = httpManager;
             this.InitConnectors();
@@ -180,6 +188,7 @@ namespace ZangAPI
         {
             this.CallsConnector = new CallsConnector(this.HttpManager);
             this.SmsConnector = new SmsConnector(this.HttpManager);
+            this.MmsConnector = new MmsConnector(this.HttpManager);
             this.UsagesConnector = new UsagesConnector(this.HttpManager);
             this.AccountsConnector = new AccountsConnector(this.HttpManager);
             this.ConferencesConnector = new ConferencesConnector(this.HttpManager);
@@ -211,7 +220,7 @@ namespace ZangAPI
             var proxyPort = Properties.Settings.Default.proxyPort;
             var useProxy = Properties.Settings.Default.useProxy;
 
-            var configuration = new ZangConfiguration(accountSid, authToken)
+            var configuration = new APIConfiguration(accountSid, authToken)
             {
                 BaseUrl = baseUrl, ProxyHost = proxyHost, ProxyPort = proxyPort, 
                 UseProxy = Convert.ToBoolean(useProxy)

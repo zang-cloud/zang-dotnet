@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Application client
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class ApplicationClient : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class ApplicationClient : BaseObject
     {
         /// <summary>
         /// Gets or sets the presence status.

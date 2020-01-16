@@ -1,16 +1,16 @@
 ﻿using RestSharp;
 using RestSharp.Validation;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Helpers;
-using ZangAPI.Model;
-using ZangAPI.Model.Lists;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model;
+using AvayaCPaaS.Model.Lists;
 
-namespace ZangAPI.Connectors
+namespace AvayaCPaaS.Connectors
 {
     /// <summary>
-    /// Carrier services connector - used for all forms of communication with the Carrier Services endpoint of the Zang REST API
+    /// Carrier services connector - used for all forms of communication with the Carrier Services endpoint of the Avaya CPaaS REST API
     /// </summary>
-    /// <seealso cref="ZangAPI.Connectors.AConnector" />
+    /// <seealso cref="AvayaCPaaS.Connectors.AConnector" />
     public class CarrierServicesConnector : AConnector
     {
         /// <summary>
@@ -42,7 +42,9 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<CarrierLookup>(response);
+            var lookups = this.ReturnOrThrowException<CarrierLookups>(response);
+
+            return lookups != null && lookups.LookupArray != null && lookups.LookupArray.Length > 0 ? lookups.LookupArray[0] : null;
         }
 
         /// <summary>
@@ -117,7 +119,9 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<CnamLookup>(response);
+            var lookups = this.ReturnOrThrowException<CnamLookups>(response);
+
+            return lookups != null && lookups.LookupArray != null && lookups.LookupArray.Length > 0 ? lookups.LookupArray[0] : null;
         }
 
         /// <summary>
@@ -192,7 +196,9 @@ namespace ZangAPI.Connectors
             // Send request
             var response = client.Execute(request);
 
-            return this.ReturnOrThrowException<BnaLookup>(response);
+            var lookups = this.ReturnOrThrowException<BnaLookups>(response);
+
+            return lookups != null && lookups.LookupArray != null && lookups.LookupArray.Length > 0 ? lookups.LookupArray[0] : null;
         }
 
         /// <summary>

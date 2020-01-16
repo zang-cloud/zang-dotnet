@@ -1,18 +1,18 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with sip ip access control lists and access control list ips
+    /// Examples of using Avaya CPaaS service to work with sip ip access control lists and access control list ips
     /// </summary>
     public class SipIpAccessControlListsConnectorExamples
     {
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing ip access control list
@@ -25,7 +25,7 @@ namespace ZangAPI.Examples.Examples
                 var ipAccessControlList = service.SipIpAccessControlListsConnector.ViewIpAccessControlList("TestIpAccessControlListSid");
                 Console.WriteLine(ipAccessControlList.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -42,7 +42,7 @@ namespace ZangAPI.Examples.Examples
                 var ipAccessControlLists = service.SipIpAccessControlListsConnector.ListIpAccessControlLists(1, 50);
                 Console.WriteLine(ipAccessControlLists.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -59,7 +59,7 @@ namespace ZangAPI.Examples.Examples
                 var ipAccessControlList = service.SipIpAccessControlListsConnector.CreateIpAccessControlList("IpAclListFriendlyName");
                 Console.WriteLine(ipAccessControlList.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -77,7 +77,7 @@ namespace ZangAPI.Examples.Examples
                     "IpAclListNewFriendlyName");
                 Console.WriteLine(ipAccessControlList.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -94,7 +94,7 @@ namespace ZangAPI.Examples.Examples
                 var ipAccessControlList = service.SipIpAccessControlListsConnector.DeleteIpAccessControlList("TestIpAccessControlListSid");
                 Console.WriteLine(ipAccessControlList.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -111,7 +111,7 @@ namespace ZangAPI.Examples.Examples
                 var accessControlListIp = service.SipIpAccessControlListsConnector.ViewAccessControlListIp("TestIpAccessControlListSid", "TestIpAddressSid");
                 Console.WriteLine(accessControlListIp.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -128,7 +128,7 @@ namespace ZangAPI.Examples.Examples
                 var accessControlListIps = service.SipIpAccessControlListsConnector.ListAccessControlListIps("TestIpAccessControlListSid");
                 Console.WriteLine(accessControlListIps.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -146,7 +146,7 @@ namespace ZangAPI.Examples.Examples
                     "10.0.0.1");
                 Console.WriteLine(accessControlListIp.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -164,7 +164,7 @@ namespace ZangAPI.Examples.Examples
                     "IpAddressNewFriendlyName", "10.0.0.2");
                 Console.WriteLine(accessControlListIp.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -181,7 +181,7 @@ namespace ZangAPI.Examples.Examples
                 var accessControlListIp = service.SipIpAccessControlListsConnector.DeleteAccessControlListIp("TestIpAccessControlListSid", "TestIpAddressSid");
                 Console.WriteLine(accessControlListIp.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

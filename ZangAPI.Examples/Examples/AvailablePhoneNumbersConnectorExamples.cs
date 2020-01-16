@@ -1,19 +1,19 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with available phone numbers
+    /// Examples of using Avaya CPaaS service to work with available phone numbers
     /// </summary>
     public class AvailablePhoneNumbersConnectorExamples
     {
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of listing available phone numbers
@@ -27,7 +27,7 @@ namespace ZangAPI.Examples.Examples
                     "123", "043", "Region", "43000");
                 Console.WriteLine(numbers.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

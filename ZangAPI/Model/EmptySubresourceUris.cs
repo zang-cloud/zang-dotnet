@@ -1,4 +1,4 @@
-﻿namespace ZangAPI.Model
+﻿namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// Empty subresource uris

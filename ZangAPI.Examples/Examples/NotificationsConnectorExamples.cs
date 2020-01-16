@@ -1,19 +1,19 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with notifications
+    /// Examples of using Avaya CPaaS service to work with notifications
     /// </summary>
     public class NotificationsConnectorExamples
     {
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing notification
@@ -26,7 +26,7 @@ namespace ZangAPI.Examples.Examples
                 var notification = service.NotificationsConnector.ViewNotification("TestNotificationSid");
                 Console.WriteLine(notification.MoreInfo);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -43,7 +43,7 @@ namespace ZangAPI.Examples.Examples
                 var notifications = service.NotificationsConnector.ListNotifications(Log.WARNING, 0, 15);
                 Console.WriteLine(notifications.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace ZangAPI.Model
+namespace AvayaCPaaS.Model
 {
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="ZangAPI.Model.BaseZangObject" />
-    public class Credential : BaseZangObject
+    /// <seealso cref="AvayaCPaaS.Model.BaseObject" />
+    public class Credential : BaseObject
     {
         /// <summary>
         /// Gets or sets the username.

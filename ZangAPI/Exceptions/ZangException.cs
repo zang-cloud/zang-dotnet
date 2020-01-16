@@ -2,15 +2,15 @@
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Exceptions
+namespace AvayaCPaaS.Exceptions
 {
     /// <summary>
-    /// Zang exception
+    /// Exception
     /// </summary>
     /// <seealso cref="System.Exception" />
     [JsonObject(MemberSerialization.OptIn)]
     [Serializable]
-    public class ZangException : Exception
+    public class CPaaSException : Exception
     {
         /// <summary>
         /// Gets or sets the status.
@@ -40,31 +40,31 @@ namespace ZangAPI.Exceptions
         public string MoreInfo { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangException"/> class.
+        /// Initializes a new instance of the <see cref="CPaaSException"/> class.
         /// </summary>
         [JsonConstructor]
-        public ZangException()
+        public CPaaSException()
             : base()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangException"/> class.
+        /// Initializes a new instance of the <see cref="CPaaSException"/> class.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
-        public ZangException(string message)
+        public CPaaSException(string message)
             : base(message)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangException"/> class.
+        /// Initializes a new instance of the <see cref="CPaaSException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="status">The status.</param>
         /// <param name="code">The code.</param>
         /// <param name="moreInfo">The more information.</param>
-        public ZangException(string message, int status, long code, string moreInfo)
+        public CPaaSException(string message, int status, long code, string moreInfo)
             : base(message)
         {
             this.Status = status;
@@ -73,11 +73,11 @@ namespace ZangAPI.Exceptions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangException"/> class.
+        /// Initializes a new instance of the <see cref="CPaaSException"/> class.
         /// </summary>
         /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
         /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
-        public ZangException(SerializationInfo info, StreamingContext context)
+        public CPaaSException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
             if (info != null)

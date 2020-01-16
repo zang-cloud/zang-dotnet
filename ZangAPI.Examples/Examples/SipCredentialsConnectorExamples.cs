@@ -1,18 +1,18 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with sip credentials and credential lists
+    /// Examples of using Avaya CPaaS service to work with sip credentials and credential lists
     /// </summary>
     public class SipCredentialsConnectorExamples
     {
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing credential
@@ -25,7 +25,7 @@ namespace ZangAPI.Examples.Examples
                 var credential = service.SipCredentialsConnector.ViewCredential("TestCredentialsListSid", "TestCredentialSid");
                 Console.WriteLine(credential.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -42,7 +42,7 @@ namespace ZangAPI.Examples.Examples
                 var credentials = service.SipCredentialsConnector.ListCredentials("TestCredentialsListSid");
                 Console.WriteLine(credentials.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -59,7 +59,7 @@ namespace ZangAPI.Examples.Examples
                 var credential = service.SipCredentialsConnector.CreateCredential("TestCredentialsListSid", "username", "password");
                 Console.WriteLine(credential.Username);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -77,7 +77,7 @@ namespace ZangAPI.Examples.Examples
                     "password");
                 Console.WriteLine(credential.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -94,7 +94,7 @@ namespace ZangAPI.Examples.Examples
                 var credential = service.SipCredentialsConnector.DeleteCredential("TestCredentialsListSid", "TestCredentialSid");
                 Console.WriteLine(credential.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -111,7 +111,7 @@ namespace ZangAPI.Examples.Examples
                 var credentialsList = service.SipCredentialsConnector.ViewCredentialsList("TestCredentialsListSid");
                 Console.WriteLine(credentialsList.CredentialsCount);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -128,7 +128,7 @@ namespace ZangAPI.Examples.Examples
                 var credentialsLists = service.SipCredentialsConnector.ListCredentialsLists();
                 Console.WriteLine(credentialsLists.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -145,7 +145,7 @@ namespace ZangAPI.Examples.Examples
                 var credentialsList = service.SipCredentialsConnector.CreateCredentialsList("CredentialsListFriendlyName");
                 Console.WriteLine(credentialsList.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -163,7 +163,7 @@ namespace ZangAPI.Examples.Examples
                     "CredentialsListNewFriendlyName");
                 Console.WriteLine(credentialsList.FriendlyName);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -180,7 +180,7 @@ namespace ZangAPI.Examples.Examples
                 var credentialsList = service.SipCredentialsConnector.DeleteCredentialsList("TestCredentialsListSid");
                 Console.WriteLine(credentialsList.Sid);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

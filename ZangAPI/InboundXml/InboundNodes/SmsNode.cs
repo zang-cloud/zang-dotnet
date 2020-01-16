@@ -1,4 +1,4 @@
-﻿namespace ZangAPI.InboundXml.InboundNodes
+﻿namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     /// <summary>
     /// Sms node for the Inbound XML builder.
@@ -12,7 +12,7 @@
         const string NODE_NAME = "Sms";
 
         /// <summary>
-        /// The phone number that will receive the SMS message. If this parameter is not specified, the SMS will be sent back to the number that made the request to the Zang number’s SMS request URL.
+        /// The phone number that will receive the SMS message. If this parameter is not specified, the SMS will be sent back to the number that made the request to the Avaya CPaaS number’s SMS request URL.
         /// </summary>
         /// <value>
         /// To.
@@ -32,7 +32,7 @@
         }
 
         /// <summary>
-        /// The number that will display as sending the SMS message. This should be one of your Zang numbers. If this parameter is not specified, the default from number is the Zang number hosting the SMS request URL.
+        /// The number that will display as sending the SMS message. This should be one of your Avaya CPaaS numbers. If this parameter is not specified, the default from number is the Avaya CPaaS number hosting the SMS request URL.
         /// </summary>
         /// <value>
         /// From.
@@ -52,7 +52,7 @@
         }
 
         /// <summary>
-        /// URL to direct Zang to once the <Sms> element is executed. Parameters specific to <Sms> are sent here along with the request.
+        /// URL to direct Avaya CPaaS to once the <Sms> element is executed. Parameters specific to <Sms> are sent here along with the request.
         /// </summary>
         /// <value>
         /// The action.

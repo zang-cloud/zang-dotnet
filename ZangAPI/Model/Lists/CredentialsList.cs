@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ZangAPI.Model.Lists
+namespace AvayaCPaaS.Model.Lists
 {
-    public class CredentialsList : ZangObjectsList<Credential>
+    public class CredentialsList : ObjectsList<Credential>
     {
         /// <summary>
         /// Gets or sets the elements.

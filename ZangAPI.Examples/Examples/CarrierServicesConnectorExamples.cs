@@ -1,18 +1,18 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with carrier services
+    /// Examples of using Avaya CPaaS service to work with carrier services
     /// </summary>
     public class CarrierServicesConnectorExamples
     {
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of carrier lookup
@@ -25,7 +25,7 @@ namespace ZangAPI.Examples.Examples
                 var carrierLookup = service.CarrierServicesConnector.CarrierLookup("+1234");
                 Console.WriteLine(carrierLookup.Price);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -42,7 +42,7 @@ namespace ZangAPI.Examples.Examples
                 var carrierLookups = service.CarrierServicesConnector.CarrierLookupList();
                 Console.WriteLine(carrierLookups.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -59,7 +59,7 @@ namespace ZangAPI.Examples.Examples
                 var cnamLookup = service.CarrierServicesConnector.CnamLookup("+1234");
                 Console.WriteLine(cnamLookup.Price);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -76,7 +76,7 @@ namespace ZangAPI.Examples.Examples
                 var cnamLookups = service.CarrierServicesConnector.CnamLookupList();
                 Console.WriteLine(cnamLookups.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -93,7 +93,7 @@ namespace ZangAPI.Examples.Examples
                 var cnamLookup = service.CarrierServicesConnector.BnaLookup("+1234");
                 Console.WriteLine(cnamLookup.Price);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -110,7 +110,7 @@ namespace ZangAPI.Examples.Examples
                 var cnamLookups = service.CarrierServicesConnector.BnaLookupList();
                 Console.WriteLine(cnamLookups.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

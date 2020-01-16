@@ -1,6 +1,8 @@
 ﻿using System;
+using AvayaCPaaS.InboundXml.Enums;
 
-namespace ZangAPI.InboundXml.InboundNodes
+
+namespace AvayaCPaaS.InboundXml.InboundNodes
 {
     public class GatherNode : ANode
     {
@@ -107,6 +109,64 @@ namespace ZangAPI.InboundXml.InboundNodes
             }
         }
 
+        /// <summary>
+        /// A list of inputs that Avaya CPaaS should accept. Default value is "dtmf". Accepted values are "dtmf", "speech", or "speech dtmf"
+        /// </summary>
+        /// <value>
+        /// The input.
+        /// </value>
+        public GatherInputEnum Input
+        {
+            get
+            {
+                GatherInputEnum value = GatherInputEnum.speech;
+                Enum.TryParse(this.GetAttributeValue("input"), out value);
+                return value;
+            }
+            set
+            {
+                this.SetAttributeValue("input", GatherInputEnumExtensions.ToString(value));
+            }
+        }
+
+        /// <summary>
+        /// A list of inputs that Avaya CPaaS should accept. Default value is "dtmf". Accepted values are "dtmf", "speech", or "speech dtmf"
+        /// </summary>
+        /// <value>
+        /// The input.
+        /// </value>
+        public BCPLanguageEnum Language
+        {
+            get
+            {
+                BCPLanguageEnum value = BCPLanguageEnum.af_za;
+                Enum.TryParse(this.GetAttributeValue("language"), out value);
+                return value;
+                //return this.GetAttributeValue("language");
+            }
+            set
+            {
+                this.SetAttributeValue("language", BCPLanguageEnumExtensions.ToString(value));
+            }
+        }
+
+        /// <summary>
+        /// A set of words or phrases that Avaya CPaaS should listen for. Commas should seperate words.
+        /// </summary>
+        /// <value>
+        /// The hints string.
+        /// </value>
+        public string Hints
+        {
+            get
+            {
+                return this.GetAttributeValue("hints");
+            }
+            set
+            {
+                this.SetAttributeValue("hints", value);
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GatherNode"/> class.
@@ -121,6 +181,9 @@ namespace ZangAPI.InboundXml.InboundNodes
     {
         public static INodeCanInner<ResponseNode, GatherNode> Gather(
             this INode<ResponseNode> responseNode,
+            GatherInputEnum? input = null,
+            BCPLanguageEnum? language = null,
+            string hints = null,
             string action = null,
             string method = null,
             int? timeout = null,
@@ -133,12 +196,16 @@ namespace ZangAPI.InboundXml.InboundNodes
             {
                 Action = action,
                 Method = method,
-                FinishOnKey = finishOnKey
+                FinishOnKey = finishOnKey,
+                Hints = hints
             };
 
             // sets the values
+            if (language.HasValue) gather.Language = language.Value;
+            if (input.HasValue) gather.Input = input.Value;
             if (timeout.HasValue) gather.Timeout = timeout.Value;
             if (numDigits.HasValue) gather.NumDigits = numDigits.Value;
+
 
             // adds the gather to the response node
             responseNode.CurrentNode.Add(gather);

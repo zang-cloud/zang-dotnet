@@ -1,4 +1,8 @@
-﻿namespace ZangAPI.Model.Enums
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
+
+namespace AvayaCPaaS.Model.Enums
 {
     /// <summary>
     /// Answered by
@@ -27,6 +31,16 @@
         /// <summary>
         /// The nobody
         /// </summary>
-        NOBODY
+        NOBODY,
+
+        /// <summary>
+        /// Trunc
+        /// </summary>
+        TRUNC,
+
+        /// <summary>
+        /// Telapi
+        /// </summary>
+        TELAPI
     }
 }

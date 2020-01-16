@@ -1,16 +1,16 @@
 ﻿using RestSharp;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Helpers;
-using ZangAPI.Model;
-using ZangAPI.Model.Enums;
-using ZangAPI.Model.Lists;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model;
+using AvayaCPaaS.Model.Enums;
+using AvayaCPaaS.Model.Lists;
 
-namespace ZangAPI.Connectors
+namespace AvayaCPaaS.Connectors
 {
     /// <summary>
-    /// Usage connector - used for all forms of communication with the Usages endpoint of the Zang REST API
+    /// Usage connector - used for all forms of communication with the Usages endpoint of the Avaya CPaaS REST API
     /// </summary>
-    /// <seealso cref="ZangAPI.Connectors.AConnector" />
+    /// <seealso cref="AvayaCPaaS.Connectors.AConnector" />
     public class UsagesConnector : AConnector
     {
         /// <summary>
@@ -63,7 +63,7 @@ namespace ZangAPI.Connectors
         /// <param name="day">Filters usage by day of month. If no month is specified then defaults to current month. Allowed values are integers between 1 and 31 depending on the month. Leading 0s will be ignored.</param>
         /// <param name="month">Filters usage by month. Allowed values are integers between 1 and 12. Leading 0s will be ignored.</param>
         /// <param name="year">Filters usage by year. Allowed values are valid years in integer form such as "2014".</param>
-        /// <param name="product">Filters usage by a specific “product” of Zang. Each product is uniquely identified by an integer. For example: Product=1, would return all outbound call usage. The integer assigned to each product is listed below.</param>
+        /// <param name="product">Filters usage by a specific “product” of Avaya Cloud. Each product is uniquely identified by an integer. For example: Product=1, would return all outbound call usage. The integer assigned to each product is listed below.</param>
         /// <param name="page">Used to return a particular page within the list.</param>
         /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns usage list</returns>
@@ -91,7 +91,7 @@ namespace ZangAPI.Connectors
         /// <param name="day">Filters usage by day of month. If no month is specified then defaults to current month. Allowed values are integers between 1 and 31 depending on the month. Leading 0s will be ignored.</param>
         /// <param name="month">Filters usage by month. Allowed values are integers between 1 and 12. Leading 0s will be ignored.</param>
         /// <param name="year">Filters usage by year. Allowed values are valid years in integer form such as "2014".</param>
-        /// <param name="product">Filters usage by a specific “product” of Zang. Each product is uniquely identified by an integer. For example: Product=1, would return all outbound call usage. The integer assigned to each product is listed below.</param>
+        /// <param name="product">Filters usage by a specific “product” of Avaya Cloud. Each product is uniquely identified by an integer. For example: Product=1, would return all outbound call usage. The integer assigned to each product is listed below.</param>
         /// <param name="page">Used to return a particular page within the list.</param>
         /// <param name="pageSize">Used to specify the amount of list items to return per page.</param>
         /// <returns>Returns usage list</returns>

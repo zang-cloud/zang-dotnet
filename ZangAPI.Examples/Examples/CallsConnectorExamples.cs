@@ -1,19 +1,19 @@
 ﻿using System;
-using ZangAPI.Configuration;
-using ZangAPI.Exceptions;
-using ZangAPI.Model.Enums;
+using AvayaCPaaS.Configuration;
+using AvayaCPaaS.Exceptions;
+using AvayaCPaaS.Model.Enums;
 
-namespace ZangAPI.Examples.Examples
+namespace AvayaCPaaS.Examples.Examples
 {
     /// <summary>
-    /// Examples of using Zang service to work with calls
+    /// Examples of using Avaya CPaaS service to work with calls
     /// </summary>
     public class CallsConnectorExamples
     {
         private const string AccountSid = "AccountSid";
         private const string AuthToken = "AuthToken";
 
-        private readonly ZangService service = new ZangService(new ZangConfiguration(AccountSid, AuthToken));
+        private readonly CPaaSService service = new CPaaSService(new APIConfiguration(AccountSid, AuthToken));
 
         /// <summary>
         /// Example of viewing call
@@ -26,7 +26,7 @@ namespace ZangAPI.Examples.Examples
                 var call = service.CallsConnector.ViewCall("TestCallSid");
                 Console.WriteLine(call.Duration);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -44,7 +44,7 @@ namespace ZangAPI.Examples.Examples
                     "+654321", CallStatus.COMPLETED, new DateTime(2017, 2, 20), new DateTime(2017, 3, 1));
                 Console.WriteLine(calls.Total);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -61,7 +61,7 @@ namespace ZangAPI.Examples.Examples
                 var call = service.CallsConnector.MakeCall("+12345", "+112233", "testUrl", transcribe:true, transcribeCallback:"transcribeCallback");
                 Console.WriteLine(call.Duration);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -78,7 +78,7 @@ namespace ZangAPI.Examples.Examples
                 var call = service.CallsConnector.InterruptLiveCall("TestCallSid", "TestUrl", HttpMethod.GET, CallStatus.CANCELED);
                 Console.WriteLine(call.Duration);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -95,7 +95,7 @@ namespace ZangAPI.Examples.Examples
                 var call = service.CallsConnector.SendDigitsToLiveCall("TestCallSid", "ww12w3221", AudioDirection.OUT);
                 Console.WriteLine(call.Duration);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -113,7 +113,7 @@ namespace ZangAPI.Examples.Examples
                     RecordingFileFormat.MP3, true);
                 Console.WriteLine(call.Duration);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -130,7 +130,7 @@ namespace ZangAPI.Examples.Examples
                 var call = service.CallsConnector.PlayAudioToLiveCall("TestCallSid", "AudioUrl");
                 Console.WriteLine(call.Duration);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -147,7 +147,7 @@ namespace ZangAPI.Examples.Examples
                 var call = service.CallsConnector.ApplyVoiceEffect("TestCallSid", AudioDirection.OUT, 2, 3, 2, 3, 2);
                 Console.WriteLine(call.Duration);
             }
-            catch (ZangException e)
+            catch (CPaaSException e)
             {
                 Console.WriteLine(e.Message);
             }

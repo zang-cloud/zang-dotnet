@@ -1,18 +1,18 @@
 ﻿using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Helpers;
-using ZangAPI.Model;
-using ZangAPI.Model.Enums;
-using ZangAPI.Model.Lists;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model;
+using AvayaCPaaS.Model.Enums;
+using AvayaCPaaS.Model.Lists;
 
-namespace ZangAPI.Connectors
+namespace AvayaCPaaS.Connectors
 {
     /// <summary>
-    /// Sip domains connector - used for all forms of communication with the Sip Domains endpoint of the Zang REST API
+    /// Sip domains connector - used for all forms of communication with the Sip Domains endpoint of the Avaya CPaaS REST API
     /// </summary>
-    /// <seealso cref="ZangAPI.Connectors.AConnector" />
+    /// <seealso cref="AvayaCPaaS.Connectors.AConnector" />
     public class SipDomainsConnector : AConnector
     {
         /// <summary>
@@ -93,7 +93,7 @@ namespace ZangAPI.Connectors
         /// Create new SIP domain
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
-        /// <param name="domainName">An address on Zang uniquely associated with your account and through which all your SIP traffic is routed.</param>
+        /// <param name="domainName">An address on Avaya CPaaS uniquely associated with your account and through which all your SIP traffic is routed.</param>
         /// <param name="friendlyName">A human-readable name associated with this domain.</param>
         /// <param name="voiceUrl">The URL requested when a call is received by your domain.</param>
         /// <param name="voiceMethod">The HTTP method used when requesting the VoiceUrl.</param>
@@ -101,7 +101,7 @@ namespace ZangAPI.Connectors
         /// <param name="voiceFallbackMethod">The HTTP method used when requesting the VoiceFallbackUrl.</param>
         /// <param name="hearbeatUrl">URL that can be requested every 60 seconds during the call to notify of elapsed time and pass other general information.</param>
         /// <param name="hearbeatMethod">Specifies the HTTP method used to request HeartbeatUrl.</param>
-        /// <param name="voiceStatusCallback">The URL that Zang will use to send you status notifications regarding your SIP call.</param>
+        /// <param name="voiceStatusCallback">The URL that Avaya CPaaS will use to send you status notifications regarding your SIP call.</param>
         /// <param name="voiceStatusCallbackMethod">The HTTP method used when requesting the VoiceStatusCallback.</param>
         /// <returns>Returns created domain</returns>
         public Domain CreateDomain(string accountSid, string domainName,
@@ -135,7 +135,7 @@ namespace ZangAPI.Connectors
         /// <summary>
         /// Create new SIP domain. Uses {accountSid} from configuration in HttpProvider
         /// </summary>
-        /// <param name="domainName">An address on Zang uniquely associated with your account and through which all your SIP traffic is routed.</param>
+        /// <param name="domainName">An address on Avaya CPaaS uniquely associated with your account and through which all your SIP traffic is routed.</param>
         /// <param name="friendlyName">A human-readable name associated with this domain.</param>
         /// <param name="voiceUrl">The URL requested when a call is received by your domain.</param>
         /// <param name="voiceMethod">The HTTP method used when requesting the VoiceUrl.</param>
@@ -143,7 +143,7 @@ namespace ZangAPI.Connectors
         /// <param name="voiceFallbackMethod">The HTTP method used when requesting the VoiceFallbackUrl.</param>
         /// <param name="hearbeatUrl">URL that can be requested every 60 seconds during the call to notify of elapsed time and pass other general information.</param>
         /// <param name="hearbeatMethod">Specifies the HTTP method used to request HeartbeatUrl.</param>
-        /// <param name="voiceStatusCallback">The URL that Zang will use to send you status notifications regarding your SIP call.</param>
+        /// <param name="voiceStatusCallback">The URL that Avaya CPaaS will use to send you status notifications regarding your SIP call.</param>
         /// <param name="voiceStatusCallbackMethod">The HTTP method used when requesting the VoiceStatusCallback.</param>
         /// <returns>Returns created domain</returns>
         public Domain CreateDomain(string domainName, string friendlyName = null, string voiceUrl = null,
@@ -172,7 +172,7 @@ namespace ZangAPI.Connectors
         /// <param name="voiceFallbackMethod">The HTTP method used when requesting the VoiceFallbackUrl.</param>
         /// <param name="hearbeatUrl">URL that can be requested every 60 seconds during the call to notify of elapsed time and pass other general information.</param>
         /// <param name="hearbeatMethod">Specifies the HTTP method used to request HeartbeatUrl.</param>
-        /// <param name="voiceStatusCallback">The URL that Zang will use to send you status notifications regarding your SIP call.</param>
+        /// <param name="voiceStatusCallback">The URL that Avaya CPaaS will use to send you status notifications regarding your SIP call.</param>
         /// <param name="voiceStatusCallbackMethod">The HTTP method used when requesting the VoiceStatusCallback.</param>
         /// <returns>Returns updated domain</returns>
         public Domain UpdateDomain(string accountSid, string domainSid,
@@ -210,7 +210,7 @@ namespace ZangAPI.Connectors
         /// <param name="voiceFallbackMethod">The HTTP method used when requesting the VoiceFallbackUrl.</param>
         /// <param name="hearbeatUrl">URL that can be requested every 60 seconds during the call to notify of elapsed time and pass other general information.</param>
         /// <param name="hearbeatMethod">Specifies the HTTP method used to request HeartbeatUrl.</param>
-        /// <param name="voiceStatusCallback">The URL that Zang will use to send you status notifications regarding your SIP call.</param>
+        /// <param name="voiceStatusCallback">The URL that Avaya CPaaS will use to send you status notifications regarding your SIP call.</param>
         /// <param name="voiceStatusCallbackMethod">The HTTP method used when requesting the VoiceStatusCallback.</param>
         /// <returns>Returns updated domain</returns>
         public Domain UpdateDomain(string domainSid, string friendlyName = null, string voiceUrl = null,

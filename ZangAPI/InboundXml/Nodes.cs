@@ -1,12 +1,12 @@
 ﻿using System.Xml.Linq;
 
-namespace ZangAPI.InboundXml
+namespace AvayaCPaaS.InboundXml
 {
     /// <summary>
     /// The node for the Inbound XML builder.
     /// </summary>
     /// <typeparam name="TCurrentNode">The type of the current node.</typeparam>
-    /// <seealso cref="ZangAPI.InboundXml.INode{TCurrentNode}" />
+    /// <seealso cref="AvayaCPaaS.InboundXml.INode{TCurrentNode}" />
     public class InboundXmlNode<TCurrentNode> : INode<TCurrentNode> where TCurrentNode : XElement
     {
         /// <summary>
@@ -78,8 +78,8 @@ namespace ZangAPI.InboundXml
     /// </summary>
     /// <typeparam name="TCurrentNode">The type of the current node.</typeparam>
     /// <typeparam name="TParentNode">The type of the parent node.</typeparam>
-    /// <seealso cref="ZangAPI.InboundXml.InboundXmlNode{TCurrentNode}" />
-    /// <seealso cref="ZangAPI.InboundXml.INodeInner{TCurrentNode, TParentNode}" />
+    /// <seealso cref="AvayaCPaaS.InboundXml.InboundXmlNode{TCurrentNode}" />
+    /// <seealso cref="AvayaCPaaS.InboundXml.INodeInner{TCurrentNode, TParentNode}" />
     public class InboundXmlNodeInner<TCurrentNode, TParentNode>
         : InboundXmlNode<TCurrentNode>, INodeInner<TCurrentNode, TParentNode>
         where TParentNode : XElement

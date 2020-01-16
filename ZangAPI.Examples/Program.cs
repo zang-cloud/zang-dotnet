@@ -1,6 +1,6 @@
-﻿using ZangAPI.Examples.Examples;
+﻿using AvayaCPaaS.Examples.Examples;
 
-namespace ZangAPI.Examples
+namespace AvayaCPaaS.Examples
 {
     class Program
     {
@@ -10,6 +10,9 @@ namespace ZangAPI.Examples
 
             var callsConnectorExamples = new CallsConnectorExamples();
             callsConnectorExamples.ListCalls();
+
+            var mmsConnectorExample = new MmsConnectorExamples();
+            mmsConnectorExample.SendMms();
         }
     }
 }

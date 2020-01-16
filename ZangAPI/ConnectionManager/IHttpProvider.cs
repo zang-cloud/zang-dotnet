@@ -1,7 +1,7 @@
 ﻿using RestSharp;
-using ZangAPI.Configuration;
+using AvayaCPaaS.Configuration;
 
-namespace ZangAPI.ConnectionManager
+namespace AvayaCPaaS.ConnectionManager
 {
     /// <summary>
     /// Http provider interface
@@ -18,6 +18,6 @@ namespace ZangAPI.ConnectionManager
         /// Gets the configuration.
         /// </summary>
         /// <returns>Returns configuration</returns>
-        IZangConfiguration GetConfiguration();
+        IAPIConfiguration GetConfiguration();
     }
 }

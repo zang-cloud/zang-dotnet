@@ -1,17 +1,17 @@
 ﻿using RestSharp;
 using RestSharp.Extensions;
 using RestSharp.Validation;
-using ZangAPI.ConnectionManager;
-using ZangAPI.Helpers;
-using ZangAPI.Model;
-using ZangAPI.Model.Lists;
+using AvayaCPaaS.ConnectionManager;
+using AvayaCPaaS.Helpers;
+using AvayaCPaaS.Model;
+using AvayaCPaaS.Model.Lists;
 
-namespace ZangAPI.Connectors
+namespace AvayaCPaaS.Connectors
 {
     /// <summary>
-    /// Sip IP access control lists connector - used for all forms of communication with the Sip IP Access Control Lists endpoint of the Zang REST API
+    /// Sip IP access control lists connector - used for all forms of communication with the Sip IP Access Control Lists endpoint of the Avaya CPaaS REST API
     /// </summary>
-    /// <seealso cref="ZangAPI.Connectors.AConnector" />
+    /// <seealso cref="AvayaCPaaS.Connectors.AConnector" />
     public class SipIpAccessControlListsConnector : AConnector
     {
         /// <summary>

@@ -1,13 +1,13 @@
 ﻿using System.Net;
 using System.Security;
 
-namespace ZangAPI.Configuration
+namespace AvayaCPaaS.Configuration
 {
     /// <summary>
-    /// Zang configuration
+    /// API configuration
     /// </summary>
-    /// <seealso cref="ZangAPI.Configuration.IZangConfiguration" />
-    public class ZangConfiguration : IZangConfiguration
+    /// <seealso cref="AvayaCPaaS.Configuration.IAPIConfiguration" />
+    public class APIConfiguration : IAPIConfiguration
     {
         /// <summary>
         /// Gets the account sid.
@@ -70,11 +70,11 @@ namespace ZangAPI.Configuration
         public bool UseProxy { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ZangConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="APIConfiguration"/> class.
         /// </summary>
         /// <param name="accountSid">The account sid.</param>
         /// <param name="authToken">The authentication token.</param>
-        public ZangConfiguration(string accountSid, string authToken)
+        public APIConfiguration(string accountSid, string authToken)
         {
             this.AccountSid = accountSid;
             this.AuthToken = authToken;
