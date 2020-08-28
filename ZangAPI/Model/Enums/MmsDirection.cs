@@ -21,7 +21,14 @@ namespace AvayaCPaaS.Model.Enums
         /// <summary>
         /// The incoming
         /// </summary>
+        [EnumMember(Value = "incoming")]
         INCOMING,
+
+        /// <summary>
+        /// The outgoing
+        /// </summary>
+        [EnumMember(Value = "outgoing")]
+        OUTGOING,
 
         /// <summary>
         /// The outbound call
