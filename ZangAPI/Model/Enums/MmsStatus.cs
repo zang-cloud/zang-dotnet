@@ -16,6 +16,21 @@
         SENDING,
 
         /// <summary>
+        /// The received
+        /// </summary>
+        RECEIVED,
+
+        /// <summary>
+        /// The delivered
+        /// </summary>
+        DELIVERED,
+
+        /// <summary>
+        /// The deleted
+        /// </summary>
+        DELETED,
+
+        /// <summary>
         /// The queued
         /// </summary>
         QUEUED,
