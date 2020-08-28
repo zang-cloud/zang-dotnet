@@ -7,9 +7,9 @@
     <Title>AvayaCPaaS</Title>
     <Company>Avaya Cloud Inc.</Company>
     <Copyright>2020, Avaya Cloud Inc.</Copyright>
-    <AssemblyVersion>0.8.2.0</AssemblyVersion>
-    <FileVersion>0.8.2.0</FileVersion>
-    <Version>0.8.2</Version>
+    <AssemblyVersion>0.8.3.0</AssemblyVersion>
+    <FileVersion>0.8.3.0</FileVersion>
+    <Version>0.8.3</Version>
     <Authors>Avaya Cloud Inc.</Authors>
     <PackageId>AvayaCPaaS</PackageId>
     <PackageProjectUrl>https://cloud.zang.io/</PackageProjectUrl>
@@ -20,6 +20,7 @@
     <Description>This .net library is an open source tool built to simplify interaction with the Avaya CPaaS telephony platform. Avaya CPaaS makes adding voice and SMS to applications fun and easy.</Description>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <Product>Avaya CPaaS</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
