@@ -36,6 +36,18 @@ namespace AvayaCPaaS.Examples.Examples
                 var result = builder.Build();
 
                 Console.WriteLine(result);
+
+                // creates the connect node
+                builder.GetRequestNode()
+                    .Connect("sample", "POST")
+                        .StartInner()
+                        .Agent("1234")
+                        .EndInner();
+
+                // exports the node
+                var connectStringData = builder.Build();
+
+                Console.WriteLine(connectStringData);
             }
             catch (CPaaSException e)
             {

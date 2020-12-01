@@ -10,9 +10,19 @@ namespace AvayaCPaaS.Tests.InboundXmlTests
     public class InboundXmlBuilderTests
     {
         /// <summary>
-        /// The exptected XML string for testing,
+        /// The expected XML string for testing,
         /// </summary>
         protected static readonly string EXPTECTED_XML_STRING = "<Response><Dial><Conference /><Number /><Sip /></Dial><Gather language=\"ar-AE\" input=\"speech\"><Say /><Play /><Pause /></Gather><Hangup /><Ping /><Pause /><Play /><PlayLastRecording /><Record /><Redirect /><Reject /><Say /><Sms to=\"+12345\" from=\"+34567\" /></Response>";
+
+        /// <summary>
+        /// The expected XML string for testing connect element.
+        /// </summary>
+        protected static readonly string EXPECTED_CONNECT_XML_STRING = "<Response><Connect><Agent /></Connect></Response>";
+
+        /// <summary>
+        /// The expected XML string for testing connect element with attributes.
+        /// </summary>
+        protected static readonly string EXPECTED_CONNECT_XML_STRING_ATTR = "<Response><Connect action=\"http://sample\" method=\"POST\"><Agent>1234</Agent></Connect></Response>";
 
         /// <summary>
         /// Removes the XML whitespace.
@@ -61,6 +71,46 @@ namespace AvayaCPaaS.Tests.InboundXmlTests
 
             // does the test
             Assert.AreEqual(EXPTECTED_XML_STRING, stringData);
+        }
+
+        [TestMethod]
+        public void InboundXmlConnectTest()
+        {
+            // creates the new builder
+            var builder = new InboundXmlBuilder();
+
+            // creates the node
+            builder.GetRequestNode()
+                .Connect()
+                    .StartInner()
+                    .Agent()
+                    .EndInner();
+
+            // exports the node
+            var stringData = RemoveXmlWhitespace(builder.Build());
+
+            // does the test
+            Assert.AreEqual(EXPECTED_CONNECT_XML_STRING, stringData);
+        }
+
+        [TestMethod]
+        public void InboundXmlConnectTestWithAttributes()
+        {
+            // creates the new builder
+            var builder = new InboundXmlBuilder();
+
+            // creates the node
+            builder.GetRequestNode()
+                .Connect("http://sample","POST")
+                    .StartInner()
+                    .Agent("1234")
+                    .EndInner();
+
+            // exports the node
+            var stringData = RemoveXmlWhitespace(builder.Build());
+
+            // does the test
+            Assert.AreEqual(EXPECTED_CONNECT_XML_STRING_ATTR, stringData);
         }
 
         [TestMethod]
