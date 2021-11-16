@@ -62,7 +62,12 @@ First, a configuration must be created by using provided configuration class `AP
 
 ##### 1. Create APIConfiguration with parameters AccountSid and AuthToken
 
-Normally you'll want to just enter your Avaya CPaaS Platform *AccountSid* and *AuthToken*, but you can also define a proxy server or change the base API URL.
+Normally you'll want to just enter your Avaya CPaaS Platform *AccountSid* and *AuthToken*, but you can also define a proxy server or change the base API URL. The default value for base API URL is set to "https://api.zang.io/v2".
+
+The base API URL and api version for US(new) and EU deployments are:
+US: https://api-us.cpaas.avayacloud.com/v2
+EU: https://api-eu.cpaas.avayacloud.com/v2
+
 Basic configuration:
 
 ```cs
@@ -74,6 +79,10 @@ var configuration = new APIConfiguration({AccountSid}, {AuthToken});
 configuration.UseProxy = true;
 configuration.ProxyHost = {ProxyHost}
 configuration.ProxyPort = {ProxyPort}
+```
+or if you want to change the base API URL:
+```cs
+configuration.BaseUrl = {BaseUrl}
 ```
 Next, you'll have to create a CPaaSService and pass the configuration
 ```cs
