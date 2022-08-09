@@ -12,7 +12,7 @@ namespace AvayaCPaaS.Tests.InboundXmlTests
         /// <summary>
         /// The expected XML string for testing,
         /// </summary>
-        protected static readonly string EXPTECTED_XML_STRING = "<Response><Dial><Conference /><Number /><Sip /></Dial><Gather language=\"ar-AE\" input=\"speech\"><Say /><Play /><Pause /></Gather><Hangup /><Ping /><Pause /><Play /><PlayLastRecording /><Record /><Redirect /><Reject /><Say /><Sms to=\"+12345\" from=\"+34567\" /></Response>";
+        protected static readonly string EXPTECTED_XML_STRING = "<Response><Dial><Conference /><Number /><Sip /></Dial><Refer><Sip /></Refer><Gather language=\"ar-AE\" input=\"speech\"><Say /><Play /><Pause /></Gather><Hangup /><Ping /><Pause /><Play /><PlayLastRecording /><Record /><Redirect /><Reject /><Say /><Sms to=\"+12345\" from=\"+34567\" /></Response>";
 
         /// <summary>
         /// The expected XML string for testing connect element.
@@ -23,6 +23,9 @@ namespace AvayaCPaaS.Tests.InboundXmlTests
         /// The expected XML string for testing connect element with attributes.
         /// </summary>
         protected static readonly string EXPECTED_CONNECT_XML_STRING_ATTR = "<Response><Connect action=\"http://sample\" method=\"POST\"><Agent>1234</Agent></Connect></Response>";
+
+        protected static readonly string EXPECTED_REFER_XML_STRING_ATTR = "<Response><Refer action=\"https://example.com/actionURL\" method=\"POST\" callbackUrl=\"https://example.com/callbackURL\" callbackMethod=\"POST\" timeout=\"180\"><Sip username=\"username\" password=\"pass\">username@example.com</Sip></Refer></Response>";
+
 
         /// <summary>
         /// Removes the XML whitespace.
@@ -47,6 +50,10 @@ namespace AvayaCPaaS.Tests.InboundXmlTests
                     .StartInner()
                     .Conference()
                     .Number()
+                    .Sip()
+                    .EndInner()
+                .Refer()
+                    .StartInner()
                     .Sip()
                     .EndInner()
                 .Gather(input: GatherInputEnum.speech, language: BCPLanguageEnum.ar_ae)
@@ -111,6 +118,26 @@ namespace AvayaCPaaS.Tests.InboundXmlTests
 
             // does the test
             Assert.AreEqual(EXPECTED_CONNECT_XML_STRING_ATTR, stringData);
+        }
+
+        [TestMethod]
+        public void InboundXmlReferTestWithAttributes()
+        {
+            // creates the new builder
+            var builder = new InboundXmlBuilder();
+
+            // creates the node
+            builder.GetRequestNode()
+                .Refer("username@example.com", "https://example.com/actionURL", "POST", 180, "https://example.com/callbackURL", "POST")
+                    .StartInner()
+                    .Sip("username@example.com", "username", "pass")
+                    .EndInner();
+
+            // exports the node
+            var stringData = RemoveXmlWhitespace(builder.Build());
+
+            // does the test
+            Assert.AreEqual(EXPECTED_REFER_XML_STRING_ATTR, stringData);
         }
 
         [TestMethod]
