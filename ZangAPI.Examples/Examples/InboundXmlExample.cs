@@ -25,7 +25,7 @@ namespace AvayaCPaaS.Examples.Examples
                     .StartInner()
                     .Sip("username@domain.com", "username", "password")
                     .EndInner()
-                .Refer("(555)555-5555", action: "action", method: "GET", timeout: 180, callbackUrl: "callback", callbackMethod: "GET")
+                .Refer("username@example.com", action: "action", method: "GET", timeout: 180, callbackUrl: "callback", callbackMethod: "GET")
                     .StartInner()
                     .Sip("username@example.com", "username", "pass")
                     .EndInner()

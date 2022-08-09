@@ -14,7 +14,7 @@ namespace AvayaCPaaS.InboundXml.InboundNodes
         const string NODE_NAME = "Refer";
 
         /// <summary>
-        /// URL where some parameters specific to <Refer> will be sent for further processing. The calling party can be redirected here upon the hangup of the B leg caller.
+        /// URL where some parameters specific to <Refer> will be sent for further processing.
         /// </summary>
         /// <value>
         /// The action.
@@ -52,16 +52,16 @@ namespace AvayaCPaaS.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// The duration in seconds a call made through <Dial> should occur for before ending. Default Value: 14400. Allowed Value: integer greater than or equal to 1.
+        ///  The number of seconds cpaas should wait for <Refer> verb to conclude. Default Value: 180. Allowed Value: integer greater than or equal to 1.
         /// </summary>
         /// <value>
-        /// The time limit.
+        /// The timeout.
         /// </value>
         public int Timeout
         {
             get
             {
-                int value = 14400;
+                int value = 180;
                 Int32.TryParse(this.GetAttributeValue("timeout"), out value);
                 return value;
             }
@@ -72,7 +72,7 @@ namespace AvayaCPaaS.InboundXml.InboundNodes
         }
 
         /// <summary>
-        /// URL requested when the dialed call connects and ends. Note that this URL only receives parameters containing information about the call, the call does not execute XML given as a callbackUrl.
+        /// URL where the status of the Refer can be sent. Note that this URL only receives parameters containing information about the call, the call does not execute XML given as a callbackUrl.
         /// </summary>
         /// <value>
         /// The callback URL.
@@ -117,7 +117,7 @@ namespace AvayaCPaaS.InboundXml.InboundNodes
     }
 
     /// <summary>
-    /// Extension methods for the Dial node.
+    /// Extension methods for the Refer node.
     /// </summary>
     public static class ReferNodeExensions
     {
