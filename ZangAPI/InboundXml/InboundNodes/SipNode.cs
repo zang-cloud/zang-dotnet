@@ -113,10 +113,10 @@
                 Password = password
             };
 
-            // adds the Sip node to the dial
+            // adds the Sip node to the refer
             referNode.CurrentNode.Add(sip);
 
-            // returns the dial node
+            // returns the refer node
             return referNode;
         }
     }
