@@ -90,5 +90,34 @@
             // returns the dial node
             return dialNode;
         }
+
+        /// <summary>
+        /// Adds the Sip node to the Refer node.
+        /// </summary>
+        /// <param name="referNode">The refer node</param>
+        /// <param name="value">The value.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        public static INodeInner<ReferNode, ResponseNode> Sip(
+            this INodeInner<ReferNode, ResponseNode> referNode,
+            string value = null,
+            string username = null,
+            string password = null
+)
+        {
+            // creates new Sip node
+            var sip = new SipNode()
+            {
+                Value = value,
+                Username = username,
+                Password = password
+            };
+
+            // adds the Sip node to the refer
+            referNode.CurrentNode.Add(sip);
+
+            // returns the refer node
+            return referNode;
+        }
     }
 }
