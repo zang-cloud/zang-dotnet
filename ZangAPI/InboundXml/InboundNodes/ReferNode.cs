@@ -14,7 +14,7 @@ namespace AvayaCPaaS.InboundXml.InboundNodes
         const string NODE_NAME = "Refer";
 
         /// <summary>
-        /// URL where some parameters specific to <Refer> will be sent for further processing.
+        /// URL to fetch the set of instructions for further processing. It is executed when the transfer fails with a failure response or when the <Refer> verb is timed out.
         /// </summary>
         /// <value>
         /// The action.
@@ -32,7 +32,7 @@ namespace AvayaCPaaS.InboundXml.InboundNodes
         }
         
         /// <summary>
-        /// Method used to request the action URL. Default Value: POST. Allowed Value: POST or GET.
+        /// Method used to request the action URL.
         /// </summary>
         /// <value>
         /// The method.
@@ -52,7 +52,7 @@ namespace AvayaCPaaS.InboundXml.InboundNodes
         }
 
         /// <summary>
-        ///  The number of seconds cpaas should wait for <Refer> verb to conclude. Default Value: 180. Allowed Value: integer greater than or equal to 1.
+        ///  The number of seconds CPaaS should wait for <Refer> verb to conclude.
         /// </summary>
         /// <value>
         /// The timeout.
